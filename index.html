@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaithSocial - Connect & Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Auth Screen -->
+    <div id="authScreen" class="screen active">
+        <div class="auth-container">
+            <h1>🔥 FaithSocial</h1>
+            <div id="authToggle">
+                <button class="active" onclick="showLogin()">Login</button>
+                <button onclick="showSignup()">Sign Up</button>
+            </div>
+            
+            <form id="loginForm" class="auth-form">
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            
+            <form id="signupForm" class="auth-form hidden">
+                <input type="text" id="signupUsername" placeholder="Username" required>
+                <input type="email" id="signupEmail" placeholder="Email" required>
+                <input type="tel" id="signupPhone" placeholder="Phone (optional)">
+                <input type="password" id="signupPassword" placeholder="Password (6+ chars)" required>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p id="authError" class="error"></p>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="mainApp" class="screen">
+        <!-- Navigation -->
+        <nav class="bottom-nav">
+            <button onclick="showView('feed')" data-view="feed">
+                <span>📱</span><small>Feed</small>
+            </button>
+            <button onclick="showView('friends')" data-view="friends">
+                <span>👥</span><small>Friends</small>
+            </button>
+            <button onclick="showView('chats')" data-view="chats">
+                <span>💬</span><small>Chats</small>
+            </button>
+            <button onclick="showView('profile')" data-view="profile">
+                <span>👤</span><small>Profile</small>
+            </button>
+        </nav>
+
+        <!-- Feed View -->
+        <div id="feedView" class="view active">
+            <div class="header">
+                <h2>🔥 Feed</h2>
+                <button onclick="showPostModal()">➕ Post</button>
+            </div>
+            <div id="feedList" class="feed-list"></div>
+        </div>
+
+        <!-- Friends View -->
+        <div id="friendsView" class="view">
+            <div class="header">
+                <h2>👥 Friends</h2>
+                <button onclick="showSearchModal()">🔍 Find</button>
+            </div>
+            <div class="tab-container">
+                <button class="tab active" onclick="showFriendTab('list')">Friends</button>
+                <button class="tab" onclick="showFriendTab('requests')">Requests</button>
+            </div>
+            <div id="friendsList" class="friends-list"></div>
+            <div id="requestsList" class="friends-list hidden"></div>
+        </div>
+
+        <!-- Chats View -->
+        <div id="chatsView" class="view">
+            <div class="header">
+                <h2>💬 Chats</h2>
+                <button onclick="showNewChatModal()">➕ New</button>
+            </div>
+            <div id="chatsList" class="chats-list"></div>
+        </div>
+
+        <!-- Profile View -->
+        <div id="profileView" class="view">
+            <div class="header">
+                <h2>👤 Profile</h2>
+                <button onclick="logout()">Logout</button>
+            </div>
+            <div class="profile-container">
+                <img id="profilePic" src="https://via.placeholder.com/100" alt="Profile">
+                <h3 id="profileName">Username</h3>
+                <p id="profileEmail">email@example.com</p>
+                <input type="file" id="picUpload" accept="image/*" style="display:none">
+                <button onclick="document.getElementById('picUpload').click()">Change Photo</button>
+                <div class="stats">
+                    <div><strong id="friendCount">0</strong><br>Friends</div>
+                    <div><strong id="postCount">0</strong><br>Posts</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Room View -->
+        <div id="chatRoomView" class="view">
+            <div class="header">
+                <button onclick="showView('chats')">←</button>
+                <h2 id="chatRoomName">Chat</h2>
+                <button id="videoCallBtn" onclick="startVideoCall()">📹 Meet</button>
+            </div>
+            <div id="messagesList" class="messages-list"></div>
+            <div class="message-input">
+                <input type="text" id="messageInput" placeholder="Type message...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+
+        <!-- Video Call View -->
+        <div id="videoCallView" class="view">
+            <div class="video-container">
+                <video id="remoteVideo" autoplay playsinline></video>
+                <video id="localVideo" autoplay playsinline muted></video>
+                <div class="call-controls">
+                    <button onclick="endCall()" class="end-call">End Call</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="postModal" class="modal">
+        <div class="modal-content">
+            <h3>Create Post</h3>
+            <textarea id="postContent" placeholder="What's on your mind?" rows="4"></textarea>
+            <div class="modal-actions">
+                <button onclick="closeModal('postModal')">Cancel</button>
+                <button onclick="createPost()">Post</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <h3>Find Friends</h3>
+            <input type="text" id="searchInput" placeholder="Search username or email">
+            <button onclick="searchUsers()">Search</button>
+            <div id="searchResults" class="search-results"></div>
+            <button onclick="closeModal('searchModal')">Close</button>
+        </div>
+    </div>
+
+    <div id="newChatModal" class="modal">
+        <div class="modal-content">
+            <h3>New Chat</h3>
+            <div id="friendsForChat" class="friends-list"></div>
+            <button onclick="closeModal('newChatModal')">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
