@@ -215,10 +215,10 @@
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
     
     <script>
-        // Firebase Configuration
+        // Firebase Configuration (same as app.js)
         const firebaseConfig = {
             apiKey: "AIzaSyAtyh1n18IORxOsYxRZMStu74942yUJiOY",
             authDomain: "faithsocial-7f9d8.firebaseapp.com",
@@ -232,9 +232,9 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
-        const db = firebase.firestore();
+        const db = firebase.database(); // Realtime Database for messages
         
-        console.log('✅ Firebase initialized');
+        console.log('✅ Firebase initialized with Realtime Database');
     </script>
     
     <!-- EmailJS for sending verification codes -->
@@ -345,18 +345,28 @@
                 
                 console.log('✅ Firebase login successful:', user.email);
                 
-                // Get user profile from Firestore
-                const userDoc = await db.collection('users').doc(user.uid).get();
+                // Get user profile from Realtime Database
+                const userRef = db.ref('users/' + user.uid);
+                const snapshot = await userRef.once('value');
                 
-                if (userDoc.exists) {
-                    const userData = userDoc.data();
+                if (snapshot.exists()) {
+                    const userData = snapshot.val();
                     
                     // Store in localStorage for quick access
                     localStorage.setItem('currentUser', JSON.stringify({
                         id: user.uid,
-                        name: userData.name,
+                        name: userData.name || user.displayName,
                         email: user.email,
                         profilePic: userData.profilePic || 'https://via.placeholder.com/150',
+                        loggedIn: true
+                    }));
+                } else {
+                    // Create basic profile if doesn't exist
+                    localStorage.setItem('currentUser', JSON.stringify({
+                        id: user.uid,
+                        name: user.displayName || user.email.split('@')[0],
+                        email: user.email,
+                        profilePic: 'https://via.placeholder.com/150',
                         loggedIn: true
                     }));
                 }
@@ -416,19 +426,19 @@
             
             try {
                 // Create user with Firebase Authentication
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                const user = userCredential.user;
-                
-                console.log('✅ Firebase user created:', user.uid);
-                
-                // Update display name
-                await user.updateProfile({
-                    displayName: `${firstName} ${lastName}`
+                const userCredential = awaRealtime Database
+                await db.ref('users/' + user.uid).set({
+                    name: `${firstName} ${lastName}`,
+                    email: email,
+                    gender: gender,
+                    profilePic: `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70) + 1}`,
+                    coverPhoto: 'https://via.placeholder.com/800x300/667eea/ffffff',
+                    bio: `Hey there! I'm using T-Konekt 👋`,
+                    friends: 0,
+                    createdAt: firebase.database.ServerValue.TIMESTAMP
                 });
                 
-                // Create user profile in Firestore
-                await db.collection('users').doc(user.uid).set({
-                    name: `${firstName} ${lastName}`,
+                console.log('✅ User profile created in Realtime Databas
                     email: email,
                     gender: gender,
                     profilePic: `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70) + 1}`,
