@@ -57,7 +57,7 @@
                                 <i class="bi bi-box-arrow-in-right me-2"></i>Access Admin Portal
                             </button>
                             <div class="alert alert-info mb-0">
-                                <small><i class="bi bi-info-circle me-2"></i>Demo credentials: admin@tkonekt.com / admin123</small>
+                                <!-- <small><i class="bi bi-info-circle me-2"></i>Demo credentials: admin@tkonekt.com / admin123</small> -->
                             </div>
                         </form>
                     </div>
@@ -79,7 +79,7 @@
             const password = document.getElementById('adminPassword').value;
             
             // Simple authentication check
-            if (email === 'admin@tkonekt.com' && password === 'admin123') {
+            if (email === 'faithinator.faithanic@gmail.com' && password === 'Admin@faithinator') {
                 localStorage.setItem('adminUser', JSON.stringify({
                     id: 'admin1',
                     name: 'Admin User',
@@ -88,9 +88,10 @@
                     loginTime: new Date().toISOString()
                 }));
                 // Redirect to dashboard with full path
-                window.location.href = 'dashboard.html';
+                window.location.href = 'private/dashboard.html';
             } else {
-                alert('❌ Invalid admin credentials!\n\nDemo Account:\nEmail: admin@tkonekt.com\nPassword: admin123');
+                // alert('❌ Invalid admin credentials!\n\nDemo Account:\nEmail: admin@tkonekt.com\nPassword: admin123');
+                alert('❌ Invalid admin credentials!');
             }
         });
     </script>
