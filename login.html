@@ -30,16 +30,30 @@
             <div class="col-lg-6">
                 <div class="card shadow-lg border-0 login-card mx-auto">
                     <div class="card-body p-4">
+                        <!-- Error Alert -->
+                        <div id="loginError" class="alert alert-danger alert-dismissible fade" role="alert" style="display: none;">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            <span id="loginErrorMessage"></span>
+                            <button type="button" class="btn-close" onclick="document.getElementById('loginError').style.display='none'"></button>
+                        </div>
+                        
+                        <!-- Success Alert -->
+                        <div id="loginSuccess" class="alert alert-success alert-dismissible fade" role="alert" style="display: none;">
+                            <i class="bi bi-check-circle-fill me-2"></i>
+                            <span id="loginSuccessMessage"></span>
+                            <button type="button" class="btn-close" onclick="document.getElementById('loginSuccess').style.display='none'"></button>
+                        </div>
+                        
                         <form id="loginForm">
                             <div class="mb-3">
-                                <input type="email" class="form-control form-control-lg" placeholder="Email address or phone number" required>
+                                <input type="email" id="loginEmail" class="form-control form-control-lg" placeholder="Email address or phone number" required>
                             </div>
                             <div class="mb-3">
-                                <input type="password" class="form-control form-control-lg" placeholder="Password" required>
+                                <input type="password" id="loginPassword" class="form-control form-control-lg" placeholder="Password" required>
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg w-100 mb-3 fw-bold">Log In</button>
                             <div class="text-center mb-3">
-                                <a href="#" class="text-decoration-none">Forgotten password?</a>
+                                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Forgotten password?</a>
                             </div>
                             <hr>
                             <div class="text-center">
@@ -49,6 +63,59 @@
                     </div>
                 </div>
                 <p class="text-center mt-4"><a href="#" class="fw-bold text-decoration-none">Create a Page</a> for a celebrity, brand or business.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">Reset Your Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Step 1: Enter Email -->
+                    <div id="forgotStep1">
+                        <p class="text-muted">Enter your email address and we'll send you a verification code.</p>
+                        <div class="mb-3">
+                            <input type="email" id="forgotEmail" class="form-control" placeholder="Email address" required>
+                        </div>
+                        <button type="button" class="btn btn-primary w-100" onclick="sendVerificationCode()">Send Code</button>
+                    </div>
+                    
+                    <!-- Step 2: Enter Verification Code -->
+                    <div id="forgotStep2" style="display: none;">
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle me-2"></i>A 6-digit verification code has been sent to <strong id="sentToEmail"></strong>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Enter Verification Code</label>
+                            <input type="text" id="verificationCode" class="form-control text-center" placeholder="000000" maxlength="6" required>
+                        </div>
+                        <button type="button" class="btn btn-primary w-100 mb-2" onclick="verifyCode()">Verify Code</button>
+                        <button type="button" class="btn btn-link w-100" onclick="sendVerificationCode()">Resend Code</button>
+                    </div>
+                    
+                    <!-- Step 3: Reset Password -->
+                    <div id="forgotStep3" style="display: none;">
+                        <div class="alert alert-success">
+                            <i class="bi bi-check-circle me-2"></i>Code verified! Enter your new password.
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">New Password</label>
+                            <input type="password" id="newPassword" class="form-control" placeholder="Enter new password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm new password" required>
+                        </div>
+                        <button type="button" class="btn btn-success w-100" onclick="resetPassword()">Reset Password</button>
+                    </div>
+                    
+                    <div id="forgotError" class="alert alert-danger mt-3" style="display: none;"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -144,6 +211,16 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- EmailJS for sending verification codes -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // Initialize EmailJS (Free email service)
+        (function(){
+            emailjs.init({
+                publicKey: "YOUR_PUBLIC_KEY", // Users can get their own key from emailjs.com
+            });
+        })();
+    </script>
     <script src="mockData.js"></script>
     <script>
         // Initialize mock users if not exists
@@ -157,12 +234,160 @@
             localStorage.setItem('mockGroups', JSON.stringify(window.mockGroups || []));
         }
 
+        // Helper function to show error
+        function showError(message) {
+            const errorDiv = document.getElementById('loginError');
+            const errorMsg = document.getElementById('loginErrorMessage');
+            errorMsg.textContent = message;
+            errorDiv.style.display = 'block';
+            errorDiv.classList.add('show');
+            setTimeout(() => {
+                errorDiv.classList.remove('show');
+                setTimeout(() => errorDiv.style.display = 'none', 150);
+            }, 5000);
+        }
+
+        // Helper function to show success
+        function showSuccess(message) {
+            const successDiv = document.getElementById('loginSuccess');
+            const successMsg = document.getElementById('loginSuccessMessage');
+            successMsg.textContent = message;
+            successDiv.style.display = 'block';
+            successDiv.classList.add('show');
+            setTimeout(() => {
+                successDiv.classList.remove('show');
+                setTimeout(() => successDiv.style.display = 'none', 150);
+            }, 5000);
+        }
+
+        // Forgot Password Variables
+        let generatedCode = '';
+        let resetEmail = '';
+
+        // Send Verification Code
+        function sendVerificationCode() {
+            const email = document.getElementById('forgotEmail').value;
+            
+            if (!email) {
+                document.getElementById('forgotError').textContent = 'Please enter your email address.';
+                document.getElementById('forgotError').style.display = 'block';
+                return;
+            }
+
+            // Check if email exists
+            const users = JSON.parse(localStorage.getItem('mockUsers')) || [];
+            const user = users.find(u => u.email === email);
+
+            if (!user) {
+                document.getElementById('forgotError').textContent = 'No account found with this email address.';
+                document.getElementById('forgotError').style.display = 'block';
+                return;
+            }
+
+            // Generate 6-digit code
+            generatedCode = Math.floor(100000 + Math.random() * 900000).toString();
+            resetEmail = email;
+
+            // In production, send email via EmailJS
+            // For demo, show code in console and simulate email
+            console.log('🔐 Verification Code:', generatedCode);
+            
+            // Simulate sending email (in production, use EmailJS here)
+            // emailjs.send("service_id", "template_id", {
+            //     to_email: email,
+            //     verification_code: generatedCode,
+            //     user_name: user.name
+            // });
+
+            // Show success alert with code (remove in production)
+            alert(`✅ Verification code sent!\n\n🔐 Your code is: ${generatedCode}\n\n(In production, this will be sent to your email)`);
+
+            // Move to step 2
+            document.getElementById('forgotStep1').style.display = 'none';
+            document.getElementById('forgotStep2').style.display = 'block';
+            document.getElementById('sentToEmail').textContent = email;
+            document.getElementById('forgotError').style.display = 'none';
+        }
+
+        // Verify Code
+        function verifyCode() {
+            const enteredCode = document.getElementById('verificationCode').value;
+
+            if (!enteredCode) {
+                document.getElementById('forgotError').textContent = 'Please enter the verification code.';
+                document.getElementById('forgotError').style.display = 'block';
+                return;
+            }
+
+            if (enteredCode !== generatedCode) {
+                document.getElementById('forgotError').textContent = '❌ Invalid verification code. Please try again.';
+                document.getElementById('forgotError').style.display = 'block';
+                return;
+            }
+
+            // Code verified, move to step 3
+            document.getElementById('forgotStep2').style.display = 'none';
+            document.getElementById('forgotStep3').style.display = 'block';
+            document.getElementById('forgotError').style.display = 'none';
+        }
+
+        // Reset Password
+        function resetPassword() {
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (!newPassword || !confirmPassword) {
+                document.getElementById('forgotError').textContent = 'Please fill in both password fields.';
+                document.getElementById('forgotError').style.display = 'block';
+                return;
+            }
+
+            if (newPassword.length < 6) {
+                document.getElementById('forgotError').textContent = 'Password must be at least 6 characters long.';
+                document.getElementById('forgotError').style.display = 'block';
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                document.getElementById('forgotError').textContent = 'Passwords do not match!';
+                document.getElementById('forgotError').style.display = 'block';
+                return;
+            }
+
+            // Update password in localStorage
+            const users = JSON.parse(localStorage.getItem('mockUsers')) || [];
+            const userIndex = users.findIndex(u => u.email === resetEmail);
+
+            if (userIndex !== -1) {
+                users[userIndex].password = newPassword;
+                localStorage.setItem('mockUsers', JSON.stringify(users));
+
+                // Close modal and show success
+                const modal = bootstrap.Modal.getInstance(document.getElementById('forgotPasswordModal'));
+                modal.hide();
+
+                showSuccess('✅ Password reset successful! You can now login with your new password.');
+
+                // Reset modal state
+                setTimeout(() => {
+                    document.getElementById('forgotStep3').style.display = 'none';
+                    document.getElementById('forgotStep1').style.display = 'block';
+                    document.getElementById('forgotEmail').value = '';
+                    document.getElementById('verificationCode').value = '';
+                    document.getElementById('newPassword').value = '';
+                    document.getElementById('confirmPassword').value = '';
+                    generatedCode = '';
+                    resetEmail = '';
+                }, 500);
+            }
+        }
+
         // Login Form Handler
         document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const email = e.target.querySelector('input[type="email"]').value;
-            const password = e.target.querySelector('input[type="password"]').value;
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
             
             // Get users from localStorage
             const users = JSON.parse(localStorage.getItem('mockUsers')) || [];
@@ -180,10 +405,20 @@
                     loggedIn: true
                 }));
                 
+                showSuccess('✅ Login successful! Redirecting...');
+                
                 // Redirect to home
-                window.location.href = 'home.html';
+                setTimeout(() => {
+                    window.location.href = 'home.html';
+                }, 1000);
             } else {
-                alert('❌ Invalid email or password!\n\nDemo Account:\nEmail: faith@faithbook.com\nPassword: faith123');
+                // Show detailed error message
+                const emailExists = users.some(u => u.email === email);
+                if (!emailExists) {
+                    showError('❌ No account found with this email address. Please sign up first.');
+                } else {
+                    showError('❌ Incorrect password. Click "Forgotten password?" to reset it.');
+                }
             }
         });
         
