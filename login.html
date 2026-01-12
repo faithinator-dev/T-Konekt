@@ -381,16 +381,30 @@
         document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const email = document.getElementById('loginEmail').value;
+            const email = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value;
+            
+            console.log('🔐 Login attempt with email:', email);
             
             // Get users from localStorage
             const users = JSON.parse(localStorage.getItem('mockUsers')) || [];
+            console.log('📊 Total users in database:', users.length);
             
-            // Find user
-            const user = users.find(u => u.email === email && u.password === password);
+            if (users.length === 0) {
+                showError('❌ No users found! Please refresh the page or create an account.');
+                console.error('localStorage is empty! mockData.js may not have loaded.');
+                return;
+            }
+            
+            // Find user (case-insensitive email)
+            const user = users.find(u => 
+                u.email.toLowerCase() === email.toLowerCase() && 
+                u.password === password
+            );
             
             if (user) {
+                console.log('✅ Login successful for:', user.name);
+                
                 // Store current user session
                 localStorage.setItem('currentUser', JSON.stringify({
                     id: user.id,
@@ -404,7 +418,9 @@
                 window.location.href = 'home.html';
             } else {
                 // Show detailed error message
-                const emailExists = users.some(u => u.email === email);
+                const emailExists = users.some(u => u.email.toLowerCase() === email.toLowerCase());
+                console.log('❌ Login failed. Email exists:', emailExists);
+                
                 if (!emailExists) {
                     showError('❌ No account found with this email address. Please sign up first.');
                 } else {
@@ -417,26 +433,54 @@
         document.getElementById('signupForm').addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const firstName = e.target.querySelector('input[placeholder*="First"]').value;
-            const lastName = e.target.querySelector('input[placeholder*="surname"]').value;
-            const email = e.target.querySelector('input[type="email"]').value;
+            const firstName = e.target.querySelector('input[placeholder*="First"]').value.trim();
+            const lastName = e.target.querySelector('input[placeholder*="Surname"]').value.trim();
+            const email = e.target.querySelector('input[type="email"]').value.trim();
             const password = e.target.querySelector('input[type="password"]').value;
-            const dob = e.target.querySelector('input[type="date"]').value;
             const gender = e.target.querySelector('input[name="gender"]:checked')?.value;
             
-            if (!firstName || !lastName || !email || !password || !dob || !gender) {
-                alert('❌ Please fill in all fields!');
+            // Get birthday selects (even though we don't use them, check they're filled)
+            const monthSelect = e.target.querySelectorAll('select')[0].value;
+            const daySelect = e.target.querySelectorAll('select')[1].value;
+            const yearSelect = e.target.querySelectorAll('select')[2].value;
+            
+            console.log('Signup attempt:', { firstName, lastName, email, gender });
+            
+            // Validation
+            if (!firstName || !lastName) {
+                showError('❌ Please enter your first and last name!');
                 return;
             }
             
-            // Get existing users
+            if (!email) {
+                showError('❌ Please enter your email address!');
+                return;
+            }
+            
+            if (!password || password.length < 6) {
+                showError('❌ Password must be at least 6 characters!');
+                return;
+            }
+            
+            if (!gender) {
+                showError('❌ Please select your gender!');
+                return;
+            }
+            
+            // Get existing users from localStorage
             let users = JSON.parse(localStorage.getItem('mockUsers')) || [];
+            console.log('Current users in localStorage:', users.length);
             
             // Check if email already exists
-            if (users.some(u => u.email === email)) {
-                alert('❌ An account with this email already exists!');
+            if (users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+                showError('❌ An account with this email already exists! Try logging in instead.');
                 return;
             }
+            
+            // Create DOB from selects (use placeholder if not selected)
+            const dob = (yearSelect && yearSelect !== 'Year') ? 
+                `${yearSelect}-${monthSelect || '01'}-${daySelect || '01'}` : 
+                '2000-01-01';
             
             // Create new user
             const newUser = {
@@ -444,9 +488,9 @@
                 name: `${firstName} ${lastName}`,
                 email: email,
                 password: password,
-                profilePic: `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70)}`,
-                coverPhoto: 'https://via.placeholder.com/800x300',
-                bio: `Hey there! I'm using T-Konekt`,
+                profilePic: `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70) + 1}`,
+                coverPhoto: 'https://via.placeholder.com/800x300/667eea/ffffff?text=' + encodeURIComponent(firstName + ' ' + lastName),
+                bio: `Hey there! I'm using T-Konekt 👋`,
                 friends: 0,
                 dob: dob,
                 gender: gender,
@@ -456,6 +500,7 @@
             // Add to users array
             users.push(newUser);
             localStorage.setItem('mockUsers', JSON.stringify(users));
+            console.log('✅ User created! Total users now:', users.length);
             
             // Auto-login new user
             localStorage.setItem('currentUser', JSON.stringify({
@@ -466,10 +511,18 @@
                 loggedIn: true
             }));
             
-            // Close modal and redirect
-            bootstrap.Modal.getInstance(document.getElementById('signupModal')).hide();
-            alert('✅ Account created successfully! Welcome to T-Konekt!');
-            window.location.href = 'home.html';
+            // Close modal
+            const modalElement = document.getElementById('signupModal');
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            if (modal) modal.hide();
+            
+            // Show success and redirect
+            showSuccess('✅ Account created successfully! Welcome to T-Konekt!');
+            console.log('Redirecting to home.html...');
+            
+            setTimeout(() => {
+                window.location.href = 'home.html';
+            }, 1000);
         });
 
         // Pre-fill demo credentials
