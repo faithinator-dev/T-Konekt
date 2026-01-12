@@ -9,7 +9,7 @@ A **production-ready**, **mobile-first** social media app built with pure HTML/C
 - **Friends System**: Add, search, and manage friends
 - **Social Feed**: Create posts, like, and comment
 - **Video Calls**: One-click WebRTC video meetings
-- **Profile Management**: Upload photos, view stats
+- **Profile Management**: View stats (photo upload requires Storage - optional)
 - **Mobile-First Design**: Snapchat-style black/red UI
 
 ## 🚀 Quick Start (5 Minutes Setup)
@@ -40,10 +40,14 @@ A **production-ready**, **mobile-first** social media app built with pure HTML/C
 3. Start in **Test mode** (we'll apply rules later)
 4. Click **Enable**
 
-#### Enable Storage
+#### Enable Storage (Optional - Premium Feature)
+⚠️ **Note**: Storage may require Blaze plan (pay-as-you-go). Skip if using free tier.
+
 1. Go to **Storage** → **Get Started**
 2. Start in **Test mode**
 3. Click **Done**
+
+**Alternative (Free)**: Use placeholder images or external image URLs (Imgur, Cloudinary free tier)
 
 ### Step 3: Get Firebase Config
 
@@ -76,10 +80,12 @@ const firebaseConfig = {
 2. Copy content from `database.rules.json`
 3. Paste and click **Publish**
 
-#### Storage Rules
+#### Storage Rules (Optional - Skip if not using Storage)
 1. Go to **Storage** → **Rules** tab
 2. Copy content from `storage.rules`
 3. Paste and click **Publish**
+
+**Free Tier Alternative**: App works fully without Storage. Profile photos will use placeholder URLs.
 
 ### Step 6: Deploy to Firebase Hosting
 
@@ -263,7 +269,10 @@ firebase-root/
 - Open browser console for error details
 
 ### Images Not Uploading
-- Check Storage rules are deployed
+- **Storage not enabled?** App works without it! Just uses default avatars
+- **Free tier limitation**: Storage may require Blaze plan upgrade
+- **Alternative**: Manually set photoURL to external image (Imgur, etc.)
+- Check Storage rules are deployed (if using Storage)
 - Verify image file size (<5MB recommended)
 - Ensure user is authenticated
 
@@ -294,11 +303,12 @@ Before going live, ensure:
 
 - [ ] Firebase config is filled in `app.js`
 - [ ] Database rules are deployed (not test mode)
-- [ ] Storage rules are deployed (not test mode)
+- [ ] Storage rules are deployed (optional - only if using profile uploads)
 - [ ] Authentication is properly configured
 - [ ] App is tested on mobile devices
 - [ ] Custom domain is set up (optional)
 - [ ] Analytics enabled (optional)
+- [ ] Using placeholder images if Storage not enabled
 
 ## 📈 Scaling & Costs
 

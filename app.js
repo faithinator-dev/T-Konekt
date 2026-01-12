@@ -1,12 +1,12 @@
 // Firebase Configuration (REPLACE WITH YOUR PROJECT CONFIG)
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAtyh1n18IORxOsYxRZMStu74942yUJiOY",
+  authDomain: "faithsocial-7f9d8.firebaseapp.com",
+  databaseURL: "https://faithsocial-7f9d8-default-rtdb.firebaseio.com",
+  projectId: "faithsocial-7f9d8",
+  storageBucket: "faithsocial-7f9d8.firebasestorage.app",
+  messagingSenderId: "996249040814",
+  appId: "1:996249040814:web:942dbcc1ac3b87daa2fa3f"
 };
 
 // Initialize Firebase
@@ -141,6 +141,17 @@ async function loadUserData() {
     document.getElementById('profileEmail').textContent = userData.email;
     document.getElementById('profilePic').src = userData.photoURL;
     
+    // Load extended profile info
+    if (userData.profile) {
+        const profile = userData.profile;
+        document.getElementById('profileBio').textContent = profile.bio || 'No bio yet';
+        document.getElementById('profileNickname').textContent = profile.nickname || '-';
+        document.getElementById('profileBirthday').textContent = profile.birthday || '-';
+        document.getElementById('profileRelationship').textContent = profile.relationship || '-';
+        document.getElementById('profileHighSchool').textContent = profile.highSchool || '-';
+        document.getElementById('profileCollege').textContent = profile.college || '-';
+    }
+    
     // Load stats
     const friendsSnap = await db.ref('friends/' + currentUser.uid).once('value');
     const postsSnap = await db.ref('posts').orderByChild('userId').equalTo(currentUser.uid).once('value');
@@ -149,17 +160,112 @@ async function loadUserData() {
     document.getElementById('postCount').textContent = postsSnap.numChildren();
 }
 
+// Show Edit Profile Modal
+function showEditProfile() {
+    // Load current data
+    db.ref('users/' + currentUser.uid + '/profile').once('value').then(snapshot => {
+        const profile = snapshot.val() || {};
+        
+        document.getElementById('editBio').value = profile.bio || '';
+        document.getElementById('editNickname').value = profile.nickname || '';
+        document.getElementById('editBirthday').value = profile.birthday || '';
+        document.getElementById('editRelationship').value = profile.relationship || '';
+        document.getElementById('editHighSchool').value = profile.highSchool || '';
+        document.getElementById('editCollege').value = profile.college || '';
+        
+        // Load privacy settings
+        const privacy = profile.privacy || {};
+        document.getElementById('bioPrivacy').value = privacy.bio || 'public';
+        document.getElementById('nicknamePrivacy').value = privacy.nickname || 'public';
+        document.getElementById('birthdayPrivacy').value = privacy.birthday || 'friends';
+        document.getElementById('relationshipPrivacy').value = privacy.relationship || 'public';
+        document.getElementById('highSchoolPrivacy').value = privacy.highSchool || 'public';
+        document.getElementById('collegePrivacy').value = privacy.college || 'public';
+    });
+    
+    showModal('editProfileModal');
+}
+
+// Save Profile
+async function saveProfile() {
+    const profileData = {
+        bio: document.getElementById('editBio').value,
+        nickname: document.getElementById('editNickname').value,
+        birthday: document.getElementById('editBirthday').value,
+        relationship: document.getElementById('editRelationship').value,
+        highSchool: document.getElementById('editHighSchool').value,
+        college: document.getElementById('editCollege').value,
+        privacy: {
+            bio: document.getElementById('bioPrivacy').value,
+            nickname: document.getElementById('nicknamePrivacy').value,
+            birthday: document.getElementById('birthdayPrivacy').value,
+            relationship: document.getElementById('relationshipPrivacy').value,
+            highSchool: document.getElementById('highSchoolPrivacy').value,
+            college: document.getElementById('collegePrivacy').value
+        }
+    };
+    
+    await db.ref('users/' + currentUser.uid + '/profile').set(profileData);
+    closeModal('editProfileModal');
+    loadUserData();
+}
+
+// Share Profile
+function shareProfile() {
+    const username = document.getElementById('profileName').textContent;
+    const shareText = `Check out ${username}'s space on FaithSocial! 🔥`;
+    const shareUrl = window.location.href;
+    
+    if (navigator.share) {
+        navigator.share({
+            title: 'My FaithSocial Space',
+            text: shareText,
+            url: shareUrl
+        }).catch(() => {});
+    } else {
+        // Fallback: Copy to clipboard
+        const textArea = document.createElement('textarea');
+        textArea.value = `${shareText}\n${shareUrl}`;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('Profile link copied to clipboard!');
+    }
+}
+
 // Profile Picture Upload
 document.getElementById('picUpload').addEventListener('change', async (e) => {
     const file = e.target.files[0];
     if (!file) return;
     
-    const storageRef = storage.ref('profiles/' + currentUser.uid + '.jpg');
-    await storageRef.put(file);
-    const photoURL = await storageRef.getDownloadURL();
+    // Show preview immediately
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        document.getElementById('profilePic').src = e.target.result;
+    };
+    reader.readAsDataURL(file);
     
-    await db.ref('users/' + currentUser.uid).update({ photoURL });
-    document.getElementById('profilePic').src = photoURL;
+    try {
+        // Upload to Firebase Storage
+        const storageRef = storage.ref('profiles/' + currentUser.uid + '/' + Date.now() + '.jpg');
+        await storageRef.put(file);
+        const photoURL = await storageRef.getDownloadURL();
+        
+        // Update database
+        await db.ref('users/' + currentUser.uid).update({ photoURL });
+        document.getElementById('profilePic').src = photoURL;
+        alert('Profile photo updated! 📷');
+    } catch (error) {
+        console.error('Upload error:', error);
+        alert('Failed to upload photo. Using external image URLs is recommended for free tier.');
+        // Fallback: ask for URL instead
+        const url = prompt('Or paste an image URL:');
+        if (url) {
+            await db.ref('users/' + currentUser.uid).update({ photoURL: url });
+            document.getElementById('profilePic').src = url;
+        }
+    }
 });
 
 // ========== FEED FUNCTIONS ==========
@@ -191,11 +297,12 @@ async function loadFeed() {
                 </div>
             </div>
             <p class="post-content">${escapeHtml(post.content)}</p>
+            ${post.imageURL ? `<img src="${post.imageURL}" alt="Post image" class="post-image">` : ''}
             <div class="post-actions">
                 <button onclick="likePost('${post.id}')" class="${post.likes && post.likes[currentUser.uid] ? 'liked' : ''}">
-                    ❤️ ${post.likeCount || 0}
+                    <img src="icons/${post.likes && post.likes[currentUser.uid] ? 'heart' : 'heart-outline'}.svg" class="btn-icon" alt=""> ${post.likeCount || 0}
                 </button>
-                <button onclick="showComments('${post.id}')">💬 ${post.commentCount || 0}</button>
+                <button onclick="showComments('${post.id}')"><img src="icons/chat.svg" class="btn-icon" alt=""> ${post.commentCount || 0}</button>
             </div>
             <div id="comments-${post.id}" class="comments hidden"></div>
         `;
@@ -203,20 +310,89 @@ async function loadFeed() {
     }
 }
 
+// Post Image Preview Handler
+let selectedPostImage = null;
+let postImageURL = null;
+
+document.getElementById('postImageUpload').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    selectedPostImage = file;
+    postImageURL = null;
+    const reader = new FileReader();
+    
+    reader.onload = (e) => {
+        const preview = document.getElementById('postImagePreview');
+        preview.innerHTML = `
+            <img src="${e.target.result}" alt="Preview">
+            <button class="remove-image" onclick="removePostImage()">×</button>
+        `;
+    };
+    
+    reader.readAsDataURL(file);
+});
+
+function addImageByURL() {
+    const url = prompt('Paste image URL (e.g., from Imgur, Unsplash):');
+    if (!url) return;
+    
+    postImageURL = url;
+    selectedPostImage = null;
+    
+    const preview = document.getElementById('postImagePreview');
+    preview.innerHTML = `
+        <img src="${url}" alt="Preview" onerror="this.src='https://via.placeholder.com/400x300?text=Invalid+URL'">
+        <button class="remove-image" onclick="removePostImage()">×</button>
+    `;
+}
+
+function removePostImage() {
+    selectedPostImage = null;
+    postImageURL = null;
+    document.getElementById('postImageUpload').value = '';
+    document.getElementById('postImagePreview').innerHTML = '';
+}
+
 async function createPost() {
     const content = document.getElementById('postContent').value.trim();
-    if (!content) return;
+    if (!content && !selectedPostImage && !postImageURL) return;
+    
+    const submitBtn = document.getElementById('submitPostBtn');
+    submitBtn.textContent = 'Uploading...';
+    submitBtn.disabled = true;
+    
+    let imageURL = postImageURL; // Use URL if provided
+    
+    // Upload image file if selected (requires Storage/Blaze plan)
+    if (selectedPostImage && !postImageURL) {
+        try {
+            const imageRef = storage.ref('posts/' + currentUser.uid + '/' + Date.now() + '.jpg');
+            await imageRef.put(selectedPostImage);
+            imageURL = await imageRef.getDownloadURL();
+        } catch (error) {
+            console.error('Storage upload failed:', error);
+            alert('⚠️ Image upload requires paid plan. Use "Image URL" option instead with services like Imgur.com');
+            submitBtn.textContent = 'Post';
+            submitBtn.disabled = false;
+            return;
+        }
+    }
     
     const postRef = db.ref('posts').push();
     await postRef.set({
         userId: currentUser.uid,
-        content: content,
+        content: content || '',
+        imageURL: imageURL,
         timestamp: Date.now(),
         likeCount: 0,
         commentCount: 0
     });
     
     document.getElementById('postContent').value = '';
+    removePostImage();
+    submitBtn.textContent = 'Post';
+    submitBtn.disabled = false;
     closeModal('postModal');
     loadFeed();
 }
@@ -262,7 +438,7 @@ async function loadFriends() {
                     <strong>${friend.username}</strong>
                     <small>${friend.email}</small>
                 </div>
-                <button onclick="startChat('${friendId}')">💬</button>
+                <button onclick="startChat('${friendId}')"><img src="icons/chat.svg" class="btn-icon" alt=""></button>
             `;
             friendsList.appendChild(friendEl);
         }
