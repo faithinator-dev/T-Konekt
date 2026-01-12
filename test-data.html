@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Konekt - Test & Initialize Data</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .test-card {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 50px auto;
+            max-width: 800px;
+        }
+        .status-ok { color: #28a745; }
+        .status-error { color: #dc3545; }
+        .code-block {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="test-card">
+            <h1 class="text-center mb-4">🔧 T-Konekt Data Test & Initialization</h1>
+            
+            <div class="alert alert-info">
+                <strong>ℹ️ Use this page to:</strong>
+                <ul>
+                    <li>Check if mock data is loaded</li>
+                    <li>Reset/initialize data if missing</li>
+                    <li>Test user accounts</li>
+                </ul>
+            </div>
+
+            <h3>📊 Data Status:</h3>
+            <div id="dataStatus"></div>
+
+            <hr>
+
+            <h3>👥 Demo Accounts:</h3>
+            <div class="code-block">
+                <strong>User Account:</strong><br>
+                Email: faith@faithbook.com<br>
+                Password: faith123
+            </div>
+            <div class="code-block">
+                <strong>Admin Account:</strong><br>
+                Email: admin@tkonekt.com<br>
+                Password: admin123
+            </div>
+
+            <hr>
+
+            <div class="text-center">
+                <button class="btn btn-primary btn-lg me-2" onclick="initializeData()">
+                    🔄 Initialize/Reset Data
+                </button>
+                <button class="btn btn-danger btn-lg me-2" onclick="clearAllData()">
+                    🗑️ Clear All Data
+                </button>
+                <button class="btn btn-success btn-lg" onclick="window.location.href='login.html'">
+                    ✅ Go to Login
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="mockData.js"></script>
+    <script>
+        function checkDataStatus() {
+            const status = document.getElementById('dataStatus');
+            let html = '<div class="row">';
+
+            // Check mockUsers
+            const users = localStorage.getItem('mockUsers');
+            const usersCount = users ? JSON.parse(users).length : 0;
+            html += `<div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5>Users</h5>
+                        ${users ? `<span class="status-ok">✅ ${usersCount} users loaded</span>` : '<span class="status-error">❌ No users found</span>'}
+                    </div>
+                </div>
+            </div>`;
+
+            // Check mockPosts
+            const posts = localStorage.getItem('mockPosts');
+            const postsCount = posts ? JSON.parse(posts).length : 0;
+            html += `<div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5>Posts</h5>
+                        ${posts ? `<span class="status-ok">✅ ${postsCount} posts loaded</span>` : '<span class="status-error">❌ No posts found</span>'}
+                    </div>
+                </div>
+            </div>`;
+
+            // Check mockGroups
+            const groups = localStorage.getItem('mockGroups');
+            const groupsCount = groups ? JSON.parse(groups).length : 0;
+            html += `<div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5>Groups</h5>
+                        ${groups ? `<span class="status-ok">✅ ${groupsCount} groups loaded</span>` : '<span class="status-error">❌ No groups found</span>'}
+                    </div>
+                </div>
+            </div>`;
+
+            // Check notifications
+            const notifications = localStorage.getItem('userNotifications');
+            const notifCount = notifications ? JSON.parse(notifications).length : 0;
+            html += `<div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5>Notifications</h5>
+                        ${notifications ? `<span class="status-ok">✅ ${notifCount} notifications loaded</span>` : '<span class="status-error">❌ No notifications found</span>'}
+                    </div>
+                </div>
+            </div>`;
+
+            html += '</div>';
+            status.innerHTML = html;
+        }
+
+        function initializeData() {
+            // Force initialization by clearing and reloading mockData
+            localStorage.removeItem('mockUsers');
+            localStorage.removeItem('mockPosts');
+            localStorage.removeItem('mockGroups');
+            localStorage.removeItem('userNotifications');
+            localStorage.removeItem('mockMessages');
+            
+            // Reload the page to trigger mockData.js
+            location.reload();
+        }
+
+        function clearAllData() {
+            if (confirm('⚠️ This will delete ALL data including users, posts, and sessions. Continue?')) {
+                localStorage.clear();
+                alert('✅ All data cleared! Page will reload.');
+                location.reload();
+            }
+        }
+
+        // Check status on load
+        window.addEventListener('load', () => {
+            checkDataStatus();
+            
+            // Auto-initialize if no data found
+            if (!localStorage.getItem('mockUsers')) {
+                console.log('No data found, initializing...');
+                setTimeout(() => {
+                    if (confirm('No data found! Would you like to initialize demo data now?')) {
+                        location.reload();
+                    }
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>

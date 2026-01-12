@@ -223,16 +223,11 @@
     </script>
     <script src="mockData.js"></script>
     <script>
-        // Initialize mock users if not exists
-        if (!localStorage.getItem('mockUsers')) {
-            localStorage.setItem('mockUsers', JSON.stringify(window.mockUsers || []));
-        }
-        if (!localStorage.getItem('mockPosts')) {
-            localStorage.setItem('mockPosts', JSON.stringify(window.mockPosts || []));
-        }
-        if (!localStorage.getItem('mockGroups')) {
-            localStorage.setItem('mockGroups', JSON.stringify(window.mockGroups || []));
-        }
+        // mockData.js automatically initializes localStorage on first load
+        // No need to manually check window.mockUsers
+        
+        console.log('✅ T-Konekt Login Ready');
+        console.log('📊 Users in localStorage:', localStorage.getItem('mockUsers') ? JSON.parse(localStorage.getItem('mockUsers')).length : 0);
 
         // Helper function to show error
         function showError(message) {
