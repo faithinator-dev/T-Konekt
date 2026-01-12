@@ -3,45 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - FaithBook</title>
+    <title>Admin Dashboard - T-Konekt</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../fb-style.css">
     <style>
-        .admin-sidebar {
+        body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .admin-sidebar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
             min-height: 100vh;
             position: fixed;
             width: 250px;
             color: white;
         }
         .admin-sidebar .nav-link {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             padding: 12px 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             margin: 4px 10px;
+            transition: all 0.3s;
         }
         .admin-sidebar .nav-link:hover,
         .admin-sidebar .nav-link.active {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.25);
             color: white;
+            transform: translateX(5px);
         }
         .admin-content {
             margin-left: 250px;
             padding: 20px;
-            background: #f8f9fa;
             min-height: 100vh;
         }
         .stat-card {
-            border-left: 4px solid;
-            transition: transform 0.2s;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            overflow: hidden;
         }
         .stat-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        .stat-card .card-body {
+            position: relative;
+        }
+        .stat-icon {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 3rem;
+            opacity: 0.1;
+        }
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
         .table-actions button {
             padding: 4px 8px;
             font-size: 12px;
+            border-radius: 6px;
+        }
+        .badge-status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -51,7 +84,7 @@
         <div class="p-3 text-center border-bottom border-white border-opacity-25">
             <i class="bi bi-shield-check fs-1"></i>
             <h5 class="mt-2 mb-0">Admin Portal</h5>
-            <small class="text-white-50">FaithBook</small>
+            <small class="text-white-50">T-Konekt</small>
         </div>
         
         <nav class="nav flex-column mt-3">
@@ -106,14 +139,18 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../mockData.js"></script>
-    <script src="functions.js"></script>
     <script>
         // Check admin authentication
         const adminUser = JSON.parse(localStorage.getItem('adminUser'));
         if (!adminUser || adminUser.role !== 'admin') {
             window.location.href = 'index.html';
         }
+
+        // Load mock data inline
+        const mockUsers = JSON.parse(localStorage.getItem('mockUsers')) || [];
+        const mockPosts = JSON.parse(localStorage.getItem('mockPosts')) || [];
+        const mockGroups = JSON.parse(localStorage.getItem('mockGroups')) || [];
+        const mockMessages = JSON.parse(localStorage.getItem('mockMessages')) || [];
 
         // Navigation
         document.querySelectorAll('.nav-link').forEach(link => {
@@ -131,6 +168,300 @@
                 localStorage.removeItem('adminUser');
                 window.location.href = 'index.html';
             }
+        }
+
+        // Page loader
+        function loadPage(page) {
+            const contentArea = document.getElementById('contentArea');
+            
+            switch(page) {
+                case 'dashboard':
+                    loadDashboard();
+                    break;
+                case 'users':
+                    loadUsersPage();
+                    break;
+                case 'posts':
+                    loadPostsPage();
+                    break;
+                case 'groups':
+                    loadGroupsPage();
+                    break;
+                case 'messages':
+                    loadMessagesPage();
+                    break;
+                case 'emails':
+                    loadEmailsPage();
+                    break;
+                case 'reports':
+                    loadReportsPage();
+                    break;
+                case 'analytics':
+                    loadAnalyticsPage();
+                    break;
+                case 'settings':
+                    loadSettingsPage();
+                    break;
+            }
+        }
+
+        function loadDashboard() {
+            const totalUsers = mockUsers.length;
+            const totalPosts = mockPosts.length;
+            const totalGroups = mockGroups.length;
+            const totalEngagement = mockPosts.reduce((sum, post) => sum + (post.likes || 0) + (post.comments || 0), 0);
+
+            document.getElementById('contentArea').innerHTML = `
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="text-white mb-0">Dashboard Overview</h2>
+                    <button class="btn btn-light" onclick="location.reload()">
+                        <i class="bi bi-arrow-clockwise me-2"></i>Refresh
+                    </button>
+                </div>
+
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="card stat-card border-start border-primary border-4">
+                            <div class="card-body">
+                                <i class="bi bi-people-fill stat-icon text-primary"></i>
+                                <h6 class="text-muted mb-2">Total Users</h6>
+                                <h2 class="mb-0 text-primary">${totalUsers}</h2>
+                                <small class="text-success"><i class="bi bi-arrow-up"></i> 12% from last month</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stat-card border-start border-success border-4">
+                            <div class="card-body">
+                                <i class="bi bi-file-post-fill stat-icon text-success"></i>
+                                <h6 class="text-muted mb-2">Total Posts</h6>
+                                <h2 class="mb-0 text-success">${totalPosts}</h2>
+                                <small class="text-success"><i class="bi bi-arrow-up"></i> 8% from last month</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stat-card border-start border-warning border-4">
+                            <div class="card-body">
+                                <i class="bi bi-collection-fill stat-icon text-warning"></i>
+                                <h6 class="text-muted mb-2">Total Groups</h6>
+                                <h2 class="mb-0 text-warning">${totalGroups}</h2>
+                                <small class="text-success"><i class="bi bi-arrow-up"></i> 5% from last month</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stat-card border-start border-info border-4">
+                            <div class="card-body">
+                                <i class="bi bi-heart-fill stat-icon text-info"></i>
+                                <h6 class="text-muted mb-2">Engagement</h6>
+                                <h2 class="mb-0 text-info">${totalEngagement}</h2>
+                                <small class="text-success"><i class="bi bi-arrow-up"></i> 15% from last month</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="card content-card">
+                            <div class="card-header bg-transparent border-0 pt-4 px-4">
+                                <h5 class="mb-0">Recent Activity</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="list-group list-group-flush">
+                                    ${mockPosts.slice(0, 5).map(post => {
+                                        const user = mockUsers.find(u => u.id === post.userId);
+                                        return `
+                                            <div class="list-group-item border-0 px-0">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="${user?.profilePic || 'https://i.pravatar.cc/40'}" class="rounded-circle me-3" width="40">
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="mb-1">${user?.name || 'Unknown User'}</h6>
+                                                        <p class="mb-0 text-muted small">${post.content?.substring(0, 50)}...</p>
+                                                    </div>
+                                                    <small class="text-muted">${new Date(post.timestamp).toLocaleDateString()}</small>
+                                                </div>
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card content-card mb-4">
+                            <div class="card-header bg-transparent border-0 pt-4 px-4">
+                                <h5 class="mb-0">Quick Actions</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-primary" onclick="loadPage('users')">
+                                        <i class="bi bi-person-plus-fill me-2"></i>Add New User
+                                    </button>
+                                    <button class="btn btn-success" onclick="loadPage('messages')">
+                                        <i class="bi bi-megaphone-fill me-2"></i>Send Broadcast
+                                    </button>
+                                    <button class="btn btn-warning" onclick="loadPage('groups')">
+                                        <i class="bi bi-collection-fill me-2"></i>Create Group
+                                    </button>
+                                    <button class="btn btn-info" onclick="loadPage('analytics')">
+                                        <i class="bi bi-graph-up me-2"></i>View Analytics
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card content-card">
+                            <div class="card-header bg-transparent border-0 pt-4 px-4">
+                                <h5 class="mb-0">System Status</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Server Status</span>
+                                    <span class="badge badge-status bg-success">Online</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Database</span>
+                                    <span class="badge badge-status bg-success">Connected</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>API Services</span>
+                                    <span class="badge badge-status bg-success">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadUsersPage() {
+            document.getElementById('contentArea').innerHTML = `
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="text-white mb-0">Users Management</h2>
+                    <button class="btn btn-light" onclick="showAddUserModal()">
+                        <i class="bi bi-person-plus-fill me-2"></i>Add New User
+                    </button>
+                </div>
+
+                <div class="card content-card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Email</th>
+                                        <th>Friends</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${mockUsers.map(user => `
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="${user.profilePic}" class="rounded-circle me-2" width="40">
+                                                    <span>${user.name}</span>
+                                                </div>
+                                            </td>
+                                            <td>${user.email}</td>
+                                            <td>${user.friends || 0}</td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                            <td class="table-actions">
+                                                <button class="btn btn-sm btn-primary">Edit</button>
+                                                <button class="btn btn-sm btn-danger">Delete</button>
+                                            </td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadPostsPage() {
+            document.getElementById('contentArea').innerHTML = `
+                <h2 class="text-white mb-4">Posts Management</h2>
+                <div class="card content-card">
+                    <div class="card-body">
+                        <p>Posts management features coming soon...</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadGroupsPage() {
+            document.getElementById('contentArea').innerHTML = `
+                <h2 class="text-white mb-4">Groups Management</h2>
+                <div class="card content-card">
+                    <div class="card-body">
+                        <p>Groups management features coming soon...</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadMessagesPage() {
+            document.getElementById('contentArea').innerHTML = `
+                <h2 class="text-white mb-4">Broadcast Messages</h2>
+                <div class="card content-card">
+                    <div class="card-body">
+                        <p>Broadcast messaging features coming soon...</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadEmailsPage() {
+            document.getElementById('contentArea').innerHTML = `
+                <h2 class="text-white mb-4">Mass Email Campaign</h2>
+                <div class="card content-card">
+                    <div class="card-body">
+                        <p>Email campaign features coming soon...</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadReportsPage() {
+            document.getElementById('contentArea').innerHTML = `
+                <h2 class="text-white mb-4">Reports & Moderation</h2>
+                <div class="card content-card">
+                    <div class="card-body">
+                        <p>Reports and moderation features coming soon...</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadAnalyticsPage() {
+            document.getElementById('contentArea').innerHTML = `
+                <h2 class="text-white mb-4">Analytics</h2>
+                <div class="card content-card">
+                    <div class="card-body">
+                        <p>Analytics features coming soon...</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadSettingsPage() {
+            document.getElementById('contentArea').innerHTML = `
+                <h2 class="text-white mb-4">Settings</h2>
+                <div class="card content-card">
+                    <div class="card-body">
+                        <p>Settings features coming soon...</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showAddUserModal() {
+            alert('Add user functionality will be implemented');
         }
 
         // Load initial page
