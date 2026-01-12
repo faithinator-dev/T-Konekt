@@ -1,4 +1,4 @@
-/* Facebook-Inspired Styling for FaithBook */
+/* Modern T-Konekt Theme - Vibrant & Professional */
 
 /* Reset & Base */
 * {
@@ -8,103 +8,138 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: #f0f2f5;
-    color: #050505;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    color: #1a1a2e;
     overflow-x: hidden;
 }
 
 /* Login Page Styling */
 .login-page {
-    background: linear-gradient(white, #f0f2f5);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .login-card {
     max-width: 400px;
-    border-radius: 8px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 .login-card .btn-primary {
-    background: #1877f2;
-    border-color: #1877f2;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
     font-size: 20px;
+    border-radius: 12px;
+    padding: 12px;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .login-card .btn-primary:hover {
-    background: #166fe5;
-    border-color: #166fe5;
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
 }
 
 .login-card .btn-success {
-    background: #42b72a;
-    border-color: #42b72a;
-    padding: 0 16px;
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: transform 0.2s;
 }
 
 .login-card .btn-success:hover {
-    background: #36a420;
-    border-color: #36a420;
+    background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
+    transform: translateY(-2px);
 }
 
 /* Navigation Bar */
 .navbar {
-    height: 56px;
-    padding: 0 16px;
+    height: 64px;
+    padding: 0 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .navbar-brand {
-    color: #1877f2 !important;
-    font-size: 28px !important;
-    font-weight: bold;
+    color: #ffffff !important;
+    font-size: 32px !important;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: -1px;
 }
 
 .search-box {
-    max-width: 240px;
+    max-width: 280px;
     border-radius: 50px;
 }
 
 .search-box input {
     border-radius: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.search-box input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-box .input-group-text {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
 }
 
 .navbar .nav-link {
     padding: 8px 40px !important;
-    border-radius: 8px;
-    color: #65676b;
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s;
 }
 
 .navbar .nav-link:hover {
-    background: #f0f2f5;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
 }
 
 .navbar .nav-link.active {
-    color: #1877f2;
-    border-bottom: 3px solid #1877f2;
+    color: white;
+    background: rgba(255, 255, 255, 0.25);
+    border-bottom: none;
 }
 
 .btn-light {
-    background: #f0f2f5;
-    border-color: #f0f2f5;
-    color: #050505;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
 }
 
 .btn-light:hover {
-    background: #e4e6eb;
-    border-color: #e4e6eb;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    transform: translateY(-2px);
 }
 
 /* Main Content Layout */
 .main-content {
-    margin-top: 72px;
-    padding: 16px 0;
-}
+    margin-top: 80px;
+    padding: 24px 0;
 
 .left-sidebar,
 .right-sidebar {
-    padding: 0 8px;
+    padding: 0 12px;
     position: sticky;
-    top: 72px;
-    max-height: calc(100vh - 72px);
+    top: 80px;
+    max-height: calc(100vh - 80px);
     overflow-y: auto;
 }
 
@@ -115,28 +150,39 @@ body {
 
 /* Cards */
 .card {
-    border-radius: 8px;
-    margin-bottom: 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    border: none;
+    background: white;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
 }
 
 .card-body {
-    padding: 12px;
+    padding: 20px;
 }
 
 /* Stories */
 .stories-container {
     display: flex;
-    gap: 8px;
-    padding: 8px 0;
+    gap: 12px;
+    padding: 12px 0;
 }
 
 .story {
-    min-width: 112px;
+    min-width: 120px;
     height: 200px;
-    border-radius: 10px;
+    border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
     position: relative;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s;
 }
 
 .story img {
@@ -146,25 +192,30 @@ body {
 }
 
 .story:hover {
-    transform: scale(1.05);
-    transition: transform 0.2s;
+    transform: scale(1.08);
 }
 
 /* Posts */
 .post-content img {
     max-width: 100%;
-    border-radius: 0;
+    border-radius: 16px;
+    margin: 12px 0;
 }
 
 /* Buttons */
 .btn-primary {
-    background: #1877f2;
-    border-color: #1877f2;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 10px 24px;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .btn-primary:hover {
-    background: #166fe5;
-    border-color: #166fe5;
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
 }
 
 .rounded-circle {
@@ -177,13 +228,15 @@ body {
 
 /* Profile Page */
 .profile-page {
-    background: #f0f2f5;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
 }
 
 .cover-photo {
     max-height: 400px;
     overflow: hidden;
-    border-radius: 0 0 8px 8px;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
 .cover-photo img {
@@ -192,54 +245,63 @@ body {
 }
 
 .profile-header {
-    margin-top: -40px;
+    margin-top: -60px;
     padding: 0 32px;
 }
 
 .profile-picture img {
-    border: 4px solid white;
+    border: 6px solid white;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Sidebar Lists */
 .list-group-item {
-    padding: 8px 12px;
+    padding: 12px 16px;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
+    transition: all 0.3s;
+    margin-bottom: 4px;
 }
 
 .list-group-item:hover {
-    background: #f0f2f5;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    transform: translateX(5px);
 }
 
 .list-group-item.active {
-    background: #e7f3ff;
-    color: #1877f2;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
     font-weight: 600;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
 }
 
 /* Chat/Messages */
 .chat-item {
-    padding: 8px;
+    padding: 12px;
     cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s;
 }
 
 .chat-item:hover,
 .chat-item.active {
-    background: #f0f2f5;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
 }
 
 .hover-bg:hover {
-    background: #f0f2f5;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
 }
 
 .messages-container {
     background: white;
+    border-radius: 20px;
 }
 
 /* Watch Page */
 .video-overlay {
     opacity: 0;
     transition: opacity 0.3s;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%);
 }
 
 .card:hover .video-overlay {
@@ -264,109 +326,134 @@ body {
     }
     
     .navbar-brand {
-        font-size: 24px !important;
+        font-size: 26px !important;
     }
 }
 
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f0f2f5;
+    background: rgba(255, 255, 255, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #bcc0c4;
-    border-radius: 4px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #8a8d91;
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
 }
 
 /* Text Colors */
 .text-primary {
-    color: #1877f2 !important;
+    color: #667eea !important;
 }
 
 .text-muted {
-    color: #65676b !important;
+    color: #8e8e93 !important;
 }
 
 /* Shadows */
 .shadow-sm {
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
 }
 
 .shadow {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
 }
 
 .shadow-lg {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2) !important;
 }
 
 /* Borders */
 .border {
-    border: 1px solid #e4e6eb !important;
+    border: 1px solid rgba(102, 126, 234, 0.2) !important;
 }
 
 .border-bottom {
-    border-bottom: 1px solid #e4e6eb !important;
+    border-bottom: 1px solid rgba(102, 126, 234, 0.2) !important;
 }
 
 /* Forms */
 .form-control {
-    border: 1px solid #dddfe2;
-    border-radius: 6px;
-    padding: 10px 12px;
+    border: 2px solid #e8e8ed;
+    border-radius: 12px;
+    padding: 12px 16px;
+    transition: all 0.3s;
 }
 
 .form-control:focus {
-    border-color: #1877f2;
-    box-shadow: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
 }
 
 .form-control-lg {
-    padding: 14px 16px;
+    padding: 16px 20px;
     font-size: 17px;
+    border-radius: 16px;
 }
 
 /* Badges */
 .badge {
-    padding: 4px 8px;
+    padding: 6px 12px;
     font-weight: 600;
+    border-radius: 20px;
+}
+
+.badge.bg-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.badge.bg-success {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+}
+
+.badge.bg-danger {
+    background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%) !important;
+}
+
+.badge.bg-warning {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
 }
 
 /* Dropdown */
 .dropdown-menu {
     border: none;
-    box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    padding: 8px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+    padding: 12px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.98);
 }
 
 .dropdown-item {
-    border-radius: 6px;
-    padding: 8px 12px;
+    border-radius: 10px;
+    padding: 10px 16px;
+    transition: all 0.3s;
 }
 
 .dropdown-item:hover {
-    background: #f0f2f5;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    transform: translateX(5px);
 }
 
 /* Modal */
 .modal-content {
     border: none;
-    border-radius: 8px;
-    box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 .modal-header {
-    border-bottom: 1px solid #e4e6eb;
+    border-bottom: 2px solid rgba(102, 126, 234, 0.1);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    border-radius: 20px 20px 0 0;
 }
 
 .modal-footer {
@@ -377,7 +464,7 @@ body {
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
@@ -385,8 +472,23 @@ body {
     }
 }
 
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .card {
-    animation: fadeIn 0.3s ease-in-out;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.list-group-item {
+    animation: slideIn 0.4s ease-in-out;
 }
 
 /* Loading States */
@@ -397,13 +499,13 @@ body {
 
 /* Active States */
 .btn-light.active {
-    background: #e7f3ff;
-    color: #1877f2;
+    background: rgba(255, 255, 255, 0.4);
+    color: white;
 }
 
 /* Custom Utilities */
 .bg-light {
-    background-color: #f0f2f5 !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .rounded-pill {
@@ -411,40 +513,48 @@ body {
 }
 
 .fw-bold {
-    font-weight: 600 !important;
+    font-weight: 700 !important;
 }
 
 .fw-semibold {
-    font-weight: 500 !important;
+    font-weight: 600 !important;
 }
 
 /* Link Styles */
 a {
-    color: #1877f2;
+    color: #667eea;
     text-decoration: none;
+    transition: color 0.3s;
 }
 
 a:hover {
-    text-decoration: underline;
+    color: #764ba2;
+    text-decoration: none;
 }
 
 /* Nav Tabs */
+.nav-tabs {
+    border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+}
+
 .nav-tabs .nav-link {
     border: none;
-    color: #65676b;
-    padding: 16px 16px 12px;
-    border-bottom: 4px solid transparent;
+    color: #8e8e93;
+    padding: 16px 20px 14px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+    font-weight: 600;
 }
 
 .nav-tabs .nav-link:hover {
     border-color: transparent;
-    color: #1877f2;
-    background: #f0f2f5;
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.05);
 }
 
 .nav-tabs .nav-link.active {
-    border-bottom-color: #1877f2;
-    color: #1877f2;
+    border-bottom-color: #667eea;
+    color: #667eea;
     background: transparent;
 }
 
@@ -461,9 +571,117 @@ img {
 
 /* Spacing */
 .gap-2 {
-    gap: 8px !important;
+    gap: 12px !important;
 }
 
 .gap-3 {
-    gap: 16px !important;
+    gap: 20px !important;
+}
+
+/* Like Button Styles */
+.like-btn {
+    transition: all 0.3s;
+    border-radius: 12px;
+    padding: 8px 16px;
+}
+
+.like-btn:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    transform: scale(1.05);
+}
+
+.like-btn.liked {
+    color: #667eea;
+    font-weight: 600;
+}
+
+/* Comment Section */
+.comments-section {
+    border-top: 2px solid rgba(102, 126, 234, 0.1);
+    padding-top: 16px;
+    margin-top: 16px;
+}
+
+/* Gradient Text */
+.gradient-text {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Glass Effect */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Notification Badge */
+.position-relative .badge {
+    box-shadow: 0 4px 12px rgba(238, 9, 121, 0.4);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Admin Portal Specific */
+.stat-card {
+    transition: all 0.3s;
+    border: none;
+    border-radius: 16px;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2) !important;
+}
+
+/* Table Styles */
+.table-actions .btn {
+    margin: 0 2px;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.table-actions .btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Success/Error Messages */
+.alert {
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.alert-success {
+    background: linear-gradient(135deg, rgba(17, 153, 142, 0.1) 0%, rgba(56, 239, 125, 0.1) 100%);
+    color: #11998e;
+    border-left: 4px solid #11998e;
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, rgba(238, 9, 121, 0.1) 0%, rgba(255, 106, 0, 0.1) 100%);
+    color: #ee0979;
+    border-left: 4px solid #ee0979;
+}
+
+.alert-info {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    color: #667eea;
+    border-left: 4px solid #667eea;
+}
+
+.alert-warning {
+    background: linear-gradient(135deg, rgba(240, 147, 251, 0.1) 0%, rgba(245, 87, 108, 0.1) 100%);
+    color: #f5576c;
+    border-left: 4px solid #f5576c;
 }
