@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Guide - FaithBook</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 50px 0;
+        }
+        .guide-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .feature-box {
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            margin: 15px 0;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .check-icon {
+            color: #28a745;
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center text-white mb-5">
+            <h1 class="display-3 fw-bold mb-3">📚 FaithBook Admin Guide</h1>
+            <p class="lead">Complete guide to managing your FaithBook platform</p>
+        </div>
+
+        <!-- Quick Access -->
+        <div class="guide-card p-5 mb-4">
+            <h2 class="fw-bold mb-4">🚀 Quick Access Links</h2>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <a href="login.html" class="btn btn-primary w-100 py-3">
+                        <i class="bi bi-house-door-fill me-2"></i>Main Site (User Login)
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="private/index.html" class="btn btn-warning w-100 py-3">
+                        <i class="bi bi-shield-lock-fill me-2"></i>Admin Portal
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="notifications.html" class="btn btn-info w-100 py-3">
+                        <i class="bi bi-bell-fill me-2"></i>Notifications Page
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="ADMIN-UPDATES.md" class="btn btn-success w-100 py-3">
+                        <i class="bi bi-file-text-fill me-2"></i>Full Documentation
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Credentials -->
+        <div class="guide-card p-5 mb-4">
+            <h2 class="fw-bold mb-4">🔐 Login Credentials</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="feature-box">
+                        <h5><i class="bi bi-person-circle text-primary me-2"></i>Regular User</h5>
+                        <p class="mb-1"><strong>Email:</strong> faith@faithbook.com</p>
+                        <p class="mb-0"><strong>Password:</strong> faith123</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-box">
+                        <h5><i class="bi bi-shield-fill-check text-warning me-2"></i>Admin Account</h5>
+                        <p class="mb-1"><strong>Email:</strong> admin@faithbook.com</p>
+                        <p class="mb-0"><strong>Password:</strong> admin123</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- What's Fixed -->
+        <div class="guide-card p-5 mb-4">
+            <h2 class="fw-bold mb-4">✅ What's Been Fixed</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-check-circle-fill check-icon"></i>
+                        <div>
+                            <strong>Add New User</strong>
+                            <p class="text-muted small mb-0">Full modal with form validation</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-check-circle-fill check-icon"></i>
+                        <div>
+                            <strong>Sub-Admin Creation</strong>
+                            <p class="text-muted small mb-0">Create admin accounts with badges</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-check-circle-fill check-icon"></i>
+                        <div>
+                            <strong>Broadcast Messages</strong>
+                            <p class="text-muted small mb-0">Actually sends to user notifications</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-check-circle-fill check-icon"></i>
+                        <div>
+                            <strong>Mass Email</strong>
+                            <p class="text-muted small mb-0">Email history tracking system</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-check-circle-fill check-icon"></i>
+                        <div>
+                            <strong>Notifications Page</strong>
+                            <p class="text-muted small mb-0">Complete notification center</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-check-circle-fill check-icon"></i>
+                        <div>
+                            <strong>Create New Group</strong>
+                            <p class="text-muted small mb-0">Full group creation modal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How to Use: Create User -->
+        <div class="guide-card p-5 mb-4">
+            <h2 class="fw-bold mb-4">👤 How to Add New User/Sub-Admin</h2>
+            <div class="feature-box">
+                <p><span class="step-number">1</span>Login to <a href="private/index.html">Admin Portal</a></p>
+            </div>
+            <div class="feature-box">
+                <p><span class="step-number">2</span>Click "Users" in sidebar → "Add New User" button</p>
+            </div>
+            <div class="feature-box">
+                <p><span class="step-number">3</span>Fill in user details (name, email, password)</p>
+            </div>
+            <div class="feature-box">
+                <p><span class="step-number">4</span>Select role: "Regular User" or "Sub-Admin"</p>
+            </div>
+            <div class="feature-box">
+                <p><span class="step-number">5</span>Click "Create User" → User can now login!</p>
+            </div>
+        </div>
+
+        <!-- How to Use: Send Message -->
+        <div class="guide-card p-5 mb-4">
+            <h2 class="fw-bold mb-4">📢 How to Send Broadcast Message</h2>
+            <div class="feature-box">
+                <p><span class="step-number">1</span>Go to "Broadcast Messages" in admin sidebar</p>
+            </div>
+            <div class="feature-box">
+                <p><span class="step-number">2</span>Select recipients: All Users / Active Users / Groups</p>
+            </div>
+            <div class="feature-box">
+                <p><span class="step-number">3</span>Choose message type: Notification / Message / Alert</p>
+            </div>
+            <div class="feature-box">
+                <p><span class="step-number">4</span>Enter title and message content</p>
+            </div>
+            <div class="feature-box">
+                <p><span class="step-number">5</span>Click "Send Now" → Users receive notification!</p>
+            </div>
+            <div class="alert alert-info mt-3">
+                <i class="bi bi-lightbulb-fill me-2"></i>
+                <strong>Tip:</strong> Users can see notifications by clicking the bell 🔔 icon
+            </div>
+        </div>
+
+        <!-- How to Use: Send Email -->
+        <div class="guide-card p-5 mb-4">
+            <h2 class="fw-bold mb-4">📧 How to Send Mass Email</h2>
+            <div class="feature-box">
+                <p><span class="step-number">1</span>Go to "Mass Email" in admin sidebar</p>
+            </div>
+            <div class="feature-box">
+                <p><span class="step-number">2</span>Select recipient group</p>
+            </div>
+            <div class="feature-box">
+                <p><span class="step-number">3</span>Enter email subject and content</p>
+            </div>
+            <div class="feature-box">
+                <p><span class="step-number">4</span>Click "Send Campaign" → Email tracked in history!</p>
+            </div>
+            <div class="alert alert-warning mt-3">
+                <i class="bi bi-info-circle-fill me-2"></i>
+                <strong>Note:</strong> In production, integrate with SendGrid, Mailgun, or AWS SES
+            </div>
+        </div>
+
+        <!-- How to Use: Create Group -->
+        <div class="guide-card p-5 mb-4">
+            <h2 class="fw-bold mb-4">👥 How to Create New Group</h2>
+            <div class="feature-box">
+                <p><span class="step-number">1</span>Go to "Groups" in admin sidebar</p>
+            </div>
+            <div class="feature-box">
+                <p><span class="step-number">2</span>Click "Add New Group" button</p>
+            </div>
+            <div class="feature-box">
+                <p><span class="step-number">3</span>Enter group name and description</p>
+            </div>
+            <div class="feature-box">
+                <p><span class="step-number">4</span>Select category and privacy setting</p>
+            </div>
+            <div class="feature-box">
+                <p><span class="step-number">5</span>Click "Create Group" → Group is live!</p>
+            </div>
+        </div>
+
+        <!-- Test It Out -->
+        <div class="guide-card p-5 mb-4">
+            <h2 class="fw-bold mb-4">🧪 Test It Out</h2>
+            <div class="alert alert-success">
+                <h5><i class="bi bi-clipboard-check me-2"></i>Quick Test Steps:</h5>
+                <ol class="mb-0">
+                    <li>Login to admin portal</li>
+                    <li>Create a new user (try making a sub-admin!)</li>
+                    <li>Send a broadcast message</li>
+                    <li>Logout and login as regular user</li>
+                    <li>Click the bell icon 🔔 to see your notification</li>
+                    <li>Check the notification badge counter</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="guide-card p-5">
+            <h2 class="fw-bold mb-4">🎯 All Available Features</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <h6 class="text-primary">User Management</h6>
+                    <ul class="small">
+                        <li>Add/Edit Users</li>
+                        <li>Create Sub-Admins</li>
+                        <li>Suspend Accounts</li>
+                        <li>Delete Users</li>
+                        <li>View User Stats</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-primary">Content Management</h6>
+                    <ul class="small">
+                        <li>View All Posts</li>
+                        <li>Delete Posts</li>
+                        <li>Moderate Content</li>
+                        <li>Manage Groups</li>
+                        <li>Create Groups</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-primary">Communication</h6>
+                    <ul class="small">
+                        <li>Broadcast Messages</li>
+                        <li>Mass Email</li>
+                        <li>Notifications</li>
+                        <li>Message Templates</li>
+                        <li>History Tracking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center text-white mt-5">
+            <p class="lead">Need help? Check the <a href="ADMIN-UPDATES.md" class="text-white text-decoration-underline">full documentation</a></p>
+            <p>© 2026 FaithBook - Educational Project</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
