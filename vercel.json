@@ -3,6 +3,14 @@
     {
       "source": "/",
       "destination": "/login.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/private/index.html"
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/private/dashboard.html"
     }
   ]
 }
