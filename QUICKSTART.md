@@ -11,7 +11,9 @@
 
 ## 2️⃣ Update Config (1 minute)
 
-Open `app.js` and paste your Firebase config at the top.
+1. Copy `firebase-config.example.js` to `firebase-config.js`.
+2. Open `firebase-config.js` and paste your Firebase config.
+3. This file is ignored by Git, so your keys are safe.
 
 ## 3️⃣ Deploy Rules (1 minute)
 

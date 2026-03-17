@@ -1,13 +1,9 @@
 // Verity Core Configuration & Auth Management
-const firebaseConfig = {
-    apiKey: "AIzaSyAtyh1n18IORxOsYxRZMStu74942yUJiOY",
-    authDomain: "faithsocial-7f9d8.firebaseapp.com",
-    databaseURL: "https://faithsocial-7f9d8-default-rtdb.firebaseio.com",
-    projectId: "faithsocial-7f9d8",
-    storageBucket: "faithsocial-7f9d8.firebasestorage.app",
-    messagingSenderId: "996249040814",
-    appId: "1:996249040814:web:942dbcc1ac3b87daa2fa3f"
-};
+// firebaseConfig is loaded from firebase-config.js (not in Git)
+// If firebaseConfig is not defined, initialization will fail.
+if (typeof firebaseConfig === 'undefined') {
+    console.error("firebaseConfig is not defined. Please make sure firebase-config.js is loaded.");
+}
 
 // Initialize Firebase
 if (!firebase.apps.length) {

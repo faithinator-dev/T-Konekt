@@ -62,25 +62,24 @@ const firebaseConfig = {
   appId: "1:123456789:web:abc123..."
 };
 ```
+### STEP 5: Create your Local Configuration File
 
-### STEP 5: Add Config to login.html
-
-1. Open **login.html** in VS Code
-2. Find this section (around line 223):
+1. In the root of your project, find the file `firebase-config.example.js`.
+2. **Copy** this file and rename the copy to `firebase-config.js`.
+3. Open `firebase-config.js` in VS Code.
+4. **Replace** the placeholder values with your actual config from the Firebase Console:
 ```javascript
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "YOUR_ACTUAL_API_KEY",
+    authDomain: "your-project.firebaseapp.com",
+    // ... rest of your config
 };
 ```
+5. **Save** the file. 
 
-3. **Replace** with your actual config from Firebase Console
+**IMPORTANT:** `firebase-config.js` is automatically ignored by Git (via `.gitignore`), so your API key will **never** be uploaded to GitHub again.
 
-4. Save the file
+---
 
 ### STEP 6: Set Up Firestore Security Rules
 
