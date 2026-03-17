@@ -1,16 +1,20 @@
 {
   "rules": {
     "users": {
+      ".read": "auth != null",
       "$uid": {
-        ".read": "auth != null",
         ".write": "auth != null && auth.uid == $uid"
       }
     },
     "posts": {
       ".read": "auth != null",
-      "$postId": {
-        ".write": "auth != null && (!data.exists() || data.child('userId').val() == auth.uid)"
-      }
+      ".write": "auth != null",
+      ".indexOn": ["timestamp", "userId"]
+    },
+    "stories": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      ".indexOn": ["timestamp"]
     },
     "friends": {
       "$uid": {
@@ -18,18 +22,21 @@
         ".write": "auth != null && auth.uid == $uid"
       }
     },
-    "chats": {
-      "$chatId": {
-        ".read": "auth != null && data.child('members').child(auth.uid).val() == true",
-        ".write": "auth != null && data.child('members').child(auth.uid).val() == true"
+    "friendRequests": {
+      "$uid": {
+        ".read": "auth != null && auth.uid == $uid",
+        ".write": "auth != null"
       }
     },
-    "calls": {
-      "$callId": {
-        ".read": "auth != null",
+    "chats": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "notifications": {
+      "$uid": {
+        ".read": "auth != null && auth.uid == $uid",
         ".write": "auth != null"
       }
     }
   }
 }
-

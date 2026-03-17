@@ -1,4 +1,19 @@
-/* Modern T-Konekt Theme - Vibrant & Professional */
+/* Verity - Modern & Privacy-First Social Media Theme */
+
+:root {
+    --primary-teal: #008080;
+    --primary-indigo: #4B0082;
+    --accent-vibrant: #00d2ff;
+    --bg-light: #f0f2f5;
+    --text-dark: #1c1e21;
+    --text-muted: #65676b;
+    --white: #ffffff;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 12px 28px rgba(0,0,0,0.12);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --gradient-main: linear-gradient(135deg, var(--primary-teal) 0%, var(--primary-indigo) 100%);
+}
 
 /* Reset & Base */
 * {
@@ -9,324 +24,197 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    background-attachment: fixed;
-    color: #1a1a2e;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
     overflow-x: hidden;
+    line-height: 1.5;
+}
+
+/* Transitions */
+.transition {
+    transition: var(--transition);
+}
+
+.story:hover img {
+    transform: scale(1.05);
 }
 
 /* Login Page Styling */
 .login-page {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.login-card {
-    max-width: 400px;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-}
-
-.login-card .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border: none;
-    font-size: 20px;
-    border-radius: 12px;
-    padding: 12px;
-    font-weight: 600;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.login-card .btn-primary:hover {
-    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-}
-
-.login-card .btn-success {
-    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 12px;
-    font-weight: 600;
-    transition: transform 0.2s;
-}
-
-.login-card .btn-success:hover {
-    background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
-    transform: translateY(-2px);
-}
-
-/* Navigation Bar */
-.navbar {
-    height: 64px;
-    padding: 0 24px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-}
-
-.navbar-brand {
-    color: #ffffff !important;
-    font-size: 32px !important;
-    font-weight: 800;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    letter-spacing: -1px;
-}
-
-.search-box {
-    max-width: 280px;
-    border-radius: 50px;
-}
-
-.search-box input {
-    border-radius: 50px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    backdrop-filter: blur(10px);
-}
-
-.search-box input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.search-box .input-group-text {
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-}
-
-.navbar .nav-link {
-    padding: 8px 40px !important;
-    border-radius: 12px;
-    color: rgba(255, 255, 255, 0.8);
-    transition: all 0.3s;
-}
-
-.navbar .nav-link:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-}
-
-.navbar .nav-link.active {
-    color: white;
-    background: rgba(255, 255, 255, 0.25);
-    border-bottom: none;
-}
-
-.btn-light {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    color: white;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s;
-}
-
-.btn-light:hover {
-    background: rgba(255, 255, 255, 0.3);
-    color: white;
-    transform: translateY(-2px);
-}
-
-/* Main Content Layout */
-.main-content {
-    margin-top: 80px;
-    padding: 24px 0;
-
-.left-sidebar,
-.right-sidebar {
-    padding: 0 12px;
-    position: sticky;
-    top: 80px;
-    max-height: calc(100vh - 80px);
-    overflow-y: auto;
-}
-
-.feed-center {
-    max-width: 680px;
-    padding: 0 32px;
-}
-
-/* Cards */
-.card {
-    border-radius: 20px;
-    margin-bottom: 20px;
-    border: none;
-    background: white;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
-}
-
-.card-body {
-    padding: 20px;
-}
-
-/* Stories */
-.stories-container {
+    min-height: 100vh;
     display: flex;
-    gap: 12px;
-    padding: 12px 0;
-}
-
-.story {
-    min-width: 120px;
-    height: 200px;
-    border-radius: 20px;
-    overflow: hidden;
-    cursor: pointer;
-    position: relative;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s;
-}
-
-.story img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.story:hover {
-    transform: scale(1.08);
-}
-
-/* Posts */
-.post-content img {
-    max-width: 100%;
-    border-radius: 16px;
-    margin: 12px 0;
-}
-
-/* Buttons */
-.btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border: none;
-    border-radius: 12px;
-    padding: 10px 24px;
-    font-weight: 600;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.btn-primary:hover {
-    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
-}
-
-.rounded-circle {
-    width: 40px;
-    height: 40px;
-    display: inline-flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Profile Page */
-.profile-page {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    background-attachment: fixed;
+.login-card {
+    max-width: 400px;
+    width: 90%;
+    border-radius: 12px;
+    background: var(--white);
+    box-shadow: var(--shadow-lg);
+    padding: 32px;
 }
 
-.cover-photo {
-    max-height: 400px;
-    overflow: hidden;
-    border-radius: 20px 20px 0 0;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+/* Navigation Bar */
+.navbar {
+    height: 60px;
+    background: var(--white) !important;
+    box-shadow: var(--shadow-sm);
+    z-index: 1000;
 }
 
-.cover-photo img {
-    width: 100%;
+.navbar-brand {
+    color: var(--primary-teal) !important;
+    font-size: 26px !important;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.nav-profile-pic {
+    width: 32px;
+    height: 32px;
     object-fit: cover;
+    border: 1px solid rgba(0,0,0,0.1);
 }
 
-.profile-header {
-    margin-top: -60px;
-    padding: 0 32px;
+.navbar .nav-link {
+    padding: 10px 20px !important;
+    border-radius: 8px;
+    color: var(--text-muted);
+    transition: var(--transition);
 }
 
-.profile-picture img {
-    border: 6px solid white;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+.navbar .nav-link:hover {
+    background: var(--bg-light);
+    color: var(--primary-teal);
 }
 
-/* Sidebar Lists */
-.list-group-item {
-    padding: 12px 16px;
+.navbar .nav-link.active {
+    color: var(--primary-teal);
+    position: relative;
+}
+
+.navbar .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--primary-teal);
+}
+
+/* Cards */
+.card {
+    border-radius: 10px;
+    margin-bottom: 16px;
     border: none;
-    border-radius: 12px;
-    transition: all 0.3s;
-    margin-bottom: 4px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
 }
 
-.list-group-item:hover {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-    transform: translateX(5px);
+.card:hover {
+    box-shadow: var(--shadow-md);
 }
 
-.list-group-item.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    font-weight: 600;
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+/* Stories */
+.stories-container::-webkit-scrollbar {
+    height: 4px;
 }
 
-/* Chat/Messages */
-.chat-item {
-    padding: 12px;
-    cursor: pointer;
-    border-radius: 12px;
-    transition: all 0.3s;
+.stories-container::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.1);
+    border-radius: 10px;
 }
 
-.chat-item:hover,
-.chat-item.active {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+.story {
+    transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
-.hover-bg:hover {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+.story:hover {
+    filter: brightness(0.95);
 }
 
-.messages-container {
-    background: white;
+/* Privacy Badge */
+.privacy-badge {
+    background: rgba(0, 128, 128, 0.08);
+    color: var(--primary-teal);
+    padding: 6px 14px;
     border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(0, 128, 128, 0.1);
 }
 
-/* Watch Page */
-.video-overlay {
-    opacity: 0;
-    transition: opacity 0.3s;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%);
+/* Responsive & Alignment Fixes */
+.main-content {
+    margin-top: 60px;
+    padding: 20px 0;
+    width: 100%;
+    max-width: 100%;
 }
 
-.card:hover .video-overlay {
-    opacity: 1;
+.feed-center {
+    max-width: 680px;
+    width: 100%;
+    padding: 0 12px;
 }
 
-/* Responsive */
 @media (max-width: 991px) {
-    .left-sidebar,
-    .right-sidebar {
-        display: none;
+    .left-sidebar, .right-sidebar {
+        display: none !important;
     }
-    
     .feed-center {
-        padding: 0 16px;
+        max-width: 100%;
+        padding: 0 10px;
     }
 }
 
-@media (max-width: 767px) {
+/* Navbar Alignment */
+.navbar .container-fluid {
+    max-width: 1300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Mobile Search Fix */
+@media (max-width: 576px) {
     .search-box {
-        max-width: 180px;
+        display: none !important;
     }
-    
     .navbar-brand {
-        font-size: 26px !important;
+        font-size: 22px !important;
+    }
+}
+
+/* Card Improvements */
+.card {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.post-content img {
+    width: calc(100% + 40px);
+    margin: 12px -20px;
+    border-radius: 0;
+}
+
+/* Story Mobile Layout */
+.stories-container {
+    padding-bottom: 5px;
+}
+
+@media (max-width: 480px) {
+    .story {
+        min-width: 95px !important;
+        height: 160px !important;
     }
 }
 

@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>T-Konekt - News Feed | Stay Connected</title>
-    <meta name="description" content="Stay updated with T-Konekt news feed. See posts from friends, share moments, and engage with your community.">
-    <meta name="keywords" content="news feed, social media feed, T-Konekt home, social updates">
+    <title>Verity - Real Connections | No Algorithms</title>
+    <meta name="description" content="Stay updated with Verity's chronological feed. Real connections, no algorithms, pure privacy.">
+    <meta name="keywords" content="privacy social media, chronological feed, Verity home, real connections">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="fb-style.css">
-    <link rel="shortcut icon" href="t -konnect.png" type="image/x-icon">
+    <link rel="shortcut icon" href="icons/logo.svg" type="image/x-icon">
 </head>
 <body>
     <!-- Top Navigation -->
     <nav class="navbar navbar-expand navbar-light bg-white border-bottom fixed-top shadow-sm">
         <div class="container-fluid">
             <div class="d-flex align-items-center">
-                <a class="navbar-brand fw-bold fs-4 text-white d-flex align-items-center me-3" href="home.html">
-                    <img src="icons/logo.png" alt="T-Konekt" style="height: 40px; margin-right: 8px;">
-                    T-Konekt
+                <a class="navbar-brand fw-bold fs-4 text-primary d-flex align-items-center me-3" href="home.html">
+                    <img src="icons/logo.svg" alt="Verity" style="height: 40px; margin-right: 8px;">
+                    Verity
                 </a>
                 <div class="input-group search-box">
                     <span class="input-group-text bg-light border-0"><i class="bi bi-search"></i></span>
-                    <input type="search" class="form-control bg-light border-0" placeholder="Search FaithBook">
+                    <input type="search" class="form-control bg-light border-0" placeholder="Search Verity">
                 </div>
             </div>
             
@@ -52,13 +52,13 @@
                 </a>
                 <div class="dropdown">
                     <button class="btn p-0" data-bs-toggle="dropdown">
-                        <img src="https://via.placeholder.com/40" class="rounded-circle" alt="Profile">
+                        <img src="https://via.placeholder.com/40" class="rounded-circle nav-profile-pic" alt="Profile">
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person-circle me-2"></i> Profile</a></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i> Settings</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-right me-2"></i> Log Out</a></li>
+                        <li><a class="dropdown-item" href="login.html" onclick="auth.signOut()"><i class="bi bi-box-arrow-right me-2"></i> Log Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -71,7 +71,7 @@
             <div class="col-lg-3 d-none d-lg-block left-sidebar">
                 <div class="list-group list-group-flush">
                     <a href="profile.html" class="list-group-item list-group-item-action border-0">
-                        <img src="https://via.placeholder.com/40" class="rounded-circle me-2" width="36"> <strong>John Doe</strong>
+                        <img src="https://via.placeholder.com/40" class="rounded-circle me-2 nav-profile-pic" width="36"> <strong id="sidebarUserName">John Doe</strong>
                     </a>
                     <a href="friends.html" class="list-group-item list-group-item-action border-0">
                         <i class="bi bi-people-fill text-primary me-2 fs-5"></i> Friends
@@ -85,51 +85,25 @@
                     <a href="messages.html" class="list-group-item list-group-item-action border-0">
                         <i class="bi bi-messenger text-primary me-2 fs-5"></i> Messenger
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action border-0">
-                        <i class="bi bi-clock-history text-primary me-2 fs-5"></i> Memories
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action border-0">
-                        <i class="bi bi-bookmark-fill text-primary me-2 fs-5"></i> Saved
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action border-0">
-                        <i class="bi bi-flag-fill text-primary me-2 fs-5"></i> Pages
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action border-0">
-                        <i class="bi bi-controller text-primary me-2 fs-5"></i> Gaming
-                    </a>
-                    <button class="list-group-item list-group-item-action border-0">
-                        <i class="bi bi-chevron-down me-2"></i> See more
-                    </button>
                 </div>
             </div>
 
             <!-- Main Feed -->
             <div class="col-lg-6 col-md-8 mx-auto feed-center">
                 <!-- Stories -->
-                <div class="card mb-3 border-0 shadow-sm">
-                    <div class="card-body p-2">
-                        <div class="d-flex gap-2 overflow-auto stories-container">
-                            <div class="story position-relative">
-                                <img src="https://via.placeholder.com/120x200" class="rounded">
-                                <button class="btn btn-primary rounded-circle position-absolute" style="bottom: 10px; left: 50%; transform: translateX(-50%);">
-                                    <i class="bi bi-plus-lg"></i>
-                                </button>
-                                <span class="position-absolute bottom-0 start-0 p-2 text-white small">Create Story</span>
-                            </div>
-                            <div class="story position-relative">
-                                <img src="https://via.placeholder.com/120x200" class="rounded">
-                                <img src="https://via.placeholder.com/40" class="rounded-circle border border-3 border-primary position-absolute top-0 start-0 m-2" width="40">
-                                <span class="position-absolute bottom-0 start-0 p-2 text-white small">Sarah</span>
-                            </div>
-                            <div class="story position-relative">
-                                <img src="https://via.placeholder.com/120x200" class="rounded">
-                                <img src="https://via.placeholder.com/40" class="rounded-circle border border-3 border-primary position-absolute top-0 start-0 m-2" width="40">
-                                <span class="position-absolute bottom-0 start-0 p-2 text-white small">Michael</span>
-                            </div>
-                            <div class="story position-relative">
-                                <img src="https://via.placeholder.com/120x200" class="rounded">
-                                <img src="https://via.placeholder.com/40" class="rounded-circle border border-3 border-primary position-absolute top-0 start-0 m-2" width="40">
-                                <span class="position-absolute bottom-0 start-0 p-2 text-white small">Emma</span>
+                <div class="card mb-3 border-0 shadow-sm" style="background: transparent;">
+                    <div class="card-body p-0">
+                        <div class="d-flex gap-2 overflow-auto pb-2 stories-container" id="storiesList">
+                            <!-- Create Story Card -->
+                            <div class="story position-relative shadow-sm" style="min-width: 110px; height: 190px; border-radius: 12px; overflow: hidden; background: white;" onclick="document.getElementById('storyInput').click()">
+                                <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=110&h=190&fit=crop" class="w-100 h-75 object-fit-cover opacity-50">
+                                <div class="position-absolute bottom-0 start-0 w-100 bg-white text-center p-2" style="height: 35%;">
+                                    <div class="btn btn-primary rounded-circle position-absolute translate-middle-x" style="top: -20px; left: 50%; width: 40px; height: 40px; border: 4px solid white;">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </div>
+                                    <span class="small fw-bold mt-2 d-block">Create Story</span>
+                                </div>
+                                <input type="file" id="storyInput" accept="image/*" style="display:none;" onchange="uploadStory(this)">
                             </div>
                         </div>
                     </div>
@@ -139,128 +113,32 @@
                 <div class="card mb-3 border-0 shadow-sm">
                     <div class="card-body">
                         <div class="d-flex gap-2 mb-3">
-                            <img src="https://via.placeholder.com/40" class="rounded-circle" width="40" height="40">
-                            <input type="text" class="form-control rounded-pill bg-light border-0" placeholder="What's on your mind, John?" data-bs-toggle="modal" data-bs-target="#createPostModal">
+                            <img src="https://via.placeholder.com/40" class="rounded-circle nav-profile-pic" width="40" height="40">
+                            <input type="text" class="form-control rounded-pill bg-light border-0" placeholder="What's on your mind?" data-bs-toggle="modal" data-bs-target="#createPostModal">
                         </div>
-                        <hr>
+                        <hr class="opacity-5">
                         <div class="d-flex justify-content-around">
-                            <button class="btn btn-light flex-fill"><i class="bi bi-camera-video-fill text-danger me-2"></i>Live video</button>
-                            <button class="btn btn-light flex-fill"><i class="bi bi-image-fill text-success me-2"></i>Photo/video</button>
-                            <button class="btn btn-light flex-fill"><i class="bi bi-emoji-smile-fill text-warning me-2"></i>Feeling/activity</button>
+                            <button class="btn btn-light flex-fill text-muted"><i class="bi bi-camera-video-fill text-danger me-2"></i>Live</button>
+                            <button class="btn btn-light flex-fill text-muted" data-bs-toggle="modal" data-bs-target="#createPostModal"><i class="bi bi-image-fill text-success me-2"></i>Photo</button>
+                            <button class="btn btn-light flex-fill text-muted"><i class="bi bi-emoji-smile-fill text-warning me-2"></i>Feeling</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Posts -->
-                <div class="card mb-3 border-0 shadow-sm">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <div class="d-flex align-items-center gap-2">
-                                <img src="https://via.placeholder.com/40" class="rounded-circle" width="40">
-                                <div>
-                                    <strong>Sarah Johnson</strong>
-                                    <div class="small text-muted">2 hours ago <i class="bi bi-globe"></i></div>
-                                </div>
-                            </div>
-                            <div class="dropdown">
-                                <button class="btn btn-light rounded-circle" data-bs-toggle="dropdown">
-                                    <i class="bi bi-three-dots"></i>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-bookmark me-2"></i>Save post</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-eye-slash me-2"></i>Hide post</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-flag me-2"></i>Report</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p>Had an amazing day at the beach! 🌊☀️ #blessed</p>
-                        <img src="https://via.placeholder.com/600x400" class="w-100 rounded mb-2" alt="Post">
-                        <div class="d-flex justify-content-between align-items-center mb-2 small text-muted">
-                            <span><i class="bi bi-hand-thumbs-up-fill text-primary"></i> <i class="bi bi-heart-fill text-danger"></i> 234</span>
-                            <span>45 comments · 12 shares</span>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-around">
-                            <button class="btn btn-light flex-fill"><i class="bi bi-hand-thumbs-up me-2"></i>Like</button>
-                            <button class="btn btn-light flex-fill"><i class="bi bi-chat me-2"></i>Comment</button>
-                            <button class="btn btn-light flex-fill"><i class="bi bi-share me-2"></i>Share</button>
-                        </div>
-                    </div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0 fw-bold">Chronological Feed</h5>
+                    <span class="privacy-badge"><i class="bi bi-shield-check"></i> No Algorithms</span>
                 </div>
 
-                <div class="card mb-3 border-0 shadow-sm">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <div class="d-flex align-items-center gap-2">
-                                <img src="https://via.placeholder.com/40" class="rounded-circle" width="40">
-                                <div>
-                                    <strong>Michael Chen</strong>
-                                    <div class="small text-muted">5 hours ago <i class="bi bi-people"></i></div>
-                                </div>
-                            </div>
-                            <button class="btn btn-light rounded-circle"><i class="bi bi-three-dots"></i></button>
-                        </div>
-                        <p>Just finished my new project! So excited to share it with everyone. What do you all think?</p>
-                        <div class="d-flex justify-content-between align-items-center mb-2 small text-muted">
-                            <span><i class="bi bi-hand-thumbs-up-fill text-primary"></i> 89</span>
-                            <span>23 comments · 5 shares</span>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-around">
-                            <button class="btn btn-light flex-fill"><i class="bi bi-hand-thumbs-up me-2"></i>Like</button>
-                            <button class="btn btn-light flex-fill"><i class="bi bi-chat me-2"></i>Comment</button>
-                            <button class="btn btn-light flex-fill"><i class="bi bi-share me-2"></i>Share</button>
-                        </div>
-                    </div>
-                </div>
+                <div id="verityPostsList"></div>
             </div>
 
             <!-- Right Sidebar -->
             <div class="col-lg-3 d-none d-lg-block right-sidebar">
-                <div class="card border-0 mb-3">
-                    <div class="card-body">
-                        <h6 class="text-muted mb-3">Sponsored</h6>
-                        <div class="d-flex gap-2 mb-3">
-                            <img src="https://via.placeholder.com/100" class="rounded" width="100">
-                            <div>
-                                <strong>Amazing Product</strong>
-                                <div class="small text-muted">example.com</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
                 <div class="card border-0">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h6 class="text-muted mb-0">Contacts</h6>
-                            <div>
-                                <button class="btn btn-sm btn-light rounded-circle"><i class="bi bi-camera-video"></i></button>
-                                <button class="btn btn-sm btn-light rounded-circle"><i class="bi bi-search"></i></button>
-                                <button class="btn btn-sm btn-light rounded-circle"><i class="bi bi-three-dots"></i></button>
-                            </div>
-                        </div>
-                        <div class="list-group list-group-flush">
-                            <a href="#" class="list-group-item list-group-item-action border-0 px-0">
-                                <img src="https://via.placeholder.com/36" class="rounded-circle me-2" width="36">
-                                <span>Emma Wilson</span>
-                                <span class="badge bg-success rounded-circle p-1 float-end mt-2"></span>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action border-0 px-0">
-                                <img src="https://via.placeholder.com/36" class="rounded-circle me-2" width="36">
-                                <span>James Smith</span>
-                                <span class="badge bg-success rounded-circle p-1 float-end mt-2"></span>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action border-0 px-0">
-                                <img src="https://via.placeholder.com/36" class="rounded-circle me-2" width="36">
-                                <span>Olivia Brown</span>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action border-0 px-0">
-                                <img src="https://via.placeholder.com/36" class="rounded-circle me-2" width="36">
-                                <span>Noah Davis</span>
-                                <span class="badge bg-success rounded-circle p-1 float-end mt-2"></span>
-                            </a>
-                        </div>
+                        <h6 class="text-muted mb-3">Contacts</h6>
+                        <div id="contactsList" class="list-group list-group-flush"></div>
                     </div>
                 </div>
             </div>
@@ -268,7 +146,7 @@
     </div>
 
     <!-- Create Post Modal -->
-    <div class="modal fade" id="createPostModal" tabindex="-1">
+    <div id="createPostModal" class="modal fade" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -277,310 +155,230 @@
                 </div>
                 <div class="modal-body">
                     <div class="d-flex align-items-center gap-2 mb-3">
-                        <img src="https://via.placeholder.com/40" class="rounded-circle" width="40">
+                        <img src="https://via.placeholder.com/40" class="rounded-circle nav-profile-pic" width="40">
                         <div>
-                            <strong>John Doe</strong>
-                            <div class="dropdown d-inline">
-                                <button class="btn btn-sm btn-light dropdown-toggle" data-bs-toggle="dropdown">
-                                    <i class="bi bi-globe"></i> Public
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-globe me-2"></i>Public</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-people me-2"></i>Friends</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-lock me-2"></i>Only me</a></li>
-                                </ul>
-                            </div>
+                            <strong id="modalUserName">User</strong>
+                            <div class="small text-muted"><i class="bi bi-globe"></i> Public</div>
                         </div>
                     </div>
-                    <textarea class="form-control border-0" rows="5" placeholder="What's on your mind, John?"></textarea>
+                    <textarea class="form-control border-0" rows="5" placeholder="What's on your mind?" id="postTextarea"></textarea>
+                    <div id="imagePreview" class="mt-2 text-center" style="display:none;">
+                        <img src="" class="img-fluid rounded" style="max-height: 200px;">
+                        <button type="button" class="btn btn-sm btn-danger mt-1" onclick="removeSelectedImage()">Remove</button>
+                    </div>
                     <div class="border rounded p-3 mt-3">
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between align-items-center">
                             <span>Add to your post</span>
                             <div>
-                                <button class="btn btn-light rounded-circle"><i class="bi bi-image-fill text-success"></i></button>
-                                <button class="btn btn-light rounded-circle"><i class="bi bi-person-fill text-primary"></i></button>
-                                <button class="btn btn-light rounded-circle"><i class="bi bi-emoji-smile-fill text-warning"></i></button>
-                                <button class="btn btn-light rounded-circle"><i class="bi bi-geo-alt-fill text-danger"></i></button>
+                                <input type="file" id="postImageInput" accept="image/*" style="display:none;" onchange="previewImage(this)">
+                                <button type="button" class="btn btn-light rounded-circle" onclick="document.getElementById('postImageInput').click()"><i class="bi bi-image-fill text-success"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary w-100 fw-bold">Post</button>
+                    <button type="button" class="btn btn-primary w-100 fw-bold" id="postBtn">Post</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="mockData.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <script src="core.js"></script>
+    
     <script>
-        // Load posts from mock data
-        const mockUsers = JSON.parse(localStorage.getItem('mockUsers')) || [];
-        const mockPosts = JSON.parse(localStorage.getItem('mockPosts')) || [];
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        
-        // Track liked posts
-        let likedPosts = JSON.parse(localStorage.getItem('likedPosts')) || {};
+        let selectedFile = null;
+        let userDataGlobal = null;
+        const postsListEl = document.getElementById('verityPostsList');
 
-        function loadPosts() {
-            const feedCenter = document.querySelector('.feed-center');
-            const postsContainer = feedCenter.querySelector('.card.mb-3.border-0.shadow-sm:last-child');
-            
-            // Clear existing posts (keep create post and stories)
-            const existingPosts = feedCenter.querySelectorAll('.post-card');
-            existingPosts.forEach(post => post.remove());
-            
-            // Load posts
-            mockPosts.forEach((post, index) => {
-                const user = mockUsers.find(u => u.id === post.userId);
-                if (!user) return;
-                
-                const isLiked = likedPosts[post.id] || false;
-                const currentLikes = post.likes + (isLiked ? 1 : 0);
-                
-                const timeAgo = getTimeAgo(new Date(post.timestamp));
-                
-                const postCard = document.createElement('div');
-                postCard.className = 'card mb-3 border-0 shadow-sm post-card';
-                postCard.dataset.postId = post.id;
-                postCard.innerHTML = `
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <div class="d-flex align-items-center gap-2">
-                                <img src="${user.profilePic}" class="rounded-circle" width="40">
-                                <div>
-                                    <strong>${user.name}</strong>
-                                    <div class="small text-muted">${timeAgo} <i class="bi bi-globe"></i></div>
-                                </div>
-                            </div>
-                            <div class="dropdown">
-                                <button class="btn btn-light rounded-circle" data-bs-toggle="dropdown">
-                                    <i class="bi bi-three-dots"></i>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-bookmark me-2"></i>Save post</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-eye-slash me-2"></i>Hide post</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-flag me-2"></i>Report</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p>${post.content}</p>
-                        ${post.image ? `<img src="${post.image}" class="w-100 rounded mb-2" alt="Post">` : ''}
-                        <div class="d-flex justify-content-between align-items-center mb-2 small text-muted">
-                            <span class="like-count">
-                                ${currentLikes > 0 ? '<i class="bi bi-hand-thumbs-up-fill text-primary"></i> <i class="bi bi-heart-fill text-danger"></i>' : ''} 
-                                <span class="likes-number">${currentLikes}</span>
-                            </span>
-                            <span>${post.comments} comments · ${post.shares} shares</span>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-around">
-                            <button class="btn btn-light flex-fill like-btn ${isLiked ? 'liked text-primary' : ''}" onclick="toggleLike('${post.id}')">
-                                <i class="bi bi-hand-thumbs-up${isLiked ? '-fill' : ''} me-2"></i>Like
-                            </button>
-                            <button class="btn btn-light flex-fill" onclick="toggleComments('${post.id}')">
-                                <i class="bi bi-chat me-2"></i>Comment
-                            </button>
-                            <button class="btn btn-light flex-fill" onclick="sharePost('${post.id}')">
-                                <i class="bi bi-share me-2"></i>Share
-                            </button>
-                        </div>
-                        <div class="comments-section mt-3" id="comments-${post.id}" style="display: none;">
-                            <div class="d-flex gap-2 mb-3">
-                                <img src="${currentUser?.profilePic || 'https://i.pravatar.cc/150?img=1'}" class="rounded-circle" width="32" height="32">
-                                <input type="text" class="form-control rounded-pill bg-light border-0 comment-input" data-post-id="${post.id}" placeholder="Write a comment...">
-                            </div>
-                            <div class="comments-list" id="comments-list-${post.id}">
-                                <!-- Comments will appear here -->
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                feedCenter.appendChild(postCard);
+        async function loadStories() {
+            const storiesList = document.getElementById('storiesList');
+            db.ref('stories').orderByChild('timestamp').limitToLast(20).on('value', async (snapshot) => {
+                while (storiesList.children.length > 1) storiesList.removeChild(storiesList.lastChild);
+                const stories = [];
+                snapshot.forEach(child => {
+                    const story = child.val();
+                    if (Date.now() - story.timestamp < 24 * 60 * 60 * 1000) stories.unshift({ id: child.key, ...story });
+                });
+                for (const story of stories) {
+                    const userSnap = await db.ref('users/' + story.userId).once('value');
+                    const user = userSnap.val() || { name: 'User', profilePic: 'https://via.placeholder.com/150' };
+                    const storyEl = document.createElement('div');
+                    storyEl.className = 'story position-relative shadow-sm';
+                    storyEl.style = 'min-width: 110px; height: 190px; border-radius: 12px; overflow: hidden; cursor: pointer;';
+                    storyEl.innerHTML = `
+                        <img src="${story.imageURL}" class="w-100 h-100 object-fit-cover transition">
+                        <img src="${user.profilePic || 'https://via.placeholder.com/40'}" class="rounded-circle border border-3 border-primary position-absolute top-0 start-0 m-2 shadow" width="40" height="40">
+                        <span class="position-absolute bottom-0 start-0 p-2 text-white small fw-bold" style="text-shadow: 0 1px 4px rgba(0,0,0,0.8);">${escapeHtml(user.name.split(' ')[0])}</span>
+                    `;
+                    storiesList.appendChild(storyEl);
+                }
             });
         }
 
-        function toggleLike(postId) {
-            const postCard = document.querySelector(`[data-post-id="${postId}"]`);
-            const likeBtn = postCard.querySelector('.like-btn');
-            const likesNumber = postCard.querySelector('.likes-number');
-            const likeCount = postCard.querySelector('.like-count');
-            const icon = likeBtn.querySelector('i');
-            
-            const post = mockPosts.find(p => p.id === postId);
-            if (!post) return;
-            
-            // Toggle like
-            likedPosts[postId] = !likedPosts[postId];
-            localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
-            
-            const isLiked = likedPosts[postId];
-            const newLikes = post.likes + (isLiked ? 1 : 0);
-            
-            // Update UI
-            if (isLiked) {
-                likeBtn.classList.add('liked', 'text-primary');
-                icon.classList.remove('bi-hand-thumbs-up');
-                icon.classList.add('bi-hand-thumbs-up-fill');
-                
-                // Animate like
-                likeBtn.style.transform = 'scale(1.2)';
-                setTimeout(() => likeBtn.style.transform = 'scale(1)', 200);
+        async function loadChronologicalFeed() {
+            db.ref('posts').orderByChild('timestamp').on('value', async (snapshot) => {
+                postsListEl.innerHTML = '';
+                const posts = [];
+                snapshot.forEach(child => posts.unshift({ id: child.key, ...child.val() }));
+                for (const post of posts) {
+                    const userSnap = await db.ref('users/' + post.userId).once('value');
+                    const user = userSnap.val() || { name: 'Unknown', profilePic: 'https://via.placeholder.com/150' };
+                    const postEl = document.createElement('div');
+                    postEl.className = 'card mb-3 border-0 shadow-sm transition';
+                    postEl.innerHTML = `
+                        <div class="card-body">
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <img src="${user.profilePic}" class="rounded-circle" width="40" height="40">
+                                <div>
+                                    <strong>${escapeHtml(user.name)}</strong>
+                                    <div class="small text-muted">${formatTimestamp(post.timestamp)} <i class="bi bi-globe"></i></div>
+                                </div>
+                            </div>
+                            <p>${escapeHtml(post.content)}</p>
+                            ${post.imageURL ? `<img src="${post.imageURL}" class="w-100 rounded mb-2 shadow-sm">` : ''}
+                            <div class="d-flex justify-content-between align-items-center mb-2 small text-muted">
+                                <span id="likeCount-${post.id}"><i class="bi bi-hand-thumbs-up-fill text-primary"></i> ${post.likeCount || 0}</span>
+                                <span style="cursor:pointer" onclick="toggleComments('${post.id}')">${post.commentCount || 0} comments</span>
+                            </div>
+                            <hr class="opacity-5">
+                            <div class="d-flex justify-content-around">
+                                <button class="btn btn-light flex-fill text-muted" id="likeBtn-${post.id}" onclick="toggleLike('${post.id}')"><i class="bi bi-hand-thumbs-up"></i> Like</button>
+                                <button class="btn btn-light flex-fill text-muted" onclick="toggleComments('${post.id}')"><i class="bi bi-chat"></i> Comment</button>
+                                <button class="btn btn-light flex-fill text-muted"><i class="bi bi-share"></i> Share</button>
+                            </div>
+                            <div id="commentSection-${post.id}" class="mt-3" style="display:none;">
+                                <hr class="opacity-5">
+                                <div id="commentList-${post.id}" class="mb-3"></div>
+                                <div class="d-flex gap-2">
+                                    <img src="${userDataGlobal?.profilePic || 'https://via.placeholder.com/32'}" class="rounded-circle nav-profile-pic" width="32">
+                                    <input type="text" class="form-control form-control-sm bg-light border-0 rounded-pill" placeholder="Write a comment..." onkeypress="handleCommentKey(event, '${post.id}')">
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    postsListEl.appendChild(postEl);
+                    loadComments(post.id);
+                    checkIfLiked(post.id);
+                }
+            });
+        }
+
+        async function toggleLike(postId) {
+            const u = firebase.auth().currentUser; if (!u) return;
+            const likeRef = db.ref(`likes/${postId}/${u.uid}`);
+            const postRef = db.ref(`posts/${postId}/likeCount`);
+            const snap = await likeRef.once('value');
+            if (snap.exists()) {
+                await likeRef.remove(); await postRef.set(firebase.database.ServerValue.increment(-1));
             } else {
-                likeBtn.classList.remove('liked', 'text-primary');
-                icon.classList.remove('bi-hand-thumbs-up-fill');
-                icon.classList.add('bi-hand-thumbs-up');
+                await likeRef.set(true); await postRef.set(firebase.database.ServerValue.increment(1));
             }
-            
-            // Update like count
-            likesNumber.textContent = newLikes;
-            
-            if (newLikes > 0) {
-                likeCount.innerHTML = `<i class="bi bi-hand-thumbs-up-fill text-primary"></i> <i class="bi bi-heart-fill text-danger"></i> <span class="likes-number">${newLikes}</span>`;
-            } else {
-                likeCount.innerHTML = `<span class="likes-number">0</span>`;
-            }
+        }
+
+        function checkIfLiked(postId) {
+            const u = firebase.auth().currentUser; if (!u) return;
+            db.ref(`likes/${postId}/${u.uid}`).on('value', snap => {
+                const btn = document.getElementById(`likeBtn-${postId}`);
+                if (btn) {
+                    if (snap.exists()) { btn.classList.add('text-primary', 'fw-bold'); btn.innerHTML = '<i class="bi bi-hand-thumbs-up-fill"></i> Liked'; }
+                    else { btn.classList.remove('text-primary', 'fw-bold'); btn.innerHTML = '<i class="bi bi-hand-thumbs-up"></i> Like'; }
+                }
+            });
+            db.ref(`posts/${postId}/likeCount`).on('value', snap => {
+                const el = document.getElementById(`likeCount-${postId}`);
+                if (el) el.innerHTML = `<i class="bi bi-hand-thumbs-up-fill text-primary"></i> ${snap.val() || 0}`;
+            });
         }
 
         function toggleComments(postId) {
-            const commentsSection = document.getElementById(`comments-${postId}`);
-            if (commentsSection.style.display === 'none') {
-                commentsSection.style.display = 'block';
-                commentsSection.querySelector('input').focus();
-            } else {
-                commentsSection.style.display = 'none';
-            }
+            const el = document.getElementById(`commentSection-${postId}`);
+            el.style.display = el.style.display === 'none' ? 'block' : 'none';
         }
 
-        function addComment(postId, text, input) {
-            if (!text.trim()) return;
-            
-            const commentsList = document.getElementById(`comments-list-${postId}`);
-            const commentDiv = document.createElement('div');
-            commentDiv.className = 'd-flex gap-2 mb-2';
-            commentDiv.innerHTML = `
-                <img src="${currentUser?.profilePic || 'https://i.pravatar.cc/150?img=1'}" class="rounded-circle" width="32" height="32">
-                <div class="flex-grow-1">
-                    <div class="bg-light rounded p-2">
-                        <strong class="small">${currentUser?.name || 'You'}</strong>
-                        <p class="mb-0 small">${text}</p>
-                    </div>
-                    <div class="small text-muted mt-1 ms-2">
-                        <a href="#" class="text-decoration-none me-2">Like</a>
-                        <a href="#" class="text-decoration-none me-2">Reply</a>
-                        <span>Just now</span>
-                    </div>
-                </div>
-            `;
-            
-            commentsList.appendChild(commentDiv);
-            input.value = '';
-            
-            // Scroll to the new comment
-            commentDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            
-            // Update comment count
-            const postCard = document.querySelector(`[data-post-id="${postId}"]`);
-            const post = mockPosts.find(p => p.id === postId);
-            if (post) {
-                post.comments++;
-                const commentSpan = postCard.querySelector('.small.text-muted span:last-child');
-                if (commentSpan) {
-                    commentSpan.textContent = `${post.comments} comments · ${post.shares} shares`;
-                }
-                // Save updated posts
-                localStorage.setItem('mockPosts', JSON.stringify(mockPosts));
-            }
-        }
-
-        function sharePost(postId) {
-            alert('Share functionality - This would open a share dialog!');
-            const post = mockPosts.find(p => p.id === postId);
-            if (post) {
-                post.shares++;
-                const postCard = document.querySelector(`[data-post-id="${postId}"]`);
-                const shareCount = postCard.querySelector('.small.text-muted span:last-child');
-                if (shareCount) {
-                    shareCount.textContent = `${post.comments} comments · ${post.shares} shares`;
-                }
-            }
-        }
-
-        function getTimeAgo(date) {
-            const seconds = Math.floor((new Date() - date) / 1000);
-            const intervals = {
-                year: 31536000,
-                month: 2592000,
-                week: 604800,
-                day: 86400,
-                hour: 3600,
-                minute: 60
-            };
-            
-            for (const [key, value] of Object.entries(intervals)) {
-                const interval = Math.floor(seconds / value);
-                if (interval >= 1) {
-                    return `${interval} ${key}${interval > 1 ? 's' : ''} ago`;
-                }
-            }
-            return 'Just now';
-        }
-
-        // Load posts when page loads
-        window.addEventListener('DOMContentLoaded', () => {
-            loadPosts();
-            
-            // Update user info in UI
-            if (currentUser) {
-                document.querySelectorAll('img[alt="Profile"]').forEach(img => {
-                    img.src = currentUser.profilePic;
+        function loadComments(postId) {
+            const list = document.getElementById(`commentList-${postId}`);
+            db.ref(`comments/${postId}`).on('value', snap => {
+                list.innerHTML = '';
+                snap.forEach(child => {
+                    const c = child.val();
+                    const div = document.createElement('div'); div.className = 'd-flex gap-2 mb-2';
+                    db.ref(`users/${c.userId}`).once('value', uSnap => {
+                        const u = uSnap.val() || { name: 'User', profilePic: 'https://via.placeholder.com/32' };
+                        div.innerHTML = `<img src="${u.profilePic}" class="rounded-circle" width="32" height="32"><div class="bg-light rounded-4 p-2 px-3 flex-grow-1"><div class="small fw-bold">${escapeHtml(u.name)}</div><div class="small">${escapeHtml(c.text)}</div></div>`;
+                    });
+                    list.appendChild(div);
                 });
-            }
-            
-            // Add event listener for all comment inputs (using event delegation)
-            document.addEventListener('keypress', (e) => {
-                if (e.target.classList.contains('comment-input') && e.key === 'Enter') {
-                    const postId = e.target.dataset.postId;
-                    const text = e.target.value;
-                    addComment(postId, text, e.target);
-                }
             });
-        });
+        }
 
-        // Update notification badge count
-        function updateNotificationBadge() {
-            const notifications = JSON.parse(localStorage.getItem('userNotifications')) || [];
-            const unreadCount = notifications.filter(n => !n.read).length;
-            const badge = document.getElementById('notificationBadge');
-            
-            if (unreadCount > 0) {
-                badge.textContent = unreadCount;
-                badge.style.display = 'inline-block';
-            } else {
-                badge.style.display = 'none';
+        async function handleCommentKey(e, postId) {
+            if (e.key === 'Enter' && e.target.value.trim()) {
+                const text = e.target.value.trim(); const u = firebase.auth().currentUser; e.target.value = '';
+                await db.ref(`comments/${postId}`).push({ userId: u.uid, text: text, timestamp: firebase.database.ServerValue.TIMESTAMP });
+                await db.ref(`posts/${postId}/commentCount`).set(firebase.database.ServerValue.increment(1));
             }
         }
 
-        // Update badge on page load and every 10 seconds
-        updateNotificationBadge();
-        setInterval(updateNotificationBadge, 10000);
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                selectedFile = input.files[0];
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const p = document.getElementById('imagePreview');
+                    p.querySelector('img').src = e.target.result; p.style.display = 'block';
+                };
+                reader.readAsDataURL(selectedFile);
+            }
+        }
+
+        function removeSelectedImage() {
+            selectedFile = null; document.getElementById('postImageInput').value = ''; document.getElementById('imagePreview').style.display = 'none';
+        }
+
+        async function uploadStory(input) {
+            if (!input.files || !input.files[0]) return;
+            const user = firebase.auth().currentUser; if (!user) return;
+            showToast('Processing...', 'info');
+            try {
+                const base64 = await fileToBase64(input.files[0], 400);
+                await db.ref('stories').push({ userId: user.uid, imageURL: base64, timestamp: firebase.database.ServerValue.TIMESTAMP });
+                showToast('Story shared!', 'success');
+            } catch (e) { showToast(e.message, 'danger'); }
+        }
+
+        async function createVerityPost() {
+            const content = document.getElementById('postTextarea').value.trim();
+            if (!content && !selectedFile) return;
+            const user = firebase.auth().currentUser; if (!user) return;
+            const btn = document.getElementById('postBtn'); btn.disabled = true; btn.innerHTML = 'Posting...';
+            try {
+                const url = selectedFile ? await fileToBase64(selectedFile, 800) : null;
+                await db.ref('posts').push({ userId: user.uid, content: content, imageURL: url, timestamp: firebase.database.ServerValue.TIMESTAMP, likeCount: 0, commentCount: 0 });
+                document.getElementById('postTextarea').value = ''; removeSelectedImage();
+                bootstrap.Modal.getInstance(document.getElementById('createPostModal')).hide();
+                showToast('Shared!', 'success');
+            } catch (e) { showToast(e.message, 'danger'); }
+            finally { btn.disabled = false; btn.innerHTML = 'Post'; }
+        }
+
+        function initVerity(userData) {
+            userDataGlobal = userData;
+            document.querySelectorAll('img.nav-profile-pic').forEach(img => img.src = userData.profilePic || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&h=40&fit=crop');
+            const nameEl = document.getElementById('sidebarUserName'); if (nameEl) nameEl.textContent = userData.name;
+            const modalName = document.getElementById('modalUserName'); if (modalName) modalName.textContent = userData.name;
+            loadChronologicalFeed(); loadStories();
+        }
+
+        window.addEventListener('verity_auth_ready', (e) => initVerity(e.detail));
+        if (typeof auth !== 'undefined' && auth.currentUser) {
+            db.ref('users/' + auth.currentUser.uid).once('value').then(snap => { if (snap.exists()) initVerity(snap.val()); });
+        }
+        document.getElementById('postBtn').onclick = createVerityPost;
     </script>
-    <style>
-        .like-btn {
-            transition: all 0.2s;
-        }
-        .like-btn.liked {
-            font-weight: 600;
-        }
-        .like-btn:hover {
-            background-color: #e4e6eb;
-        }
-        .comments-section {
-            border-top: 1px solid #e4e6eb;
-            padding-top: 12px;
-        }
-    </style>
 </body>
 </html>

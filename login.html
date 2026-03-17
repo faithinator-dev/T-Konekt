@@ -3,119 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>T-Konekt - Connect with Friends | Social Media Platform</title>
-    <meta name="description" content="T-Konekt is a modern social media platform to connect with friends, share moments, and stay connected. Join now for free!">
-    <meta name="keywords" content="social media, social network, connect friends, T-Konekt, chat, messaging, groups">
-    <meta name="author" content="T-Konekt">
-    <meta property="og:title" content="T-Konekt - Connect with Friends">
-    <meta property="og:description" content="Join T-Konekt to connect with friends and the world around you">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="/icons/logo.png">
-    <meta name="twitter:card" content="summary_large_image">
+    <title>Verity - Real Connections | No Algorithms</title>
+    <meta name="description" content="Verity is a modern, privacy-first social media platform. No algorithms, just real connections.">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="fb-style.css">
-    <link rel="shortcut icon" href="t -konnect.png" type="image/x-icon">
+    <link rel="shortcut icon" href="icons/logo.svg" type="image/x-icon">
 </head>
-<body class="login-page">
+<body class="login-page" style="background: linear-gradient(rgba(0, 128, 128, 0.8), rgba(75, 0, 130, 0.8)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&h=900&fit=crop'); background-size: cover; background-position: center;">
     <div class="container">
         <div class="row min-vh-100 align-items-center">
             <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
                 <div class="d-flex align-items-center justify-content-center justify-content-lg-start mb-3">
-                    <img src="icons/logo.png" alt="T-Konekt Logo" style="height: 120px; margin-right: 15px;">
-                    <h1 class="display-3 fw-bold text-white mb-0">T-Konekt</h1>
+                    <img src="icons/logo.svg" alt="Verity Logo" style="height: 100px; margin-right: 15px;">
+                    <h1 class="display-3 fw-bold text-white mb-0">Verity</h1>
                 </div>
-                <p class="fs-4 text-white">Connect with friends and the world around you on T-Konekt.</p>
+                <p class="fs-4 text-white opacity-75">Connect with friends and the world around you on Verity—the algorithm-free social network.</p>
+                <div class="mt-4">
+                    <span class="privacy-badge text-white" style="background: rgba(255,255,255,0.1);"><i class="bi bi-shield-lock-fill"></i> Privacy First</span>
+                    <span class="privacy-badge text-white ms-2" style="background: rgba(255,255,255,0.1);"><i class="bi bi-clock-history"></i> Chronological Feed</span>
+                </div>
             </div>
             <div class="col-lg-6">
                 <div class="card shadow-lg border-0 login-card mx-auto">
                     <div class="card-body p-4">
-                        <!-- Error Alert -->
-                        <div id="loginError" class="alert alert-danger alert-dismissible fade" role="alert" style="display: none;">
-                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                            <span id="loginErrorMessage"></span>
-                            <button type="button" class="btn-close" onclick="document.getElementById('loginError').style.display='none'"></button>
-                        </div>
-                        
-                        <!-- Success Alert -->
-                        <div id="loginSuccess" class="alert alert-success alert-dismissible fade" role="alert" style="display: none;">
-                            <i class="bi bi-check-circle-fill me-2"></i>
-                            <span id="loginSuccessMessage"></span>
-                            <button type="button" class="btn-close" onclick="document.getElementById('loginSuccess').style.display='none'"></button>
+                        <div id="authAlert" class="alert alert-dismissible fade show" role="alert" style="display: none;">
+                            <span id="authAlertMessage"></span>
+                            <button type="button" class="btn-close" onclick="this.parentElement.style.display='none'"></button>
                         </div>
                         
                         <form id="loginForm">
                             <div class="mb-3">
-                                <input type="email" id="loginEmail" class="form-control form-control-lg" placeholder="Email address or phone number" required>
+                                <input type="email" id="loginEmail" class="form-control form-control-lg" placeholder="Email address" required>
                             </div>
                             <div class="mb-3">
                                 <input type="password" id="loginPassword" class="form-control form-control-lg" placeholder="Password" required>
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg w-100 mb-3 fw-bold">Log In</button>
                             <div class="text-center mb-3">
-                                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Forgotten password?</a>
+                                <a href="#" class="text-decoration-none" onclick="forgotPassword()">Forgotten password?</a>
                             </div>
                             <hr>
                             <div class="text-center">
-                                <button type="button" class="btn btn-success btn-lg fw-bold" data-bs-toggle="modal" data-bs-target="#signupModal">Create New Account</button>
+                                <button type="button" class="btn btn-success btn-lg fw-bold" data-bs-toggle="modal" data-bs-target="#signupModal" style="background-color: #42b72a; border: none;">Create New Account</button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <p class="text-center mt-4"><a href="#" class="fw-bold text-decoration-none">Create a Page</a> for a celebrity, brand or business.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Forgot Password Modal -->
-    <div class="modal fade" id="forgotPasswordModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fw-bold">Reset Your Password</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Step 1: Enter Email -->
-                    <div id="forgotStep1">
-                        <p class="text-muted">Enter your email address and we'll send you a verification code.</p>
-                        <div class="mb-3">
-                            <input type="email" id="forgotEmail" class="form-control" placeholder="Email address" required>
-                        </div>
-                        <button type="button" class="btn btn-primary w-100" onclick="sendVerificationCode()">Send Code</button>
-                    </div>
-                    
-                    <!-- Step 2: Enter Verification Code -->
-                    <div id="forgotStep2" style="display: none;">
-                        <div class="alert alert-info">
-                            <i class="bi bi-info-circle me-2"></i>A 6-digit verification code has been sent to <strong id="sentToEmail"></strong>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Enter Verification Code</label>
-                            <input type="text" id="verificationCode" class="form-control text-center" placeholder="000000" maxlength="6" required>
-                        </div>
-                        <button type="button" class="btn btn-primary w-100 mb-2" onclick="verifyCode()">Verify Code</button>
-                        <button type="button" class="btn btn-link w-100" onclick="sendVerificationCode()">Resend Code</button>
-                    </div>
-                    
-                    <!-- Step 3: Reset Password -->
-                    <div id="forgotStep3" style="display: none;">
-                        <div class="alert alert-success">
-                            <i class="bi bi-check-circle me-2"></i>Code verified! Enter your new password.
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">New Password</label>
-                            <input type="password" id="newPassword" class="form-control" placeholder="Enter new password" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Confirm Password</label>
-                            <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm new password" required>
-                        </div>
-                        <button type="button" class="btn btn-success w-100" onclick="resetPassword()">Reset Password</button>
-                    </div>
-                    
-                    <div id="forgotError" class="alert alert-danger mt-3" style="display: none;"></div>
-                </div>
+                <p class="text-center mt-4 text-white opacity-75">Build real relationships. Stay in control of your data.</p>
             </div>
         </div>
     </div>
@@ -135,44 +70,17 @@
                     <form id="signupForm">
                         <div class="row g-2 mb-2">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="First name" required>
+                                <input type="text" id="signupFirstName" class="form-control" placeholder="First name" required>
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Surname" required>
+                                <input type="text" id="signupLastName" class="form-control" placeholder="Surname" required>
                             </div>
                         </div>
                         <div class="mb-2">
-                            <input type="email" class="form-control" placeholder="Email address" required>
+                            <input type="email" id="signupEmail" class="form-control" placeholder="Email address" required>
                         </div>
                         <div class="mb-2">
-                            <input type="password" class="form-control" placeholder="New password" required>
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label text-muted small">Birthday</label>
-                            <div class="row g-2">
-                                <div class="col-4">
-                                    <select class="form-select">
-                                        <option>Month</option>
-                                        <option>Jan</option>
-                                        <option>Feb</option>
-                                        <option>Mar</option>
-                                    </select>
-                                </div>
-                                <div class="col-4">
-                                    <select class="form-select">
-                                        <option>Day</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                    </select>
-                                </div>
-                                <div class="col-4">
-                                    <select class="form-select">
-                                        <option>Year</option>
-                                        <option>2000</option>
-                                        <option>2001</option>
-                                    </select>
-                                </div>
-                            </div>
+                            <input type="password" id="signupPassword" class="form-control" placeholder="New password (6+ chars)" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label text-muted small">Gender</label>
@@ -180,7 +88,7 @@
                                 <div class="col-4">
                                     <div class="border rounded p-2">
                                         <label class="form-check-label w-100">
-                                            <input type="radio" name="gender" value="female"> Female
+                                            <input type="radio" name="gender" value="female" required> Female
                                         </label>
                                     </div>
                                 </div>
@@ -194,15 +102,15 @@
                                 <div class="col-4">
                                     <div class="border rounded p-2">
                                         <label class="form-check-label w-100">
-                                            <input type="radio" name="gender" value="custom"> Custom
+                                            <input type="radio" name="gender" value="other"> Other
                                         </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <p class="small text-muted">By clicking Sign Up, you agree to our Terms, Privacy Policy and Cookies Policy.</p>
+                        <p class="small text-muted">By clicking Sign Up, you agree to our Verity Terms and Privacy Policy.</p>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success btn-lg px-5 fw-bold">Sign Up</button>
+                            <button type="submit" class="btn btn-primary btn-lg px-5 fw-bold">Sign Up</button>
                         </div>
                     </form>
                 </div>
@@ -210,303 +118,74 @@
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <script src="core.js"></script>
     
     <script>
-        // Firebase Configuration (same as app.js)
-        const firebaseConfig = {
-            apiKey: "AIzaSyAtyh1n18IORxOsYxRZMStu74942yUJiOY",
-            authDomain: "faithsocial-7f9d8.firebaseapp.com",
-            databaseURL: "https://faithsocial-7f9d8-default-rtdb.firebaseio.com",
-            projectId: "faithsocial-7f9d8",
-            storageBucket: "faithsocial-7f9d8.firebasestorage.app",
-            messagingSenderId: "996249040814",
-            appId: "1:996249040814:web:942dbcc1ac3b87daa2fa3f"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.database(); // Realtime Database for messages
-        
-        console.log('✅ Firebase initialized with Realtime Database');
-    </script>
-    
-    <!-- EmailJS for sending verification codes -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript">
-        // Initialize EmailJS (Free email service)
-        (function(){
-            emailjs.init({
-                publicKey: "YOUR_PUBLIC_KEY", // Users can get their own key from emailjs.com
-            });
-        })();
-    </script>
-    
-    <script>
-        console.log('✅ T-Konekt Login Ready with Firebase');
-
-        // Helper function to show error
-        function showError(message) {
-            const errorDiv = document.getElementById('loginError');
-            const errorMsg = document.getElementById('loginErrorMessage');
-            errorMsg.textContent = message;
-            errorDiv.style.display = 'block';
-            errorDiv.classList.add('show');
-            setTimeout(() => {
-                errorDiv.classList.remove('show');
-                setTimeout(() => errorDiv.style.display = 'none', 150);
-            }, 5000);
+        function showAlert(message, type = 'danger') {
+            const alert = document.getElementById('authAlert');
+            alert.className = `alert alert-${type} alert-dismissible fade show`;
+            document.getElementById('authAlertMessage').textContent = message;
+            alert.style.display = 'block';
         }
 
-        // Helper function to show success
-        function showSuccess(message) {
-            const successDiv = document.getElementById('loginSuccess');
-            const successMsg = document.getElementById('loginSuccessMessage');
-            successMsg.textContent = message;
-            successDiv.style.display = 'block';
-            successDiv.classList.add('show');
-            setTimeout(() => {
-                successDiv.classList.remove('show');
-                setTimeout(() => successDiv.style.display = 'none', 150);
-            }, 5000);
-        }
-
-        // Forgot Password Variables
-        let generatedCode = '';
-        let resetEmail = '';
-
-        // Send Verification Code
-        function sendVerificationCode() {
-            const email = document.getElementById('forgotEmail').value;
-            
-            if (!email) { with Firebase
-        async function sendVerificationCode() {
-            const email = document.getElementById('forgotEmail').value;
-            
-            if (!email) {
-                document.getElementById('forgotError').textContent = 'Please enter your email address.';
-                document.getElementById('forgotError').style.display = 'block';
-                return;
-            }
-
-            try {
-                // Send password reset email via Firebase
-                await auth.sendPasswordResetEmail(email);
-                
-                alert('✅ Password reset email sent! Please check your inbox and follow the instructions.');
-                
-                // Close modal
-                const modal = bootstrap.Modal.getInstance(document.getElementById('forgotPasswordModal'));
-                modal.hide();
-                
-                // Reset modal state
-                document.getElementById('forgotStep1').style.display = 'block';
-                document.getElementById('forgotEmail').value = '';
-                document.getElementById('forgotError').style.display = 'none';
-                
-            } catch (error) {
-                console.error('Password reset error:', error);
-                
-                if (error.code === 'auth/user-not-found') {
-                    document.getElementById('forgotError').textContent = 'No account found with this email address.';
-                } else if (error.code === 'auth/invalid-email') {
-                    document.getElementById('forgotError').textContent = 'Invalid email format.';
-                } else {
-                    document.getElementById('forgotError').textContent = 'Error: ' + error.message;
-                }
-                document.getElementById('forgotError').style.display = 'block';
-            }
-        }
-
-        // Simplified - Firebase handles password reset via email
-        function verifyCode() {
-            // Not needed with Firebase - user clicks link in email
-        }
-
-        function resetPassword() {
-            // Not needed with Firebase - handled in email linkent.getElementById('loginForm').addEventListener('submit', async (e) => {
+        // Login Handler
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            
-            const email = document.getElementById('loginEmail').value.trim();
+            const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
             
-            console.log('🔐 Firebase login attempt:', email);
-            
             try {
-                // Sign in with Firebase Authentication
-                const userCredential = await auth.signInWithEmailAndPassword(email, password);
-                const user = userCredential.user;
-                
-                console.log('✅ Firebase login successful:', user.email);
-                
-                // Get user profile from Realtime Database
-                const userRef = db.ref('users/' + user.uid);
-                const snapshot = await userRef.once('value');
-                
-                if (snapshot.exists()) {
-                    const userData = snapshot.val();
-                    
-                    // Store in localStorage for quick access
-                    localStorage.setItem('currentUser', JSON.stringify({
-                        id: user.uid,
-                        name: userData.name || user.displayName,
-                        email: user.email,
-                        profilePic: userData.profilePic || 'https://via.placeholder.com/150',
-                        loggedIn: true
-                    }));
-                } else {
-                    // Create basic profile if doesn't exist
-                    localStorage.setItem('currentUser', JSON.stringify({
-                        id: user.uid,
-                        name: user.displayName || user.email.split('@')[0],
-                        email: user.email,
-                        profilePic: 'https://via.placeholder.com/150',
-                        loggedIn: true
-                    }));
-                }
-                
-                // Redirect to home
+                await auth.signInWithEmailAndPassword(email, password);
                 window.location.href = 'home.html';
-                
             } catch (error) {
-                console.error('❌ Login error:', error.code, error.message);
-                
-                if (error.code === 'auth/user-not-found') {
-                    showError('❌ No account found with this email. Please sign up first.');
-                } else if (error.code === 'auth/wrong-password') {
-                    showError('❌ Incorrect password. Click "Forgotten password?" to reset it.');
-                } else if (error.code === 'auth/invalid-email') {
-                    showError('❌ Invalid email format.');
-                } else if (error.code === 'auth/too-many-requests') {
-                    showError('❌ Too many failed attempts. Please try again later.');
-                } else {
-                    showError('❌ Login failed: ' + error.message);
-                }
+                showAlert(error.message);
             }
         });
-        
-        // Signup Form Handler with Firebase
+
+        // Signup Handler
         document.getElementById('signupForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            
-            const firstName = e.target.querySelector('input[placeholder*="First"]').value.trim();
-            const lastName = e.target.querySelector('input[placeholder*="Surname"]').value.trim();
-            const email = e.target.querySelector('input[type="email"]').value.trim();
-            const password = e.target.querySelector('input[type="password"]').value;
-            const gender = e.target.querySelector('input[name="gender"]:checked')?.value;
-            
-            console.log('📝 Firebase signup attempt:', { firstName, lastName, email, gender });
-            
-            // Validation
-            if (!firstName || !lastName) {
-                showError('❌ Please enter your first and last name!');
-                return;
-            }
-            
-            if (!email) {
-                showError('❌ Please enter your email address!');
-                return;
-            }
-            
-            if (!password || password.length < 6) {
-                showError('❌ Password must be at least 6 characters!');
-                return;
-            }
-            
-            if (!gender) {
-                showError('❌ Please select your gender!');
-                return;
-            }
+            const firstName = document.getElementById('signupFirstName').value;
+            const lastName = document.getElementById('signupLastName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
             
             try {
-                // Create user with Firebase Authentication
-                const userCredential = awaRealtime Database
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                
+                // Create profile in database
                 await db.ref('users/' + user.uid).set({
                     name: `${firstName} ${lastName}`,
                     email: email,
                     gender: gender,
-                    profilePic: `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70) + 1}`,
-                    coverPhoto: 'https://via.placeholder.com/800x300/667eea/ffffff',
-                    bio: `Hey there! I'm using T-Konekt 👋`,
-                    friends: 0,
+                    profilePic: `https://i.pravatar.cc/150?u=${user.uid}`,
                     createdAt: firebase.database.ServerValue.TIMESTAMP
                 });
                 
-                console.log('✅ User profile created in Realtime Databas
-                    email: email,
-                    gender: gender,
-                    profilePic: `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70) + 1}`,
-                    coverPhoto: 'https://via.placeholder.com/800x300/667eea/ffffff',
-                    bio: `Hey there! I'm using T-Konekt 👋`,
-                    friends: 0,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                
-                console.log('✅ User profile created in Firestore');
-                
-                // Store in localStorage for quick access
-                localStorage.setItem('currentUser', JSON.stringify({
-                    id: user.uid,
-                    name: `${firstName} ${lastName}`,
-                    email: email,
-                    profilePic: `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70) + 1}`,
-                    loggedIn: true
-                }));
-                
-                // Close modal
-                const modalElement = document.getElementById('signupModal');
-                const modal = bootstrap.Modal.getInstance(modalElement);
-                if (modal) modal.hide();
-                
-                // Show success and redirect
-                showSuccess('✅ Account created successfully! Welcome to T-Konekt!');
-                console.log('Redirecting to home.html...');
-                
-                setTimeout(() => {
-                    window.location.href = 'home.html';
-                }, 1000);
-                
+                window.location.href = 'home.html';
             } catch (error) {
-                console.error('❌ Signup error:', error.code, error.message);
-                
-                if (error.code === 'auth/email-already-in-use') {
-                    showError('❌ An account with this email already exists! Try logging in instead.');
-                } else if (error.code === 'auth/invalid-email') {
-                    showError('❌ Invalid email format.');
-                } else if (error.code === 'auth/weak-password') {
-                    showError('❌ Password is too weak. Use at least 6 characters.');
-                } else {
-                    showError('❌ Signup failed: ' + error.message);
-                }
+                showAlert(error.message);
             }
         });
 
-        // Pre-fill demo credentials
-        window.addEventListener('load', () => {
-            const emailInput = document.getElementById('loginEmail');
-            const passwordInput = document.getElementById('loginPassword');
-            
-            if (emailInput && passwordInput) {
-                emailInput.value = 'faith@faithbook.com';
-                passwordInput.value = 'faith123';
+        async function forgotPassword() {
+            const email = prompt('Enter your email to reset password:');
+            if (email) {
+                try {
+                    await auth.sendPasswordResetEmail(email);
+                    alert('Password reset email sent!');
+                } catch (error) {
+                    alert(error.message);
+                }
             }
-        });
+        }
     </script>
 </body>
 </html>
- (optional - remove for production)
-        window.addEventListener('load', () => {
-            const emailInput = document.getElementById('loginEmail');
-            const passwordInput = document.getElementById('loginPassword');
-            
-            // Don't pre-fill for Firebase - users should enter their own credentials
-            // if (emailInput && passwordInput) {
-            //     emailInput.value = 'demo@tkonekt.com';
-            //     passwordInput.value = 'demo123';
-            //

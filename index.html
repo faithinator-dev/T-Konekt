@@ -3,293 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FaithSocial - Connect & Chat</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Verity - Redirecting...</title>
+    <style>
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #008080;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-    <!-- Auth Screen -->
-    <div id="authScreen" class="screen active">
-        <div class="auth-container">
-            <h1><img src="icons/logo.svg" class="logo-icon" alt=""> FaithSocial</h1>
-            <div id="authToggle">
-                <button class="active" onclick="showLogin()">Login</button>
-                <button onclick="showSignup()">Sign Up</button>
-            </div>
-            
-            <form id="loginForm" class="auth-form">
-                <input type="email" id="loginEmail" placeholder="Email" required>
-                <input type="password" id="loginPassword" placeholder="Password" required>
-                <button type="submit">Login</button>
-            </form>
-            
-            <form id="signupForm" class="auth-form hidden">
-                <input type="text" id="signupUsername" placeholder="Username" required>
-                <input type="email" id="signupEmail" placeholder="Email" required>
-                <input type="tel" id="signupPhone" placeholder="Phone (optional)">
-                <input type="password" id="signupPassword" placeholder="Password (6+ chars)" required>
-                <button type="submit">Sign Up</button>
-            </form>
-            <p id="authError" class="error"></p>
-        </div>
-    </div>
+    <div class="loader"></div>
 
-    <!-- Main App -->
-    <div id="mainApp" class="screen">
-        <!-- Navigation -->
-        <nav class="bottom-nav">
-            <button onclick="showView('feed')" data-view="feed">
-                <span><img src="icons/feed.svg" class="nav-icon" alt=""></span><small>Feed</small>
-            </button>
-            <button onclick="showView('friends')" data-view="friends">
-                <span><img src="icons/friends.svg" class="nav-icon" alt=""></span><small>Friends</small>
-            </button>
-            <button onclick="showView('chats')" data-view="chats">
-                <span><img src="icons/chat.svg" class="nav-icon" alt=""></span><small>Chats</small>
-            </button>
-            <button onclick="showView('profile')" data-view="profile">
-                <span><img src="icons/profile.svg" class="nav-icon" alt=""></span><small>Profile</small>
-            </button>
-        </nav>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    
+    <script>
+        // Verity Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAtyh1n18IORxOsYxRZMStu74942yUJiOY",
+            authDomain: "faithsocial-7f9d8.firebaseapp.com",
+            databaseURL: "https://faithsocial-7f9d8-default-rtdb.firebaseio.com",
+            projectId: "faithsocial-7f9d8",
+            storageBucket: "faithsocial-7f9d8.firebasestorage.app",
+            messagingSenderId: "996249040814",
+            appId: "1:996249040814:web:942dbcc1ac3b87daa2fa3f"
+        };
 
-        <!-- Feed View -->
-        <div id="feedView" class="view active">
-            <div class="header">
-                <h2><img src="icons/logo.svg" class="header-icon" alt=""> Feed</h2>
-                <button onclick="showPostModal()"><img src="icons/add.svg" class="btn-icon" alt=""> Post</button>
-            </div>
-            <div id="feedList" class="feed-list"></div>
-        </div>
+        firebase.initializeApp(firebaseConfig);
 
-        <!-- Friends View -->
-        <div id="friendsView" class="view">
-            <div class="header">
-                <h2><img src="icons/friends.svg" class="header-icon" alt=""> Friends</h2>
-                <button onclick="showSearchModal()"><img src="icons/search.svg" class="btn-icon" alt=""> Find</button>
-            </div>
-            <div class="tab-container">
-                <button class="tab active" onclick="showFriendTab('list')">Friends</button>
-                <button class="tab" onclick="showFriendTab('requests')">Requests</button>
-            </div>
-            <div id="friendsList" class="friends-list"></div>
-            <div id="requestsList" class="friends-list hidden"></div>
-        </div>
-
-        <!-- Chats View -->
-        <div id="chatsView" class="view">
-            <div class="header">
-                <h2><img src="icons/chat.svg" class="header-icon" alt=""> Chats</h2>
-                <button onclick="showNewChatModal()"><img src="icons/add.svg" class="btn-icon" alt=""> New</button>
-            </div>
-            <div id="chatsList" class="chats-list"></div>
-        </div>
-
-        <!-- Profile View -->
-        <div id="profileView" class="view">
-            <div class="header">
-                <h2><img src="icons/profile.svg" class="header-icon" alt=""> My Space</h2>
-                <button onclick="logout()">Logout</button>
-            </div>
-            <div class="profile-container">
-                <img id="profilePic" src="https://via.placeholder.com/100" alt="Profile">
-                <h3 id="profileName">Username</h3>
-                <p id="profileEmail">email@example.com</p>
-                <input type="file" id="picUpload" accept="image/*" style="display:none">
-                <div class="profile-actions">
-                    <button onclick="document.getElementById('picUpload').click()"><img src="icons/camera.svg" class="btn-icon" alt=""> Update Photo</button>
-                    <button onclick="showEditProfile()"><img src="icons/edit.svg" class="btn-icon" alt=""> Edit Space</button>
-                    <button onclick="shareProfile()"><img src="icons/share.svg" class="btn-icon" alt=""> Share</button>
-                </div>
-                <div class="stats">
-                    <div><strong id="friendCount">0</strong><br>Connections</div>
-                    <div><strong id="postCount">0</strong><br>Updates</div>
-                </div>
-                
-                <!-- Profile Info Sections -->
-                <div class="profile-info">
-                    <div class="info-section" id="bioSection">
-                        <h4><img src="icons/info.svg" class="section-icon" alt=""> About Me</h4>
-                        <p id="profileBio">No bio yet</p>
-                    </div>
-                    
-                    <div class="info-section" id="nicknameSection">
-                        <h4><img src="icons/star.svg" class="section-icon" alt=""> Known As</h4>
-                        <p id="profileNickname">-</p>
-                    </div>
-                    
-                    <div class="info-section" id="birthdaySection">
-                        <h4><img src="icons/cake.svg" class="section-icon" alt=""> Born On</h4>
-                        <p id="profileBirthday">-</p>
-                    </div>
-                    
-                    <div class="info-section" id="relationshipSection">
-                        <h4><img src="icons/love.svg" class="section-icon" alt=""> Status</h4>
-                        <p id="profileRelationship">-</p>
-                    </div>
-                    
-                    <div class="info-section" id="highSchoolSection">
-                        <h4><img src="icons/school.svg" class="section-icon" alt=""> Foundation</h4>
-                        <p id="profileHighSchool">-</p>
-                    </div>
-                    
-                    <div class="info-section" id="collegeSection">
-                        <h4><img src="icons/college.svg" class="section-icon" alt=""> Academy</h4>
-                        <p id="profileCollege">-</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Chat Room View -->
-        <div id="chatRoomView" class="view">
-            <div class="header">
-                <button onclick="showView('chats')"><img src="icons/back.svg" class="btn-icon" alt=""></button>
-                <h2 id="chatRoomName">Chat</h2>
-                <button id="videoCallBtn" onclick="startVideoCall()"><img src="icons/video.svg" class="btn-icon" alt=""> Meet</button>
-            </div>
-            <div id="messagesList" class="messages-list"></div>
-            <div class="message-input">
-                <input type="text" id="messageInput" placeholder="Type message...">
-                <button onclick="sendMessage()">Send</button>
-            </div>
-        </div>
-
-        <!-- Video Call View -->
-        <div id="videoCallView" class="view">
-            <div class="video-container">
-                <video id="remoteVideo" autoplay playsinline></video>
-                <video id="localVideo" autoplay playsinline muted></video>
-                <div class="call-controls">
-                    <button onclick="endCall()" class="end-call">End Call</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modals -->
-    <div id="postModal" class="modal">
-        <div class="modal-content">
-            <h3>Create Post</h3>
-            <textarea id="postContent" placeholder="What's on your mind?" rows="4"></textarea>
-            
-            <div class="image-upload-area">
-                <div class="upload-options">
-                    <button class="attach-btn" onclick="document.getElementById('postImageUpload').click()">
-                        <img src="icons/camera.svg" class="btn-icon" alt=""> Upload Photo
-                    </button>
-                    <button class="attach-btn" onclick="addImageByURL()">
-                        <img src="icons/link.svg" class="btn-icon" alt=""> Image URL
-                    </button>
-                </div>
-                <input type="file" id="postImageUpload" accept="image/*" style="display:none">
-                <div id="postImagePreview" class="image-preview"></div>
-            </div>
-            
-            <div class="modal-actions">
-                <button onclick="closeModal('postModal')">Cancel</button>
-                <button onclick="createPost()" id="submitPostBtn">Post</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="searchModal" class="modal">
-        <div class="modal-content">
-            <h3>Find Friends</h3>
-            <input type="text" id="searchInput" placeholder="Search username or email">
-            <button onclick="searchUsers()">Search</button>
-            <div id="searchResults" class="search-results"></div>
-            <button onclick="closeModal('searchModal')">Close</button>
-        </div>
-    </div>
-
-    <div id="newChatModal" class="modal">
-        <div class="modal-content">
-            <h3>New Chat</h3>
-            <div id="friendsForChat" class="friends-list"></div>
-            <button onclick="closeModal('newChatModal')">Cancel</button>
-        </div>
-    </div>
-
-    <div id="editProfileModal" class="modal">
-        <div class="modal-content edit-profile-content">
-            <h3><img src="icons/edit.svg" class="modal-icon" alt=""> Edit My Space</h3>
-            <p class="modal-subtitle">Customize what the world sees about you</p>
-            
-            <div class="edit-field">
-                <label><img src="icons/info.svg" class="label-icon" alt=""> About Me</label>
-                <textarea id="editBio" placeholder="Tell your story..." rows="3"></textarea>
-                <select id="bioPrivacy" class="privacy-select">
-                    <option value="public"><img src="icons/public.svg" class="option-icon" alt=""> Everyone</option>
-                    <option value="friends"><img src="icons/friends.svg" class="option-icon" alt=""> Connections Only</option>
-                    <option value="private"><img src="icons/lock.svg" class="option-icon" alt=""> Just Me</option>
-                </select>
-            </div>
-            
-            <div class="edit-field">
-                <label><img src="icons/star.svg" class="label-icon" alt=""> Known As (Nickname)</label>
-                <input type="text" id="editNickname" placeholder="Your cool nickname">
-                <select id="nicknamePrivacy" class="privacy-select">
-                    <option value="public"><img src="icons/public.svg" class="option-icon" alt=""> Everyone</option>
-                    <option value="friends"><img src="icons/friends.svg" class="option-icon" alt=""> Connections Only</option>
-                    <option value="private"><img src="icons/lock.svg" class="option-icon" alt=""> Just Me</option>
-                </select>
-            </div>
-            
-            <div class="edit-field">
-                <label><img src="icons/cake.svg" class="label-icon" alt=""> Born On</label>
-                <input type="date" id="editBirthday">
-                <select id="birthdayPrivacy" class="privacy-select">
-                    <option value="public"><img src="icons/public.svg" class="option-icon" alt=""> Everyone</option>
-                    <option value="friends"><img src="icons/friends.svg" class="option-icon" alt=""> Connections Only</option>
-                    <option value="private"><img src="icons/lock.svg" class="option-icon" alt=""> Just Me</option>
-                </select>
-            </div>
-            
-            <div class="edit-field">
-                <label><img src="icons/love.svg" class="label-icon" alt=""> Status</label>
-                <select id="editRelationship">
-                    <option value="">Select...</option>
-                    <option value="single">Single</option>
-                    <option value="taken">Taken</option>
-                    <option value="complicated">It's Complicated</option>
-                    <option value="open">Open</option>
-                    <option value="vibing">Just Vibing</option>
-                </select>
-                <select id="relationshipPrivacy" class="privacy-select">
-                    <option value="public"><img src="icons/public.svg" class="option-icon" alt=""> Everyone</option>
-                    <option value="friends"><img src="icons/friends.svg" class="option-icon" alt=""> Connections Only</option>
-                    <option value="private"><img src="icons/lock.svg" class="option-icon" alt=""> Just Me</option>
-                </select>
-            </div>
-            
-            <div class="edit-field">
-                <label><img src="icons/school.svg" class="label-icon" alt=""> Foundation (High School)</label>
-                <input type="text" id="editHighSchool" placeholder="Where you started...">
-                <select id="highSchoolPrivacy" class="privacy-select">
-                    <option value="public"><img src="icons/public.svg" class="option-icon" alt=""> Everyone</option>
-                    <option value="friends"><img src="icons/friends.svg" class="option-icon" alt=""> Connections Only</option>
-                    <option value="private"><img src="icons/lock.svg" class="option-icon" alt=""> Just Me</option>
-                </select>
-            </div>
-            
-            <div class="edit-field">
-                <label><img src="icons/college.svg" class="label-icon" alt=""> Academy (College/University)</label>
-                <input type="text" id="editCollege" placeholder="Higher learning...">
-                <select id="collegePrivacy" class="privacy-select">
-                    <option value="public"><img src="icons/public.svg" class="option-icon" alt=""> Everyone</option>
-                    <option value="friends"><img src="icons/friends.svg" class="option-icon" alt=""> Connections Only</option>
-                    <option value="private"><img src="icons/lock.svg" class="option-icon" alt=""> Just Me</option>
-                </select>
-            </div>
-            
-            <div class="modal-actions">
-                <button onclick="closeModal('editProfileModal')">Cancel</button>
-                <button onclick="saveProfile()"><img src="icons/save.svg" class="btn-icon" alt=""> Save Changes</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- App Scripts -->
-    <script src="app.js"></script>
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                window.location.href = 'home.html';
+            } else {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
 </body>
 </html>
