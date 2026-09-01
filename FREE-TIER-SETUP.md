@@ -55,7 +55,7 @@ Firebase Storage may require the **Blaze Plan** (pay-as-you-go).
 ❌ **Don't enable Storage** - it may require billing
 
 **Instead**: The app uses placeholder images from:
-- `https://via.placeholder.com/` (free service)
+- `icons/avatar.svg` and `icons/illustration.svg` (local defaults)
 - Or set custom URLs in the code
 
 ### Step 5: Get Firebase Config
@@ -77,7 +77,7 @@ Open `index.html` in your browser - Everything works!
 ## 🎨 Profile Photos Without Storage
 
 ### Option 1: Default Placeholders (Already Set)
-The app uses `https://via.placeholder.com/100` for avatars.
+The app uses local SVG defaults for avatars and illustrations.
 
 ### Option 2: External Image URLs
 Users can set profile URLs to images hosted on:

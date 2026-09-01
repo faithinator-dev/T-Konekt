@@ -27,7 +27,7 @@
             
             <ul class="navbar-nav mx-auto d-none d-lg-flex">
                 <li class="nav-item"><a class="nav-link" href="home.html" title="Campus Feed"><i class="bi bi-house-door-fill fs-5"></i></a></li>
-                <li class="nav-item"><a class="nav-link" href="friends.html" title="Classmates"><i class="bi bi-people-fill fs-5"></i></a></li>
+                <li class="nav-item"><a class="nav-link" href="friends.html" title="CourseMates"><i class="bi bi-people-fill fs-5"></i></a></li>
                 <li class="nav-item"><a class="nav-link" href="watch.html" title="Lectures"><i class="bi bi-mortarboard-fill fs-5"></i></a></li>
                 <li class="nav-item"><a class="nav-link" href="groups.html" title="Study Groups"><i class="bi bi-collection-fill fs-5"></i></a></li>
             </ul>
@@ -36,7 +36,7 @@
                 <button class="btn btn-link text-white p-2" onclick="window.location.href='messages.html'"><i class="bi bi-chat-dots-fill fs-5"></i></button>
                 <div class="dropdown">
                     <button class="btn p-0 ms-2" data-bs-toggle="dropdown">
-                        <img src="https://via.placeholder.com/40" class="rounded-circle nav-profile-pic" alt="Profile">
+                        <img src="icons/avatar.svg" class="rounded-circle nav-profile-pic" alt="Profile">
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-2">
                         <li><a class="dropdown-item py-2" href="profile.html"><i class="bi bi-person-circle me-2"></i> My Profile</a></li>
@@ -78,7 +78,7 @@
     <script src="core.js"></script>
     <script>
         function initCampusLink(userData) {
-            document.querySelectorAll('.nav-profile-pic').forEach(img => img.src = userData.profilePic || userData.photoURL || 'https://via.placeholder.com/150');
+            document.querySelectorAll('.nav-profile-pic').forEach(img => img.src = userData.profilePic || userData.photoURL || 'icons/avatar.svg');
             loadNotifications();
         }
 
@@ -133,8 +133,8 @@
 
         async function renderNotification(notif, container) {
             const userSnap = await db.ref('users/' + notif.userId).once('value');
-            const user = userSnap.val() || { name: 'Student', profilePic: 'https://via.placeholder.com/150' };
-            const pic = user.profilePic || user.photoURL || 'https://via.placeholder.com/150';
+            const user = userSnap.val() || { name: 'Student', profilePic: 'icons/avatar.svg' };
+            const pic = user.profilePic || user.photoURL || 'icons/avatar.svg';
             
             let message = '';
             let icon = '';

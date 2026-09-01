@@ -198,6 +198,83 @@ body {
     border-color: #0062CC;
 }
 
+/* Responsive Shell */
+@media (max-width: 991.98px) {
+    .main-content {
+        padding-top: 18px;
+    }
+
+    .feed-center {
+        max-width: 100%;
+    }
+
+    .left-sidebar,
+    .right-sidebar {
+        display: none !important;
+    }
+
+    .col-lg-6.col-md-8.mx-auto.feed-center {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .login-page {
+        align-items: flex-start;
+        padding: 20px 12px;
+    }
+
+    .login-card {
+        width: 100%;
+        padding: 24px;
+        border-radius: 20px;
+    }
+
+    .navbar {
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .navbar .container-fluid {
+        gap: 10px;
+    }
+
+    .navbar-nav.mx-auto {
+        display: none !important;
+    }
+
+    .search-box {
+        width: 100%;
+        order: 3;
+    }
+
+    .main-content {
+        margin-top: 78px;
+        padding-top: 12px;
+    }
+
+    .card {
+        margin-bottom: 16px;
+    }
+
+    .profile-page .cover-photo {
+        height: 210px !important;
+    }
+
+    .profile-page .profile-header {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .chat-list-container,
+    .chat-window {
+        height: auto !important;
+        min-height: calc(100vh - 65px);
+    }
+}
+
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;

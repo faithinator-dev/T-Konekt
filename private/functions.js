@@ -980,7 +980,7 @@ function addNewUser() {
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Profile Picture URL (Optional)</label>
-                                <input type="url" class="form-control" id="newUserProfilePic" placeholder="https://via.placeholder.com/150">
+                                <input type="url" class="form-control" id="newUserProfilePic" placeholder="icons/avatar.svg">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">User Role</label>
@@ -1020,7 +1020,7 @@ function saveNewUser() {
     const email = document.getElementById('newUserEmail').value;
     const password = document.getElementById('newUserPassword').value;
     const bio = document.getElementById('newUserBio').value;
-    const profilePic = document.getElementById('newUserProfilePic').value || 'https://via.placeholder.com/150';
+    const profilePic = document.getElementById('newUserProfilePic').value || 'icons/avatar.svg';
     const role = document.getElementById('newUserRole').value;
     
     if (!name || !email || !password) {
@@ -1044,7 +1044,7 @@ function saveNewUser() {
         email: email,
         password: password,
         profilePic: profilePic,
-        coverPhoto: 'https://via.placeholder.com/800x300',
+        coverPhoto: 'icons/illustration.svg',
         bio: bio || 'New to FaithBook',
         friends: 0,
         role: role,
@@ -1108,7 +1108,7 @@ function addNewGroup() {
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Group Image URL (Optional)</label>
-                                <input type="url" class="form-control" id="newGroupImage" placeholder="https://via.placeholder.com/400">
+                                <input type="url" class="form-control" id="newGroupImage" placeholder="icons/illustration.svg">
                             </div>
                         </form>
                     </div>
@@ -1140,7 +1140,7 @@ function saveNewGroup() {
     const category = document.getElementById('newGroupCategory').value;
     const description = document.getElementById('newGroupDescription').value;
     const privacy = document.getElementById('newGroupPrivacy').value;
-    const image = document.getElementById('newGroupImage').value || 'https://via.placeholder.com/400';
+    const image = document.getElementById('newGroupImage').value || 'icons/illustration.svg';
     
     if (!name || !description) {
         alert('❌ Please fill in all required fields');

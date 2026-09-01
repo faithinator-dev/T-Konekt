@@ -31,7 +31,7 @@
             
             <ul class="navbar-nav mx-auto d-none d-lg-flex">
                 <li class="nav-item"><a class="nav-link" href="home.html" title="Campus Feed"><i class="bi bi-house-door-fill fs-5"></i></a></li>
-                <li class="nav-item"><a class="nav-link" href="friends.html" title="Classmates"><i class="bi bi-people-fill fs-5"></i></a></li>
+                <li class="nav-item"><a class="nav-link" href="friends.html" title="CourseMates"><i class="bi bi-people-fill fs-5"></i></a></li>
                 <li class="nav-item"><a class="nav-link" href="watch.html" title="Lectures"><i class="bi bi-mortarboard-fill fs-5"></i></a></li>
                 <li class="nav-item"><a class="nav-link" href="groups.html" title="Study Groups"><i class="bi bi-collection-fill fs-5"></i></a></li>
             </ul>
@@ -40,7 +40,7 @@
                 <button class="btn btn-link text-white p-2 active"><i class="bi bi-chat-dots-fill fs-5"></i></button>
                 <div class="dropdown">
                     <button class="btn p-0 ms-2" data-bs-toggle="dropdown">
-                        <img src="https://via.placeholder.com/40" class="rounded-circle nav-profile-pic" alt="Profile">
+                        <img src="icons/avatar.svg" class="rounded-circle nav-profile-pic" alt="Profile">
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-2">
                         <li><a class="dropdown-item py-2" href="profile.html"><i class="bi bi-person-circle me-2"></i> My Profile</a></li>
@@ -60,7 +60,7 @@
                     <h4 class="fw-bold mb-3">Messages</h4>
                     <div class="input-group">
                         <span class="input-group-text bg-light border-0"><i class="bi bi-search"></i></span>
-                        <input type="search" class="form-control bg-light border-0" placeholder="Search classmates...">
+                        <input type="search" class="form-control bg-light border-0" placeholder="Search CourseMates...">
                     </div>
                 </div>
                 <div id="chatList" class="list-group list-group-flush">
@@ -76,8 +76,8 @@
                         <i class="bi bi-chat-dots text-primary opacity-25" style="font-size: 4rem;"></i>
                     </div>
                     <h4 class="fw-bold">Your Messages</h4>
-                    <p class="text-muted">Select a classmate from the left to start a private discussion.</p>
-                    <button class="btn btn-primary fw-bold mt-2 px-4" onclick="window.location.href='friends.html'">Find Classmates</button>
+                    <p class="text-muted">Select a CourseMate from the left to start a private discussion.</p>
+                    <button class="btn btn-primary fw-bold mt-2 px-4" onclick="window.location.href='friends.html'">Find CourseMates</button>
                 </div>
 
                 <div id="activeChat" style="display: none;" class="flex-grow-1 d-flex flex-column">
@@ -85,7 +85,7 @@
                     <div class="p-3 border-bottom d-flex justify-content-between align-items-center bg-white shadow-sm z-1">
                         <div class="d-flex align-items-center">
                             <div class="position-relative">
-                                <img src="https://via.placeholder.com/40" class="rounded-circle me-3 border" id="activeChatPic" width="45" height="45">
+                                <img src="icons/avatar.svg" class="rounded-circle me-3 border" id="activeChatPic" width="45" height="45">
                                 <span class="position-absolute bottom-0 end-0 bg-success border border-2 border-white rounded-circle" style="width: 12px; height: 12px; margin-right: 15px;"></span>
                             </div>
                             <div>
@@ -135,7 +135,7 @@
         let activeChatId = null;
 
         function initCampusLink(userData) {
-            document.querySelectorAll('.nav-profile-pic').forEach(img => img.src = userData.profilePic || userData.photoURL || 'https://via.placeholder.com/150');
+            document.querySelectorAll('.nav-profile-pic').forEach(img => img.src = userData.profilePic || userData.photoURL || 'icons/avatar.svg');
             loadChatList();
             
             const urlParams = new URLSearchParams(window.location.search);
@@ -154,7 +154,7 @@
                 list.innerHTML = '';
                 
                 if (!snapshot.exists()) {
-                    list.innerHTML = '<div class="p-5 text-center"><p class="text-muted small">No classmates connected yet.</p></div>';
+                    list.innerHTML = '<div class="p-5 text-center"><p class="text-muted small">No CourseMates connected yet.</p></div>';
                     return;
                 }
 
@@ -168,7 +168,7 @@
                             item.onclick = () => openChat(child.key);
                             
                             item.innerHTML = `
-                                <img src="${user.profilePic || user.photoURL || 'https://via.placeholder.com/50'}" class="rounded-circle me-3 border" width="48" height="48">
+                                <img src="${user.profilePic || user.photoURL || 'icons/avatar.svg'}" class="rounded-circle me-3 border" width="48" height="48">
                                 <div class="flex-grow-1 overflow-hidden">
                                     <div class="d-flex justify-content-between">
                                         <strong class="text-truncate">${user.name}</strong>
@@ -196,7 +196,7 @@
             const uSnap = await db.ref('users/' + recipientId).once('value');
             const user = uSnap.val();
             document.getElementById('activeChatName').textContent = user.name;
-            document.getElementById('activeChatPic').src = user.profilePic || user.photoURL || 'https://via.placeholder.com/40';
+            document.getElementById('activeChatPic').src = user.profilePic || user.photoURL || 'icons/avatar.svg';
             document.getElementById('activeChatStatus').textContent = user.major ? `${user.major} Student` : 'Student Member';
 
             loadMessages(activeChatId);

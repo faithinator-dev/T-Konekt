@@ -5,8 +5,8 @@ A **production-ready**, **mobile-first** student collaboration platform built wi
 ## ✨ Features
 
 - **Authentication**: Secure student login system.
-- **Campus Feed**: Real-time updates and study tips from classmates.
-- **Classmates System**: Connect with peers across campus.
+- **Campus Feed**: Real-time updates and study tips from CourseMates.
+- **CourseMates System**: Connect with peers across campus.
 - **Study Groups**: Create and join focused academic communities.
 - **Lectures Hub**: Share and access educational videos and tutorials.
 - **Real-time Messaging**: Instant communication for collaboration.
@@ -41,7 +41,7 @@ CampusLink/
 ├── login.html          # Student Login/Signup
 ├── home.html           # Campus Feed
 ├── profile.html        # Student Profile
-├── friends.html        # Classmates Management
+├── friends.html        # CourseMates Management
 ├── groups.html         # Study Groups
 ├── watch.html          # Lectures & Tutorials
 ├── messages.html       # Direct Messages
@@ -59,7 +59,7 @@ The app uses a modern academic theme defined in `campus-style.css`. You can easi
 
 ### Terminology
 Terminology throughout the app has been student-focused:
-- Friends -> **Classmates**
+- Friends -> **CourseMates**
 - Groups -> **Study Groups**
 - Watch -> **Lectures**
 - Messenger -> **Direct Messages**

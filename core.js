@@ -12,6 +12,11 @@ if (!firebase.apps.length) {
 const auth = firebase.auth();
 const db = firebase.database();
 
+const COURSEMATE_ASSETS = {
+    avatar: 'icons/avatar.svg',
+    illustration: 'icons/illustration.svg'
+};
+
 // Global User State
 let currentUser = null;
 
@@ -54,7 +59,7 @@ auth.onAuthStateChanged(user => {
                     uid: user.uid,
                     name: userData.name,
                     email: user.email,
-                    photoURL: userData.profilePic || userData.photoURL || 'https://via.placeholder.com/150'
+                    photoURL: userData.profilePic || userData.photoURL || COURSEMATE_ASSETS.avatar
                 }));
                 // Custom event for pages to react to auth ready
                 window.dispatchEvent(new CustomEvent('campuslink_auth_ready', { detail: userData }));
