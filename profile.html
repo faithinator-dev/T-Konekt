@@ -3,116 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile - Verity | Real Connections</title>
+    <title>CampusLink | My Student Profile</title>
+    <meta name="description" content="View and manage your student profile on CampusLink.">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="fb-style.css">
+    <link rel="stylesheet" href="campus-style.css">
     <link rel="shortcut icon" href="icons/logo.svg" type="image/x-icon">
 </head>
 <body>
     <!-- Top Navigation -->
-    <nav class="navbar navbar-expand navbar-light bg-white border-bottom fixed-top shadow-sm">
+    <nav class="navbar navbar-expand navbar-dark fixed-top shadow-sm">
         <div class="container-fluid">
             <div class="d-flex align-items-center">
-                <a class="navbar-brand fw-bold fs-4 text-primary d-flex align-items-center me-3" href="home.html">
-                    <img src="icons/logo.svg" alt="Verity" style="height: 40px; margin-right: 8px;">
-                    Verity
+                <a class="navbar-brand fw-bold fs-4 d-flex align-items-center me-3" href="home.html">
+                    <img src="icons/logo.svg" alt="CampusLink" style="height: 32px; margin-right: 10px; filter: brightness(0) invert(1);">
+                    CampusLink
                 </a>
-                <div class="input-group search-box">
-                    <span class="input-group-text bg-light border-0"><i class="bi bi-search"></i></span>
-                    <input type="search" class="form-control bg-light border-0" placeholder="Search Verity">
+                <div class="input-group search-box d-none d-md-flex">
+                    <span class="input-group-text bg-white border-0 opacity-50"><i class="bi bi-search"></i></span>
+                    <input type="search" class="form-control bg-white border-0" placeholder="Find classmates..." style="background: rgba(255,255,255,0.1) !important; color: white;">
                 </div>
             </div>
             
             <ul class="navbar-nav mx-auto d-none d-lg-flex">
                 <li class="nav-item">
-                    <a class="nav-link" href="home.html"><i class="bi bi-house-door-fill fs-4"></i></a>
+                    <a class="nav-link" href="home.html" title="Campus Feed"><i class="bi bi-house-door-fill fs-5"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="friends.html"><i class="bi bi-people fs-4"></i></a>
+                    <a class="nav-link" href="friends.html" title="Classmates"><i class="bi bi-people-fill fs-5"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="watch.html"><i class="bi bi-play-btn fs-4"></i></a>
+                    <a class="nav-link" href="watch.html" title="Lectures"><i class="bi bi-mortarboard-fill fs-5"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="groups.html"><i class="bi bi-collection fs-4"></i></a>
+                    <a class="nav-link" href="groups.html" title="Study Groups"><i class="bi bi-collection-fill fs-5"></i></a>
                 </li>
             </ul>
             
             <div class="d-flex align-items-center gap-2">
-                <button class="btn btn-light rounded-circle p-2"><i class="bi bi-grid-3x3-gap-fill"></i></button>
-                <button class="btn btn-light rounded-circle p-2" onclick="window.location.href='messages.html'"><i class="bi bi-chat-dots-fill"></i></button>
-                <a href="notifications.html" class="btn btn-light rounded-circle p-2 position-relative">
-                    <i class="bi bi-bell-fill"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notificationBadge" style="display: none;">
-                        0
-                    </span>
-                </a>
+                <button class="btn btn-link text-white p-2" onclick="window.location.href='messages.html'"><i class="bi bi-chat-dots-fill fs-5"></i></button>
                 <div class="dropdown">
-                    <button class="btn p-0" data-bs-toggle="dropdown">
-                        <img src="https://via.placeholder.com/40" class="rounded-circle" alt="Profile" id="navProfilePic">
+                    <button class="btn p-0 ms-2" data-bs-toggle="dropdown">
+                        <img src="https://via.placeholder.com/40" class="rounded-circle nav-profile-pic" alt="Profile" id="navProfilePic">
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person-circle me-2"></i> Profile</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i> Settings</a></li>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-2">
+                        <li><a class="dropdown-item py-2" href="profile.html"><i class="bi bi-person-circle me-2"></i> My Profile</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="login.html" onclick="auth.signOut()"><i class="bi bi-box-arrow-right me-2"></i> Log Out</a></li>
+                        <li><a class="dropdown-item py-2 text-danger" href="login.html" onclick="auth.signOut()"><i class="bi bi-box-arrow-right me-2"></i> Sign Out</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="profile-page" style="margin-top: 60px;">
+    <div class="profile-page" style="margin-top: 65px;">
         <!-- Cover Photo Section -->
-        <div class="bg-white border-bottom">
-            <div class="container">
-                <div class="cover-photo position-relative" style="height: 350px; background: #e9ecef; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; overflow: hidden;">
-                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&h=400&fit=crop" class="w-100 h-100 object-fit-cover" alt="Cover" id="coverPhoto">
-                    <button class="btn btn-light position-absolute bottom-0 end-0 m-3 shadow-sm">
-                        <i class="bi bi-camera-fill me-2"></i>Edit cover photo
+        <div class="bg-white border-bottom shadow-sm">
+            <div class="container px-0 px-md-3">
+                <div class="cover-photo position-relative" style="height: 300px; background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=400&fit=crop" class="w-100 h-100 object-fit-cover opacity-50" alt="Cover" id="coverPhoto">
+                    <button class="btn btn-white btn-sm position-absolute bottom-0 end-0 m-3 shadow-sm fw-bold">
+                        <i class="bi bi-camera-fill me-2"></i>Change Cover
                     </button>
                 </div>
                 
-                <div class="profile-header px-4">
+                <div class="profile-header px-4 pb-4">
                     <div class="row align-items-end">
                         <div class="col-lg-8">
-                            <div class="d-flex align-items-end gap-3 flex-wrap">
-                                <div class="profile-picture position-relative" style="margin-top: -60px;">
-                                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=168&h=168&fit=crop" class="rounded-circle border border-4 border-white shadow-lg" width="168" height="168" alt="Profile" id="profilePic">
-                                    <button class="btn btn-light rounded-circle position-absolute bottom-0 end-0 m-2 shadow-sm">
+                            <div class="d-flex align-items-end gap-4 flex-wrap">
+                                <div class="profile-picture position-relative" style="margin-top: -80px;">
+                                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=168&h=168&fit=crop" class="rounded-circle border border-5 border-white shadow-lg bg-white" width="160" height="160" alt="Profile" id="profilePic">
+                                    <button class="btn btn-primary rounded-circle position-absolute bottom-0 end-0 m-2 shadow-sm p-2 border-2 border-white" onclick="document.getElementById('profilePicInput').click()">
                                         <i class="bi bi-camera-fill"></i>
                                     </button>
+                                    <input type="file" id="profilePicInput" accept="image/*" style="display:none;" onchange="uploadProfilePic(this)">
                                 </div>
                                 <div class="mb-3">
-                                    <h2 class="fw-bold mb-0" id="userName">Loading...</h2>
-                                    <div class="text-muted" id="friendCount">0 friends</div>
-                                    <div class="d-flex mt-2" id="friendAvatars">
+                                    <h2 class="fw-bold mb-1" id="userName">Student Name</h2>
+                                    <div class="d-flex align-items-center gap-2 text-muted">
+                                        <span id="friendCount">0 classmates</span>
+                                        <span>•</span>
+                                        <span class="badge bg-light text-primary border fw-normal"><i class="bi bi-mortarboard me-1"></i> Student Member</span>
+                                    </div>
+                                    <div class="d-flex mt-3" id="friendAvatars">
                                         <!-- Avatars will be injected here -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 text-end mb-3">
-                            <button class="btn btn-primary"><i class="bi bi-plus-lg me-2"></i>Add to story</button>
-                            <button class="btn btn-light border"><i class="bi bi-pencil-fill me-2"></i>Edit profile</button>
+                            <button class="btn btn-primary fw-bold px-4 shadow-sm" data-bs-toggle="modal" data-bs-target="#editProfileModal"><i class="bi bi-pencil-fill me-2"></i>Edit Profile</button>
                         </div>
                     </div>
                     
-                    <hr class="my-2">
+                    <hr class="my-3 opacity-5">
                     
-                    <ul class="nav nav-tabs border-0">
+                    <ul class="nav nav-pills border-0 gap-2">
                         <li class="nav-item">
-                            <a class="nav-link active fw-semibold" href="#">Posts</a>
+                            <a class="nav-link active fw-bold px-4" href="#">Posts</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fw-semibold" href="#">About</a>
+                            <a class="nav-link fw-bold px-4" href="#">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fw-semibold" href="#">Friends</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link fw-semibold" href="#">Photos</a>
+                            <a class="nav-link fw-bold px-4" href="friends.html">Classmates</a>
                         </li>
                     </ul>
                 </div>
@@ -120,40 +114,58 @@
         </div>
 
         <!-- Profile Content -->
-        <div class="container mt-3">
+        <div class="container mt-4">
             <div class="row">
                 <!-- Left Column -->
                 <div class="col-lg-5">
                     <!-- Intro Card -->
-                    <div class="card mb-3 border-0 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="fw-bold mb-3">Intro</h5>
-                            <div class="text-center mb-3">
-                                <p id="userBio" class="mb-2">No bio yet.</p>
-                                <button class="btn btn-light w-100 border">Add bio</button>
+                    <div class="card mb-4 border-0 shadow-sm rounded-3">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-4">Student Intro</h5>
+                            <div class="text-center mb-4">
+                                <p id="userBio" class="mb-3 italic">No bio added yet.</p>
+                                <button class="btn btn-light w-100 border-0 fw-bold py-2" data-bs-toggle="modal" data-bs-target="#editProfileModal">Update Bio</button>
                             </div>
-                            <div class="mb-2">
-                                <i class="bi bi-house-fill me-2 text-muted"></i>Lives in <strong id="userLocation">Not set</strong>
+                            <div class="mb-3 d-flex align-items-center">
+                                <i class="bi bi-bank2 me-3 text-primary fs-5"></i>
+                                <div>
+                                    <span class="small text-muted d-block">University</span>
+                                    <strong id="userUni">Not set</strong>
+                                </div>
                             </div>
-                            <div class="mb-2">
-                                <i class="bi bi-geo-alt-fill me-2 text-muted"></i>From <strong id="userHometown">Not set</strong>
+                            <div class="mb-3 d-flex align-items-center">
+                                <i class="bi bi-book-fill me-3 text-primary fs-5"></i>
+                                <div>
+                                    <span class="small text-muted d-block">Major</span>
+                                    <strong id="userMajor">Not set</strong>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <i class="bi bi-clock-fill me-2 text-muted"></i>Joined <span id="joinDate">Loading...</span>
+                            <div class="mb-3 d-flex align-items-center">
+                                <i class="bi bi-calendar3 me-3 text-primary fs-5"></i>
+                                <div>
+                                    <span class="small text-muted d-block">Year of Study</span>
+                                    <strong id="userYear">Not set</strong>
+                                </div>
                             </div>
-                            <button class="btn btn-light w-100 border">Edit details</button>
+                            <div class="mb-0 d-flex align-items-center">
+                                <i class="bi bi-clock-fill me-3 text-primary fs-5"></i>
+                                <div>
+                                    <span class="small text-muted d-block">Member Since</span>
+                                    <span id="joinDate" class="fw-bold">Loading...</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Friends Card (Compact) -->
-                    <div class="card mb-3 border-0 shadow-sm">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="card mb-4 border-0 shadow-sm rounded-3">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
                                 <div>
-                                    <h5 class="fw-bold mb-0">Friends</h5>
-                                    <div class="text-muted small" id="friendCountText">0 friends</div>
+                                    <h5 class="fw-bold mb-0">Classmates</h5>
+                                    <div class="text-muted small" id="friendCountText">0 connections</div>
                                 </div>
-                                <a href="friends.html" class="text-primary text-decoration-none">See all friends</a>
+                                <a href="friends.html" class="text-primary text-decoration-none fw-bold small">View All</a>
                             </div>
                             <div class="row g-2" id="friendsGrid">
                                 <!-- Friends will be injected here -->
@@ -165,27 +177,17 @@
                 <!-- Right Column - Posts -->
                 <div class="col-lg-7">
                     <!-- Create Post -->
-                    <div class="card mb-3 border-0 shadow-sm">
-                        <div class="card-body">
-                            <div class="d-flex gap-2 mb-3">
-                                <img src="https://via.placeholder.com/40" class="rounded-circle user-avatar" width="40" height="40">
-                                <input type="text" class="form-control rounded-pill bg-light border-0" placeholder="What's on your mind?" data-bs-toggle="modal" data-bs-target="#createPostModal">
+                    <div class="card mb-4 border-0 shadow-sm rounded-3">
+                        <div class="card-body p-4">
+                            <div class="d-flex gap-3 mb-4">
+                                <img src="https://via.placeholder.com/40" class="rounded-circle user-avatar" width="45" height="45">
+                                <input type="text" class="form-control rounded-pill bg-light border-0 py-2" placeholder="Share something with your classmates..." data-bs-toggle="modal" data-bs-target="#createPostModal">
                             </div>
-                            <hr>
+                            <hr class="opacity-5 mb-4">
                             <div class="d-flex justify-content-around">
-                                <button class="btn btn-light flex-fill"><i class="bi bi-camera-video-fill text-danger me-2"></i>Live</button>
-                                <button class="btn btn-light flex-fill"><i class="bi bi-image-fill text-success me-2"></i>Photo</button>
-                                <button class="btn btn-light flex-fill"><i class="bi bi-emoji-smile-fill text-warning me-2"></i>Feeling</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Filter Posts -->
-                    <div class="card mb-3 border-0 shadow-sm">
-                        <div class="card-body py-2">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <h5 class="mb-0 fw-bold">Posts</h5>
-                                <button class="btn btn-light border"><i class="bi bi-sliders me-2"></i>Filters</button>
+                                <button class="btn btn-light flex-fill border-0 bg-transparent text-muted"><i class="bi bi-image-fill text-success me-2"></i>Photo</button>
+                                <button class="btn btn-light flex-fill border-0 bg-transparent text-muted"><i class="bi bi-camera-video-fill text-danger me-2"></i>Video</button>
+                                <button class="btn btn-light flex-fill border-0 bg-transparent text-muted"><i class="bi bi-emoji-smile-fill text-warning me-2"></i>Feeling</button>
                             </div>
                         </div>
                     </div>
@@ -204,48 +206,86 @@
         </div>
     </div>
 
+    <!-- Edit Profile Modal -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header border-bottom">
+                    <h5 class="modal-title fw-bold">Update Student Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="editProfileForm">
+                        <div class="mb-4">
+                            <label class="form-label fw-bold small text-muted text-uppercase">Full Name</label>
+                            <input type="text" id="editName" class="form-control" placeholder="Your name">
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold small text-muted text-uppercase">Bio</label>
+                            <textarea id="editBio" class="form-control" rows="3" placeholder="Tell your classmates about yourself..."></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold small text-muted text-uppercase">University</label>
+                            <input type="text" id="editUni" class="form-control" placeholder="e.g., Stanford University">
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold small text-muted text-uppercase">Major</label>
+                            <input type="text" id="editMajor" class="form-control" placeholder="e.g., Computer Science">
+                        </div>
+                        <div class="mb-0">
+                            <label class="form-label fw-bold small text-muted text-uppercase">Year of Study</label>
+                            <select id="editYear" class="form-select">
+                                <option value="">Select year</option>
+                                <option value="Freshman">Freshman</option>
+                                <option value="Sophomore">Sophomore</option>
+                                <option value="Junior">Junior</option>
+                                <option value="Senior">Senior</option>
+                                <option value="Postgraduate">Postgraduate</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0 p-4 pt-0">
+                    <button type="button" class="btn btn-primary w-100 py-2 fw-bold shadow-sm" onclick="saveProfile()">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Create Post Modal -->
     <div class="modal fade" id="createPostModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fw-bold w-100 text-center">Create post</h5>
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header border-bottom">
+                    <h5 class="modal-title fw-bold w-100 text-center">Create Post</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="d-flex align-items-center gap-2 mb-3">
-                        <img src="https://via.placeholder.com/40" class="rounded-circle user-avatar" width="40" height="40">
+                <div class="modal-body p-4">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <img src="https://via.placeholder.com/40" class="rounded-circle user-avatar" width="45" height="45">
                         <div>
-                            <strong class="user-name-text">User</strong>
-                            <div class="dropdown d-inline">
-                                <button class="btn btn-sm btn-light dropdown-toggle" data-bs-toggle="dropdown">
-                                    <i class="bi bi-globe"></i> Public
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-globe me-2"></i>Public</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-people me-2"></i>Friends</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-lock me-2"></i>Only me</a></li>
-                                </ul>
-                            </div>
+                            <strong class="user-name-text d-block">Student Name</strong>
+                            <div class="badge bg-light text-dark fw-normal border"><i class="bi bi-globe me-1"></i> Public</div>
                         </div>
                     </div>
-                    <textarea class="form-control border-0" rows="5" placeholder="What's on your mind?" id="postContent"></textarea>
-                    <div id="imagePreview" class="mt-2 text-center" style="display:none;">
-                        <img src="" class="img-fluid rounded" style="max-height: 200px;">
-                        <button type="button" class="btn btn-sm btn-danger mt-1" onclick="removeSelectedImage()">Remove</button>
+                    <textarea class="form-control border-0 fs-5 mb-4" rows="4" placeholder="What's happening?" id="postContent" style="resize: none;"></textarea>
+                    
+                    <div id="imagePreview" class="mt-2 text-center mb-4" style="display:none; position: relative;">
+                        <img src="" class="img-fluid rounded shadow-sm" style="max-height: 250px;">
+                        <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2 rounded-circle" onclick="removeSelectedImage()"><i class="bi bi-x-lg"></i></button>
                     </div>
-                    <div class="border rounded p-3 mt-3">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span>Add to your post</span>
-                            <div>
-                                <input type="file" id="postImageInput" accept="image/*" style="display:none;" onchange="previewImage(this)">
-                                <button type="button" class="btn btn-light rounded-circle" onclick="document.getElementById('postImageInput').click()"><i class="bi bi-image-fill text-success"></i></button>
-                            </div>
+
+                    <div class="border rounded-3 p-3 bg-light d-flex justify-content-between align-items-center">
+                        <span class="small fw-bold text-muted">Add to your post</span>
+                        <div class="d-flex gap-2">
+                            <input type="file" id="postImageInput" accept="image/*" style="display:none;" onchange="previewImage(this)">
+                            <button type="button" class="btn btn-white shadow-sm rounded-circle p-2" onclick="document.getElementById('postImageInput').click()"><i class="bi bi-image-fill text-success fs-5"></i></button>
+                            <button type="button" class="btn btn-white shadow-sm rounded-circle p-2"><i class="bi bi-emoji-smile-fill text-warning fs-5"></i></button>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary w-100 fw-bold" id="postBtn" onclick="createProfilePost()">Post</button>
+                <div class="modal-footer border-0 p-4 pt-0">
+                    <button type="button" class="btn btn-primary w-100 py-2 fw-bold shadow-sm" id="postBtn" onclick="createProfilePost()">Post to Feed</button>
                 </div>
             </div>
         </div>
@@ -280,13 +320,17 @@
             document.getElementById('imagePreview').style.display = 'none';
         }
 
-        window.addEventListener('verity_auth_ready', (e) => {
-            const userData = e.detail;
+        function initCampusLink(userData) {
             populateProfile(userData);
             loadUserPosts(currentUser.uid);
-        });
+        }
 
-        // ... populateProfile and loadFriendAvatars stay the same ...
+        window.addEventListener('campuslink_auth_ready', (e) => initCampusLink(e.detail));
+        if (typeof auth !== 'undefined' && auth.currentUser) {
+            db.ref('users/' + auth.currentUser.uid).once('value').then(snap => { if (snap.exists()) initCampusLink(snap.val()); });
+        }
+
+        function populateProfile(userData) {
             const pic = userData.profilePic || userData.photoURL || 'https://via.placeholder.com/150';
             document.getElementById('profilePic').src = pic;
             document.getElementById('navProfilePic').src = pic;
@@ -294,10 +338,18 @@
             
             document.getElementById('userName').textContent = userData.name;
             document.querySelectorAll('.user-name-text').forEach(el => el.textContent = userData.name);
+            document.getElementById('editName').value = userData.name;
             
-            document.getElementById('userBio').textContent = userData.bio || 'No bio yet.';
-            document.getElementById('userLocation').textContent = userData.location || 'Not set';
-            document.getElementById('userHometown').textContent = userData.hometown || 'Not set';
+            document.getElementById('userBio').textContent = userData.bio || 'No bio added yet.';
+            document.getElementById('editBio').value = userData.bio || '';
+
+            // Academic fields
+            document.getElementById('userUni').textContent = userData.university || 'Not set';
+            document.getElementById('editUni').value = userData.university || '';
+            document.getElementById('userMajor').textContent = userData.major || 'Not set';
+            document.getElementById('editMajor').value = userData.major || '';
+            document.getElementById('userYear').textContent = userData.year || 'Not set';
+            document.getElementById('editYear').value = userData.year || '';
             
             if (userData.createdAt) {
                 document.getElementById('joinDate').textContent = new Date(userData.createdAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
@@ -308,8 +360,8 @@
             // Load friend count
             db.ref('friends/' + currentUser.uid).on('value', snap => {
                 const count = snap.numChildren();
-                document.getElementById('friendCount').textContent = `${count} friends`;
-                document.getElementById('friendCountText').textContent = `${count} friends`;
+                document.getElementById('friendCount').textContent = `${count} classmates`;
+                document.getElementById('friendCountText').textContent = `${count} connections`;
                 loadFriendAvatars(snap);
             });
         }
@@ -327,8 +379,8 @@
                             col.className = 'col-4';
                             col.innerHTML = `
                                 <div>
-                                    <img src="${u.profilePic || u.photoURL || 'https://via.placeholder.com/150'}" class="w-100 rounded shadow-sm" style="aspect-ratio: 1/1; object-fit: cover;">
-                                    <div class="small mt-1 text-truncate"><strong>${u.name}</strong></div>
+                                    <img src="${u.profilePic || u.photoURL || 'https://via.placeholder.com/150'}" class="w-100 rounded-3 shadow-sm" style="aspect-ratio: 1/1; object-fit: cover;">
+                                    <div class="small mt-1 text-truncate" style="font-size: 0.7rem;"><strong>${u.name}</strong></div>
                                 </div>
                             `;
                             grid.appendChild(col);
@@ -337,6 +389,9 @@
                 }
                 i++;
             });
+            if (i === 0) {
+                grid.innerHTML = '<div class="col-12 text-center py-3"><p class="text-muted small">No classmates yet.</p></div>';
+            }
         }
 
         function loadUserPosts(uid) {
@@ -349,41 +404,41 @@
                 });
 
                 if (posts.length === 0) {
-                    postsList.innerHTML = '<div class="card border-0 shadow-sm"><div class="card-body text-center py-5"><p class="text-muted">No posts yet.</p></div></div>';
+                    postsList.innerHTML = '<div class="card border-0 shadow-sm rounded-3"><div class="card-body text-center py-5"><p class="text-muted">You haven\'t posted anything yet.</p></div></div>';
                     return;
                 }
 
                 posts.forEach(post => {
                     const postEl = document.createElement('div');
-                    postEl.className = 'card mb-3 border-0 shadow-sm';
+                    postEl.className = 'card mb-4 border-0 shadow-sm rounded-3 transition';
                     postEl.innerHTML = `
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div class="d-flex align-items-center gap-2">
-                                    <img src="${document.getElementById('profilePic').src}" class="rounded-circle" width="40" height="40">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div class="d-flex align-items-center gap-3">
+                                    <img src="${document.getElementById('profilePic').src}" class="rounded-circle" width="45" height="45">
                                     <div>
-                                        <strong>${document.getElementById('userName').textContent}</strong>
+                                        <strong class="d-block">${document.getElementById('userName').textContent}</strong>
                                         <div class="small text-muted">${formatTimestamp(post.timestamp)} <i class="bi bi-globe"></i></div>
                                     </div>
                                 </div>
                                 <div class="dropdown">
-                                    <button class="btn btn-light rounded-circle" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><button class="dropdown-item text-danger" onclick="deletePost('${post.id}')"><i class="bi bi-trash me-2"></i>Delete</button></li>
+                                    <button class="btn btn-light rounded-circle border-0" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></button>
+                                    <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                                        <li><button class="dropdown-item py-2 text-danger" onclick="deletePost('${post.id}')"><i class="bi bi-trash me-2"></i>Delete Post</button></li>
                                     </ul>
                                 </div>
                             </div>
-                            <p>${escapeHtml(post.content)}</p>
-                            ${post.imageURL ? `<img src="${post.imageURL}" class="w-100 rounded mb-2" alt="Post">` : ''}
-                            <div class="d-flex justify-content-between align-items-center mb-2 small text-muted">
+                            <p class="mb-4">${escapeHtml(post.content)}</p>
+                            ${post.imageURL ? `<img src="${post.imageURL}" class="w-100 rounded-3 mb-4 shadow-sm" alt="Post">` : ''}
+                            <div class="d-flex justify-content-between align-items-center mb-3 small text-muted">
                                 <span><i class="bi bi-hand-thumbs-up-fill text-primary"></i> ${post.likeCount || 0}</span>
                                 <span>${post.commentCount || 0} comments</span>
                             </div>
-                            <hr>
+                            <hr class="opacity-5">
                             <div class="d-flex justify-content-around">
-                                <button class="btn btn-light flex-fill"><i class="bi bi-hand-thumbs-up me-2"></i>Like</button>
-                                <button class="btn btn-light flex-fill"><i class="bi bi-chat me-2"></i>Comment</button>
-                                <button class="btn btn-light flex-fill"><i class="bi bi-share me-2"></i>Share</button>
+                                <button class="btn btn-light flex-fill border-0 bg-transparent text-muted py-2"><i class="bi bi-hand-thumbs-up me-2"></i>Like</button>
+                                <button class="btn btn-light flex-fill border-0 bg-transparent text-muted py-2"><i class="bi bi-chat me-2"></i>Comment</button>
+                                <button class="btn btn-light flex-fill border-0 bg-transparent text-muted py-2"><i class="bi bi-share me-2"></i>Share</button>
                             </div>
                         </div>
                     `;
@@ -392,23 +447,52 @@
             });
         }
 
+        async function saveProfile() {
+            const name = document.getElementById('editName').value;
+            const bio = document.getElementById('editBio').value;
+            const uni = document.getElementById('editUni').value;
+            const major = document.getElementById('editMajor').value;
+            const year = document.getElementById('editYear').value;
+            
+            try {
+                await db.ref('users/' + currentUser.uid).update({ 
+                    name: name, 
+                    bio: bio,
+                    university: uni,
+                    major: major,
+                    year: year
+                });
+                showToast('Profile updated!', 'success');
+                bootstrap.Modal.getInstance(document.getElementById('editProfileModal')).hide();
+                // We'll rely on the RTDB listener to update the UI
+            } catch (e) { showToast(e.message, 'danger'); }
+        }
+
+        async function uploadProfilePic(input) {
+            if (!input.files || !input.files[0]) return;
+            showToast('Uploading photo...', 'info');
+            try {
+                const base64 = await fileToBase64(input.files[0], 400);
+                await db.ref('users/' + currentUser.uid).update({ profilePic: base64 });
+                showToast('Photo updated!', 'success');
+            } catch (e) { showToast(e.message, 'danger'); }
+        }
+
         async function createProfilePost() {
             const content = document.getElementById('postContent').value.trim();
             if (!content && !selectedFile) return;
 
             const postBtn = document.getElementById('postBtn');
             postBtn.disabled = true;
-            postBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Processing...';
+            postBtn.innerHTML = 'Posting...';
 
             try {
                 let imageURL = null;
-                const postId = db.ref('posts').push().key;
-
                 if (selectedFile) {
                     imageURL = await fileToBase64(selectedFile, 800);
                 }
 
-                await db.ref('posts/' + postId).set({
+                await db.ref('posts').push({
                     userId: currentUser.uid,
                     content: content,
                     imageURL: imageURL,
@@ -420,20 +504,19 @@
                 document.getElementById('postContent').value = '';
                 removeSelectedImage();
                 bootstrap.Modal.getInstance(document.getElementById('createPostModal')).hide();
-                showToast('Post added to your profile!', 'success');
+                showToast('Shared with classmates!', 'success');
             } catch (error) {
-                console.error(error);
                 showToast('Error: ' + error.message, 'danger');
             } finally {
                 postBtn.disabled = false;
-                postBtn.innerHTML = 'Post';
+                postBtn.innerHTML = 'Post to Feed';
             }
         }
 
         async function deletePost(postId) {
             if (confirm('Are you sure you want to delete this post?')) {
                 await db.ref('posts/' + postId).remove();
-                showToast('Post deleted', 'info');
+                showToast('Post removed', 'info');
             }
         }
     </script>

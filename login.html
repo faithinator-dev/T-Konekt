@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verity - Real Connections | No Algorithms</title>
-    <meta name="description" content="Verity is a modern, privacy-first social media platform. No algorithms, just real connections.">
+    <title>CampusLink - Your Student Hub</title>
+    <meta name="description" content="CampusLink is a modern student hub for real connections, study groups, and campus updates.">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="fb-style.css">
+    <link rel="stylesheet" href="campus-style.css">
     <link rel="shortcut icon" href="icons/logo.svg" type="image/x-icon">
 </head>
-<body class="login-page" style="background: linear-gradient(rgba(0, 128, 128, 0.8), rgba(75, 0, 130, 0.8)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&h=900&fit=crop'); background-size: cover; background-position: center;">
+<body class="login-page" style="background: linear-gradient(rgba(0, 33, 71, 0.9), rgba(0, 123, 255, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&h=900&fit=crop'); background-size: cover; background-position: center;">
     <div class="container">
         <div class="row min-vh-100 align-items-center">
             <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
                 <div class="d-flex align-items-center justify-content-center justify-content-lg-start mb-3">
-                    <img src="icons/logo.svg" alt="Verity Logo" style="height: 100px; margin-right: 15px;">
-                    <h1 class="display-3 fw-bold text-white mb-0">Verity</h1>
+                    <img src="icons/logo.svg" alt="CampusLink Logo" style="height: 100px; margin-right: 15px; filter: brightness(0) invert(1);">
+                    <h1 class="display-3 fw-bold text-white mb-0">CampusLink</h1>
                 </div>
-                <p class="fs-4 text-white opacity-75">Connect with friends and the world around you on Verity—the algorithm-free social network.</p>
+                <p class="fs-4 text-white opacity-75">Your all-in-one student hub. Join study groups, connect with classmates, and stay updated with campus life.</p>
                 <div class="mt-4">
-                    <span class="privacy-badge text-white" style="background: rgba(255,255,255,0.1);"><i class="bi bi-shield-lock-fill"></i> Privacy First</span>
-                    <span class="privacy-badge text-white ms-2" style="background: rgba(255,255,255,0.1);"><i class="bi bi-clock-history"></i> Chronological Feed</span>
+                    <span class="privacy-badge text-white" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);"><i class="bi bi-mortarboard-fill"></i> Academic Focus</span>
+                    <span class="privacy-badge text-white ms-2" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);"><i class="bi bi-people-fill"></i> Peer-to-Peer</span>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -34,23 +34,25 @@
                         
                         <form id="loginForm">
                             <div class="mb-3">
-                                <input type="email" id="loginEmail" class="form-control form-control-lg" placeholder="Email address" required>
+                                <label class="form-label fw-bold small text-muted">STUDENT EMAIL</label>
+                                <input type="email" id="loginEmail" class="form-control form-control-lg" placeholder="Enter your email" required>
                             </div>
                             <div class="mb-3">
-                                <input type="password" id="loginPassword" class="form-control form-control-lg" placeholder="Password" required>
+                                <label class="form-label fw-bold small text-muted">PASSWORD</label>
+                                <input type="password" id="loginPassword" class="form-control form-control-lg" placeholder="Enter your password" required>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-lg w-100 mb-3 fw-bold">Log In</button>
+                            <button type="submit" class="btn btn-primary btn-lg w-100 mb-3 fw-bold shadow-sm">Sign In</button>
                             <div class="text-center mb-3">
-                                <a href="#" class="text-decoration-none" onclick="forgotPassword()">Forgotten password?</a>
+                                <a href="#" class="text-decoration-none small fw-bold" onclick="forgotPassword()" style="color: var(--primary-blue);">Forgot password?</a>
                             </div>
-                            <hr>
+                            <hr class="opacity-10">
                             <div class="text-center">
-                                <button type="button" class="btn btn-success btn-lg fw-bold" data-bs-toggle="modal" data-bs-target="#signupModal" style="background-color: #42b72a; border: none;">Create New Account</button>
+                                <button type="button" class="btn btn-outline-primary btn-lg fw-bold w-100" data-bs-toggle="modal" data-bs-target="#signupModal">Join the Community</button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <p class="text-center mt-4 text-white opacity-75">Build real relationships. Stay in control of your data.</p>
+                <p class="text-center mt-4 text-white opacity-75">Connecting over 50,000+ students globally.</p>
             </div>
         </div>
     </div>
@@ -61,8 +63,8 @@
             <div class="modal-content">
                 <div class="modal-header border-0 pb-0">
                     <div>
-                        <h3 class="modal-title fw-bold">Sign Up</h3>
-                        <p class="text-muted mb-0">It's quick and easy.</p>
+                        <h3 class="modal-title fw-bold">Create Student Account</h3>
+                        <p class="text-muted mb-0">Join your campus community today.</p>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
@@ -73,44 +75,18 @@
                                 <input type="text" id="signupFirstName" class="form-control" placeholder="First name" required>
                             </div>
                             <div class="col">
-                                <input type="text" id="signupLastName" class="form-control" placeholder="Surname" required>
+                                <input type="text" id="signupLastName" class="form-control" placeholder="Last name" required>
                             </div>
                         </div>
                         <div class="mb-2">
-                            <input type="email" id="signupEmail" class="form-control" placeholder="Email address" required>
+                            <input type="email" id="signupEmail" class="form-control" placeholder="Student email address" required>
                         </div>
                         <div class="mb-2">
-                            <input type="password" id="signupPassword" class="form-control" placeholder="New password (6+ chars)" required>
+                            <input type="password" id="signupPassword" class="form-control" placeholder="Create password (6+ chars)" required>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label text-muted small">Gender</label>
-                            <div class="row g-2">
-                                <div class="col-4">
-                                    <div class="border rounded p-2">
-                                        <label class="form-check-label w-100">
-                                            <input type="radio" name="gender" value="female" required> Female
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="border rounded p-2">
-                                        <label class="form-check-label w-100">
-                                            <input type="radio" name="gender" value="male"> Male
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="border rounded p-2">
-                                        <label class="form-check-label w-100">
-                                            <input type="radio" name="gender" value="other"> Other
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="small text-muted">By clicking Sign Up, you agree to our Verity Terms and Privacy Policy.</p>
+                        <p class="small text-muted mt-3">By joining, you agree to the CampusLink Community Guidelines and Privacy Policy.</p>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-lg px-5 fw-bold">Sign Up</button>
+                            <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold shadow-sm">Create Account</button>
                         </div>
                     </form>
                 </div>

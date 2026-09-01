@@ -1,4 +1,4 @@
-// Verity Core Configuration & Auth Management
+// CampusLink Core Configuration & Auth Management
 // firebaseConfig is loaded from firebase-config.js (not in Git)
 // If firebaseConfig is not defined, initialization will fail.
 if (typeof firebaseConfig === 'undefined') {
@@ -50,19 +50,19 @@ auth.onAuthStateChanged(user => {
         db.ref('users/' + user.uid).once('value').then(snapshot => {
             if (snapshot.exists()) {
                 const userData = snapshot.val();
-                localStorage.setItem('verity_user', JSON.stringify({
+                localStorage.setItem('campuslink_user', JSON.stringify({
                     uid: user.uid,
                     name: userData.name,
                     email: user.email,
                     photoURL: userData.profilePic || userData.photoURL || 'https://via.placeholder.com/150'
                 }));
                 // Custom event for pages to react to auth ready
-                window.dispatchEvent(new CustomEvent('verity_auth_ready', { detail: userData }));
+                window.dispatchEvent(new CustomEvent('campuslink_auth_ready', { detail: userData }));
             }
         });
     } else {
         currentUser = null;
-        localStorage.removeItem('verity_user');
+        localStorage.removeItem('campuslink_user');
         // Redirect to login if not on login page
         if (!window.location.pathname.includes('login.html')) {
             window.location.href = 'login.html';
